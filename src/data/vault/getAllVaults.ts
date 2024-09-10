@@ -4,6 +4,7 @@ import { getAllVaultTypesAndAddresses } from "./helpers/getVaultAddresses";
 import { getVaultWithKnownType } from "./getVault";
 import { VAULT_TYPE_MATCH_ORDER } from "@/utils/constants";
 import { Address } from "viem";
+import { allVaultsOfflineData } from "./offline/allVaultsData";
 
 export async function getAllVaults(): Promise<Vault[]> {
   const allVaultTypesAndAddresses = await getAllVaultTypesAndAddresses();
@@ -24,4 +25,8 @@ export async function getAllVaults(): Promise<Vault[]> {
   }
 
   return (await Promise.all(promises)).filter((entry) => entry !== null);
+}
+
+export async function getAllVaultsOffline(): Promise<Vault[]> {
+  return allVaultsOfflineData;
 }
