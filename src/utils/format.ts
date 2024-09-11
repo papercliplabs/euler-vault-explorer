@@ -1,4 +1,4 @@
-import { formatUnits } from "viem";
+import { Address, formatUnits } from "viem";
 import { BigIntString } from "./types";
 
 interface FormatNumberParams {
@@ -38,4 +38,8 @@ interface FormatTokenAmountParams extends Omit<FormatNumberParams, "input"> {
 export function formatTokenAmount({ tokenAmount, tokenDecimals, ...rest }: FormatTokenAmountParams): string {
   const tokensFormatted = formatUnits(BigInt(tokenAmount), tokenDecimals);
   return formatNumber({ input: Number(tokensFormatted), ...rest });
+}
+
+export function formatAddress({ address }: { address: Address }): string {
+  return `${address.slice(0, 6)}...${address.slice(-4)}`;
 }

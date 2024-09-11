@@ -15,6 +15,7 @@ import VaultTypeIcon from "./special/VaultTypeIcon";
 import OracleTypeIcon from "./special/OracleTypeIcon";
 import ChainIcon from "./special/ChainIcon";
 import TokenIcon from "./special/TokenIcon";
+import { TokenAndChainIcon } from "./special/TokenAndChainIcon";
 
 export {
   ArrowDown,
@@ -34,4 +35,5 @@ export {
   OracleTypeIcon,
   ChainIcon,
   TokenIcon,
+  TokenAndChainIcon,
 };

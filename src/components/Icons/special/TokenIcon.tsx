@@ -1,41 +1,21 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import { getTokenImgSrc } from "@/data/token/getTokenImgSrc";
 import { cn } from "@/utils/shadcn";
-import { SupportedChainId } from "@/utils/types";
 import Image from "next/image";
-import { ComponentProps, Suspense } from "react";
-import { Address } from "viem";
+import { ComponentProps } from "react";
 
 interface TokenIconProps extends Omit<ComponentProps<typeof Image>, "src" | "alt" | "width" | "height"> {
-  chainId: SupportedChainId;
-  address: Address;
+  symbol: string;
+  imgSrc: string | null;
   size: number;
 }
 
-export default function TokenIcon(props: TokenIconProps) {
-  return (
-    <Suspense fallback={<Skeleton className="rounded-full" style={{ width: props.size, height: props.size }} />}>
-      <TokenIconImageWrapper {...props} />
-    </Suspense>
-  );
-}
-
-async function TokenIconImageWrapper({ chainId, address, size, className, ...props }: TokenIconProps) {
-  const tokenImgSrc = await getTokenImgSrc(chainId, address);
-
+export default function TokenIcon({ symbol, imgSrc, size, className, ...props }: TokenIconProps) {
   return (
     <>
-      {tokenImgSrc ? (
-        <Image
-          src={tokenImgSrc}
-          width={size}
-          height={size}
-          alt=""
-          className={cn("rounded-full", className)}
-          {...props}
-        />
+      {imgSrc ? (
+        <Image src={imgSrc} width={size} height={size} alt="" className={cn("rounded-full", className)} {...props} />
       ) : (
-        // TODO: use symbol to derive the default (?)
+        // TODO: create fallback (?)
         <Skeleton className="rounded-full" style={{ width: size, height: size }} />
       )}
     </>

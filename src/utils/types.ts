@@ -44,6 +44,7 @@ export interface Vault {
   underlyingAssetAddress: Address;
   underlyingAssetName: string;
   underlyingAssetSymbol: string;
+  underlyingAssetImgSrc: string | null;
 
   unitOfAccountAddress: Address;
   unitOfAccountSymbol: string;

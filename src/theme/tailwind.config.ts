@@ -94,6 +94,7 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        ...palette,
         background: {
           base: palette.euler[300],
           subtle: palette.euler[400],
@@ -111,7 +112,10 @@ const config: Config = {
           strong: palette.euler[700],
         },
         semantic: {
-          accent: palette.teal[700],
+          accent: {
+            DEFAULT: palette.teal[700],
+            secondary: palette.yellow[600],
+          },
         },
       },
     },
