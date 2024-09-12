@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 const plugin = require("tailwindcss/plugin");
 
-const palette = {
+export const palette = {
   transparent: "transparent",
   white: "#ffffff",
   black: "#000000",
@@ -122,6 +122,20 @@ const config: Config = {
     fontFamily: {
       inter: ["var(--font-inter)"],
     },
+    keyframes: {
+      "accordion-down": {
+        from: { height: "0" },
+        to: { height: "var(--radix-accordion-content-height)" },
+      },
+      "accordion-up": {
+        from: { height: "var(--radix-accordion-content-height)" },
+        to: { height: "0" },
+      },
+    },
+    animation: {
+      "accordion-down": "accordion-down 0.2s ease-out",
+      "accordion-up": "accordion-up 0.2s ease-out",
+    },
   },
   plugins: [
     plugin(function ({ addUtilities }: { addUtilities: any }) {
@@ -156,6 +170,7 @@ const config: Config = {
       });
     }),
     require("tailwindcss-animate"),
+    require("tailwind-scrollbar")({ nocompatible: true }),
   ],
 };
 export default config;

@@ -2,16 +2,15 @@
 import clsx from "clsx";
 import { ArrowLeft, Settings } from "../Icons";
 import { Button } from "../ui/button";
-import { useShallowSearchParam } from "@/hooks/useShallowSearchParam";
-
-export const FILTER_TOGGLE_KEY = "filtersOpen";
+import { useShallowSearchParams } from "@/hooks/useShallowSearchParams";
+import { FILTER_KEY_OPEN } from "./filterKeys";
 
 export default function TableFilterToggle() {
   const {
-    value: open,
-    addShallowSearchParam,
-    removeShallowSearchParam,
-  } = useShallowSearchParam({ name: FILTER_TOGGLE_KEY });
+    values: [[open]],
+    addShallowSearchParams,
+    removeShallowSearchParams,
+  } = useShallowSearchParams({ keys: [FILTER_KEY_OPEN] });
 
   return (
     <Button
@@ -19,7 +18,9 @@ export default function TableFilterToggle() {
       size="lg"
       className="rounded-xl transition-all"
       onClick={() => {
-        open ? removeShallowSearchParam(FILTER_TOGGLE_KEY) : addShallowSearchParam(FILTER_TOGGLE_KEY, "1");
+        open
+          ? removeShallowSearchParams([FILTER_KEY_OPEN])
+          : addShallowSearchParams([{ key: FILTER_KEY_OPEN, value: "1" }]);
       }}
     >
       <div className="relative">

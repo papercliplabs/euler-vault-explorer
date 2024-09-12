@@ -11,6 +11,7 @@ import Question from "./core/Question";
 import Search from "./core/Search";
 import Settings from "./core/Settings";
 import X from "./core/X";
+import ChevronDown from "./core/ChevronDown";
 import VaultTypeIcon from "./special/VaultTypeIcon";
 import OracleTypeIcon from "./special/OracleTypeIcon";
 import ChainIcon from "./special/ChainIcon";
@@ -31,6 +32,7 @@ export {
   Search,
   Settings,
   X,
+  ChevronDown,
   VaultTypeIcon,
   OracleTypeIcon,
   ChainIcon,

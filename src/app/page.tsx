@@ -1,5 +1,6 @@
 import TableFilterDrawer from "@/components/TableFilter/TableFilterDrawer";
 import TableFilterToggle from "@/components/TableFilter/TableFilterToggle";
+import { Input } from "@/components/ui/input";
 import VaultTable from "@/components/VaultTable";
 import { vaultTableColumns } from "@/components/VaultTable/columns";
 import { getAllVaults, getAllVaultsOffline } from "@/data/vault/getAllVaults";
@@ -14,12 +15,9 @@ export default async function Home() {
           <TableFilterToggle />
         </Suspense>
         <span>XXX vaults</span>
-        <div className="grow">SEARCH</div>
+        <Input placeholder="Search vault name, symbol or address" />
       </div>
       <div className="flex">
-        <Suspense fallback={<div>Loading...</div>}>
-          <TableFilterDrawer />
-        </Suspense>
         <Suspense fallback={<div>Loading...</div>}>
           <VaultTableWrapper />
         </Suspense>
@@ -31,5 +29,10 @@ export default async function Home() {
 async function VaultTableWrapper() {
   const allVaults = await getAllVaultsOffline();
 
-  return <VaultTable data={allVaults} columns={vaultTableColumns} />;
+  return (
+    <>
+      <TableFilterDrawer vaults={allVaults} />
+      <VaultTable allVaults={allVaults} />
+    </>
+  );
 }
