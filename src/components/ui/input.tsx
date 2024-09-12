@@ -9,7 +9,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type,
   return (
     <div
       className={cn(
-        "bg-background-field body-sm flex h-10 w-full items-center rounded-[12px] px-3",
+        "bg-background-field body-lg flex h-10 w-full shrink-0 items-center rounded-[12px] px-3",
         "ring-offset-semantic-accent focus-within:outline-none focus-within:ring-0 focus-within:ring-offset-2",
         className
       )}

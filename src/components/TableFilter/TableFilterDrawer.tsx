@@ -18,6 +18,8 @@ import { useShallowSearchParams } from "@/hooks/useShallowSearchParams";
 import { Vault } from "@/utils/types";
 import { useMemo } from "react";
 import { CHAIN_CONFIGS } from "@/config";
+import { Drawer, DrawerClose, DrawerContent } from "@/components/ui/drawer";
+import { useScreenSize } from "@/hooks/useScreenSize";
 
 interface TraitFilterDrawerProps {
   vaults: Vault[];
@@ -39,7 +41,9 @@ const chainFilterItems: (TableFilterItemBase & { value: string })[] = Object.val
 export default function TableFilterDrawer({ vaults }: TraitFilterDrawerProps) {
   const {
     values: [[open]],
+    removeShallowSearchParams,
   } = useShallowSearchParams({ keys: [FILTER_KEY_OPEN] });
+  const screenSize = useScreenSize();
 
   const underlyingAssetItems = useMemo(() => {
     const symbolToIconSrc: Record<string, string | null> = {};
@@ -69,13 +73,8 @@ export default function TableFilterDrawer({ vaults }: TraitFilterDrawerProps) {
     }));
   }, [vaults]);
 
-  return (
-    <div
-      className={clsx(
-        "relative h-fit shrink-0 overflow-hidden rounded-3xl transition-all",
-        open ? "left-0 mr-6 w-[292px] border" : "-left-full mr-0 w-0 border-0"
-      )}
-    >
+  const content = (
+    <>
       <div className="flex items-center justify-between border-b px-6 py-4">
         <span className="font-medium">Filter Vaults</span>
         <FilterClearButton filterKeys={ALL_TABLE_FILTER_KEYS} className="body-sm">
@@ -94,6 +93,23 @@ export default function TableFilterDrawer({ vaults }: TraitFilterDrawerProps) {
           <TableFilterSection name="Chain" filterKey={FILTER_KEY_CHAIN} items={chainFilterItems} />
         </Accordion>
       </div>
+    </>
+  );
+
+  return screenSize == "sm" ? (
+    <Drawer open={open != undefined} onClose={() => removeShallowSearchParams([FILTER_KEY_OPEN])}>
+      <DrawerContent>
+        <div className="h-[calc(100dvh-90px)] overflow-y-auto">{content}</div>
+      </DrawerContent>
+    </Drawer>
+  ) : (
+    <div
+      className={clsx(
+        "relative hidden h-fit shrink-0 overflow-hidden rounded-3xl border transition-all md:block",
+        open ? "left-0 mr-6 w-[292px]" : "-left-full mr-0 w-0 border-0"
+      )}
+    >
+      {content}
     </div>
   );
 }

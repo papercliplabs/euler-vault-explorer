@@ -4,9 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { Input } from "../ui/input";
 import { TableFilterItem, TableFilterItemBase } from "./TableFilterItem";
 import FilterClearButton from "../FilterClearButton";
-import { useSearchParams } from "next/navigation";
 import { useShallowSearchParams } from "@/hooks/useShallowSearchParams";
-import { palette } from "@/theme/tailwind.config";
 
 const MIN_ITEMS_FOR_SEARCH = 5;
 
@@ -17,7 +15,6 @@ interface TableFilterSectionProps {
 }
 
 export function TableFilterSection({ name, filterKey, items }: TableFilterSectionProps) {
-  const searchParams = useSearchParams();
   const [searchFilter, setSearchFilter] = useState<string>("");
   const [showMore, setShowMore] = useState<boolean>(false);
 
@@ -46,7 +43,7 @@ export function TableFilterSection({ name, filterKey, items }: TableFilterSectio
 
       addShallowSearchParams([{ key: filterKey, value: newValues }]);
     },
-    [searchParams, filterValues]
+    [filterValues, addShallowSearchParams, filterKey]
   );
 
   const isHidingItems = useMemo(() => {
@@ -67,15 +64,20 @@ export function TableFilterSection({ name, filterKey, items }: TableFilterSectio
             placeholder={`Search ${name.toLowerCase()}`}
             value={searchFilter}
             onChange={(event) => setSearchFilter(event.target.value)}
-            className="h-[28px]"
+            className="h-[32px]"
           />
         )}
         <div className="scrollbar-thin scrollbar-thumb-euler-600 scrollbar-track-transparent scrollbar-thumb-rounded-full flex max-h-[500px] flex-col overflow-y-auto">
           {searchFilteredItems.length > 0 ? (
-            searchFilteredItems.slice(0, isHidingItems ? MIN_ITEMS_FOR_SEARCH : undefined).map((item) => {
+            searchFilteredItems.slice(0, isHidingItems ? MIN_ITEMS_FOR_SEARCH : undefined).map((item, i) => {
               const checked = filterValues.includes(item.value);
               return (
-                <TableFilterItem checked={checked} {...item} onClick={() => handleFilterChange(item.value, !checked)} />
+                <TableFilterItem
+                  key={i}
+                  checked={checked}
+                  {...item}
+                  onClick={() => handleFilterChange(item.value, !checked)}
+                />
               );
             })
           ) : (

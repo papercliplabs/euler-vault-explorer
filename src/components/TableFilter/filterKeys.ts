@@ -1,5 +1,6 @@
 export const FILTER_KEY_OPEN = "filtersOpen";
 
+export const FILTER_KEY_SEARCH = "search";
 export const FILTER_KEY_UNDERLYING_ASSET = "underlying[]";
 export const FILTER_KEY_COLLATERAL = "collateral[]";
 export const FILTER_KEY_VAULT_TYPE = "vaultType[]";

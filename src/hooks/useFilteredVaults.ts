@@ -3,6 +3,7 @@ import { useShallowSearchParams } from "./useShallowSearchParams";
 import {
   FILTER_KEY_CHAIN,
   FILTER_KEY_COLLATERAL,
+  FILTER_KEY_SEARCH,
   FILTER_KEY_UNDERLYING_ASSET,
   FILTER_KEY_VAULT_TYPE,
 } from "@/components/TableFilter/filterKeys";
@@ -14,9 +15,15 @@ interface UseFilteredVaultsParams {
 
 export function useFilteredVaults({ allVaults }: UseFilteredVaultsParams): Vault[] {
   const {
-    values: [underlyingValues, collateralValues, vaultTypeValues, chainValues],
+    values: [underlyingValues, collateralValues, vaultTypeValues, chainValues, searchValues],
   } = useShallowSearchParams({
-    keys: [FILTER_KEY_UNDERLYING_ASSET, FILTER_KEY_COLLATERAL, FILTER_KEY_VAULT_TYPE, FILTER_KEY_CHAIN],
+    keys: [
+      FILTER_KEY_UNDERLYING_ASSET,
+      FILTER_KEY_COLLATERAL,
+      FILTER_KEY_VAULT_TYPE,
+      FILTER_KEY_CHAIN,
+      FILTER_KEY_SEARCH,
+    ],
   });
 
   const filteredVaults = useMemo(() => {
@@ -27,11 +34,18 @@ export function useFilteredVaults({ allVaults }: UseFilteredVaultsParams): Vault
       const vaultTypeMatch = vaultTypeValues.length === 0 || vaultTypeValues.includes(vault.type);
       const chainMatch = chainValues.length === 0 || chainValues.includes(vault.chainId.toString());
 
-      return underlyingAssetMatch && collateralMatch && vaultTypeMatch && chainMatch;
-    });
-  }, [allVaults, underlyingValues, collateralValues, vaultTypeValues, chainValues]);
+      const searchValue = searchValues.length == 0 ? undefined : searchValues[0].toLowerCase();
+      const searchMatch =
+        !searchValue ||
+        vault.name.toLowerCase().includes(searchValue) ||
+        vault.symbol.toLowerCase().includes(searchValue) ||
+        vault.address.toLowerCase().includes(searchValue) ||
+        vault.underlyingAssetSymbol.toLowerCase().includes(searchValue) ||
+        vault.underlyingAssetAddress.toLowerCase().includes(searchValue);
 
-  console.log(underlyingValues, collateralValues, vaultTypeValues, chainValues, filteredVaults);
+      return underlyingAssetMatch && collateralMatch && vaultTypeMatch && chainMatch && searchMatch;
+    });
+  }, [allVaults, underlyingValues, collateralValues, vaultTypeValues, chainValues, searchValues]);
 
   return filteredVaults;
 }

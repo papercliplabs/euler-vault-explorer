@@ -53,14 +53,14 @@ export default function VaultTableTable<TValue>({ data, columns }: TableProps<TV
   return (
     <div className="bg-background-component h-fit grow overflow-hidden rounded-[24px] border">
       <Table>
-        <TableHeader>
+        <TableHeader className="top-[0px]">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id} className="bg-background-subtle hover:brightness-100">
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead key={header.id}>
                     <div
-                      className="text-foreground-subtle flex w-fit select-none items-center hover:cursor-pointer"
+                      className="text-foreground-subtle flex w-fit select-none items-center text-nowrap hover:cursor-pointer"
                       onClick={header.column.getToggleSortingHandler()}
                     >
                       {flexRender(header.column.columnDef.header, header.getContext())}
@@ -86,7 +86,10 @@ export default function VaultTableTable<TValue>({ data, columns }: TableProps<TV
                 }}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className={clsx(cell.column.getIsSorted() && "bg-euler-700/20")}>
+                  <TableCell
+                    key={cell.id}
+                    className={clsx("text-nowrap", cell.column.getIsSorted() && "bg-euler-700/20")}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
