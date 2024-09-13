@@ -1,5 +1,6 @@
 import { ArrowLeft, TokenAndChainIcon } from "@/components/Icons";
 import Metric from "@/components/Metric";
+import VaultGraph from "@/components/VaultGraph";
 import { CHAIN_CONFIGS } from "@/config";
 import { getVault } from "@/data/vault/getVault";
 import { VAULT_TYPE_NAME_MAPPING } from "@/utils/constants";
@@ -91,7 +92,7 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
           capital efficiency, it also introduces additional risk. Our goal is to provide transparency, helping users
           better assess collateral risk.
         </span>
-        <div>GRAPH</div>
+        <VaultGraph vault={vault} />
       </div>
       <div className="bg-background-component flex flex-col gap-6 rounded-[24px] p-6">
         <h4>Vault Configuration</h4>

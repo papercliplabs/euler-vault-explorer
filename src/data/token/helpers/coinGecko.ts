@@ -63,11 +63,11 @@ async function getCoinListUncached(): Promise<CoinGeckoCoin[]> {
   }
 }
 
-const getCoinList = unstable_cache(getCoinListUncached, ["get-coin-gecko-coin-list"]);
+export const getCoinList = unstable_cache(getCoinListUncached, ["get-coin-gecko-coin-list"]);
 
 async function getCoinId(chainId: SupportedChainId, address: Address): Promise<string | null> {
   const coinList = await getCoinList();
-  const coin = coinList.find((coin) => coin.chainId === chainId && isAddressEqual(coin.address, address));
+  const coin = coinList.find((coin) => Number(coin.chainId) === Number(chainId) && coin.address == address);
   return coin?.coinGeckoId ?? null;
 }
 

@@ -16,7 +16,7 @@ export default function TokenIcon({ symbol, imgSrc, size, className, ...props }:
         <Image src={imgSrc} width={size} height={size} alt="" className={cn("rounded-full", className)} {...props} />
       ) : (
         // TODO: create fallback (?)
-        <Skeleton className="rounded-full" style={{ width: size, height: size }} />
+        <Skeleton className="rounded-full" style={{ width: size, height: size }} {...props} />
       )}
     </>
   );

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@/theme/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
+import "@xyflow/react/dist/style.css";
+import "@/theme/globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 

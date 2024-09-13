@@ -8,11 +8,11 @@
   }
 }
 
-@layer base {
-  :root {
-    --radius: 0.5rem;
-  }
+.react-flow {
+  --xy-edge-stroke-selected-default: #2ae5b9;
+}
 
+@layer base {
   *,
   ::before,
   ::after {
@@ -38,5 +38,9 @@
 
   h4 {
     @apply heading-4;
+  }
+
+  .react-flow__attribution {
+    display: none !important;
   }
 }
