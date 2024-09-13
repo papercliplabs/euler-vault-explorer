@@ -12,9 +12,9 @@ export default function ArrowUpRight({ className, ...props }: SVGProps<SVGSVGEle
       <path
         d="M15.9284 8.07163L8.07168 15.9284M15.9284 8.07163L10.5858 8.07163M15.9284 8.07163L15.9284 13.4142"
         stroke="#728395"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

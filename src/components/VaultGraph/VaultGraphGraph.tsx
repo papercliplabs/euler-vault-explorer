@@ -34,13 +34,13 @@ export default function VaultGraphGraph({ vault }: VaultGraphGraphProps) {
 
   const initialNodes: VaultNodeType[] = [
     { id: "1", type: "vault", position: { x: 0, y: 0 }, data: { vault } },
-    { id: "2", type: "vault", position: { x: 0, y: 100 }, data: { vault } },
-    { id: "3", type: "vault", position: { x: 400, y: 100 }, data: { vault } },
+    { id: "2", type: "vault", position: { x: 0, y: 200 }, data: { vault } },
+    { id: "3", type: "vault", position: { x: 400, y: 200 }, data: { vault } },
   ];
 
   const initialEdges: CollateralEdgeType[] = [
     { id: "e1-2", type: "collateral", source: "2", target: "1", data: { collateral: vault.collateral[0] } },
-    { id: "e1-3", type: "collateral", source: "3", target: "1", data: { collateral: vault.collateral[0] } },
+    { id: "e1-3", type: "collateral", source: "3", target: "1", data: { collateral: vault.collateral[1] } },
   ];
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
