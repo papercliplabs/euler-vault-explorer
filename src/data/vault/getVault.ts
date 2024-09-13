@@ -100,6 +100,7 @@ export async function getVaultWithKnownType(
     interestRateModelAddress: vaultInfo.interestRateModel,
 
     collateral: vaultInfo.collateralLTVInfo.map((entry, i) => ({
+      chainId,
       collateralVaultAddress: entry.collateral,
       borrowLoanToValue: Number(formatUnits(entry.borrowLTV, CONFIG_SCALE_DECIMALS)),
       liquidationLoanToValue: Number(formatUnits(entry.liquidationLTV, CONFIG_SCALE_DECIMALS)),

@@ -25,6 +25,7 @@ export interface Oracle extends Record<string, any> {
 }
 
 export interface Collateral {
+  chainId: SupportedChainId;
   collateralVaultAddress: Address;
 
   borrowLoanToValue: number; // %

@@ -2,6 +2,7 @@ import { ArrowLeft, TokenAndChainIcon } from "@/components/Icons";
 import Metric from "@/components/Metric";
 import VaultGraph from "@/components/VaultGraph";
 import { CHAIN_CONFIGS } from "@/config";
+import { getAllVaults, getAllVaultsOffline } from "@/data/vault/getAllVaults";
 import { getVault } from "@/data/vault/getVault";
 import { VAULT_TYPE_NAME_MAPPING } from "@/utils/constants";
 import { formatAddress, formatNumber } from "@/utils/format";
@@ -27,7 +28,7 @@ export default function VaultPage({ params }: { params: { chainId: string; vault
 }
 
 async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedChainId; vaultAddress: Address }) {
-  const vault = await getVault(chainId, vaultAddress);
+  const [vault, allVaults] = await Promise.all([getVault(chainId, vaultAddress), getAllVaultsOffline()]);
 
   if (!vault) {
     throw Error(`Vault ${vaultAddress} not found on chain ${chainId}`);
@@ -56,7 +57,7 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
         </div>
       </div>
       <div className="flex gap-16">
-        <Metric
+        {/* <Metric
           title="Total Supplied"
           popoverText="TOOD"
           primaryValue={vault.totalSuppliedUsd ? formatNumber({ input: vault.totalSuppliedUsd, unit: "USD" }) : "TODO"}
@@ -83,7 +84,7 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
           popoverText="TOOD"
           primaryValue={formatNumber({ input: vault.utilization, unit: "%" })}
         />
-        <Metric title="Total Shares" popoverText="TOOD" primaryValue={formatNumber({ input: vault.shares })} />
+        <Metric title="Total Shares" popoverText="TOOD" primaryValue={formatNumber({ input: vault.shares })} /> */}
       </div>
       <div className="flex flex-col gap-2">
         <h4>Vault Collateral Relationship</h4>
@@ -92,7 +93,7 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
           capital efficiency, it also introduces additional risk. Our goal is to provide transparency, helping users
           better assess collateral risk.
         </span>
-        <VaultGraph vault={vault} />
+        <VaultGraph vault={vault} allVaults={allVaults} />
       </div>
       <div className="bg-background-component flex flex-col gap-6 rounded-[24px] p-6">
         <h4>Vault Configuration</h4>

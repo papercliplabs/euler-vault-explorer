@@ -14,7 +14,7 @@ import { CHAIN_CONFIGS } from "@/config";
 
 export type VaultNodeType = Node<
   {
-    vault: Vault;
+    vault?: Vault;
   },
   "vault"
 >;
@@ -24,7 +24,7 @@ export default function VaultNode({ data: { vault }, selected }: NodeProps<Vault
   return (
     <div
       className={clsx(
-        "nodrag",
+        // "nodrag",
         "bg-euler-700/20 border-border-strong flex gap-2 rounded-full border p-1 pr-4 shadow-md backdrop-blur-sm",
         selected ? "border-semantic-accent" : "hover:border-semantic-accent/50"
       )}
@@ -32,26 +32,31 @@ export default function VaultNode({ data: { vault }, selected }: NodeProps<Vault
     >
       <Handle type="source" position={Position.Top} className="border-none bg-transparent" />
       <Handle type="target" position={Position.Bottom} className="border-none bg-transparent" />
+      {vault ? (
+        <>
+          <TokenIcon
+            symbol={vault.underlyingAssetSymbol}
+            imgSrc={vault.underlyingAssetImgSrc}
+            size={40}
+            className="border-white/16 aspect-square shrink-0 border"
+          />
+          <div className="flex flex-col">
+            <div>
+              <span>{vault.symbol}</span>
+            </div>
+            <div className="body-cs text-foreground-muted flex items-center gap-1">
+              <VaultTypeIcon type={vault.type} className="fill-foreground-muted" />
+              <span>{VAULT_TYPE_NAME_MAPPING[vault.type]}</span>
+            </div>
+          </div>
 
-      <TokenIcon
-        symbol={vault.underlyingAssetSymbol}
-        imgSrc={vault.underlyingAssetImgSrc}
-        size={40}
-        className="border-white/16 aspect-square shrink-0 border"
-      />
-      <div className="flex flex-col">
-        <div>
-          <span>{vault.symbol}</span>
-        </div>
-        <div className="body-cs text-foreground-muted flex items-center gap-1">
-          <VaultTypeIcon type={vault.type} className="fill-foreground-muted" />
-          <span>{VAULT_TYPE_NAME_MAPPING[vault.type]}</span>
-        </div>
-      </div>
-
-      <NodeToolbar position={Position.Right} className="nodrag nopan">
-        <VaultNodePopover vault={vault} />
-      </NodeToolbar>
+          <NodeToolbar position={Position.Right} className="nodrag nopan">
+            <VaultNodePopover vault={vault} />
+          </NodeToolbar>
+        </>
+      ) : (
+        "UNDEFINED"
+      )}
     </div>
   );
 }

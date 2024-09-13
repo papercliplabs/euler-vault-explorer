@@ -1,6 +1,6 @@
 "use client";
 import { Panel, useReactFlow } from "@xyflow/react";
-import { Fit, Minus, Plus } from "../../Icons";
+import { Fit, Minus, Plus } from "@/components/Icons";
 
 export default function ViewportControls() {
   const reactFlow = useReactFlow<any>();
@@ -12,7 +12,7 @@ export default function ViewportControls() {
   ];
 
   return (
-    <Panel position="top-right" className="bg-background-base flex overflow-hidden rounded-full border">
+    <Panel position="bottom-right" className="bg-background-base flex overflow-hidden rounded-full border">
       {items.map((item, i) => (
         <button
           onClick={() => item.onClick()}
