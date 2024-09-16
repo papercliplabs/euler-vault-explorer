@@ -99,7 +99,7 @@ const config: Config = {
           base: palette.euler[300],
           subtle: palette.euler[400],
           component: palette.euler[500],
-          field: palette.euler[200],
+          field: palette.euler[500],
         },
         foreground: {
           base: palette.euler[1000],

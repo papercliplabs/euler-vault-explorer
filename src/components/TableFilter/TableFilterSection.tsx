@@ -53,21 +53,21 @@ export function TableFilterSection({ name, filterKey, items }: TableFilterSectio
   return (
     <AccordionItem value={filterKey}>
       <div className="flex items-center justify-between px-6">
-        <AccordionTrigger className="h-[48px]">{name}</AccordionTrigger>
+        <AccordionTrigger className="h-[48px] text-nowrap">{name}</AccordionTrigger>
         <FilterClearButton filterKeys={[filterKey]} className="text-foreground-subtle body-xs">
           Clear
         </FilterClearButton>
       </div>
-      <AccordionContent className="flex max-h-[420px] flex-col gap-2 overflow-visible px-6 pb-2 pt-1">
+      <AccordionContent className="flex flex-col gap-2 overflow-visible px-6 pb-2 pt-1">
         {items.length > MIN_ITEMS_FOR_SEARCH && (
           <Input
             placeholder={`Search ${name.toLowerCase()}`}
             value={searchFilter}
             onChange={(event) => setSearchFilter(event.target.value)}
-            className="h-[32px]"
+            className="h-[28px]"
           />
         )}
-        <div className="scrollbar-thin scrollbar-thumb-euler-600 scrollbar-track-transparent scrollbar-thumb-rounded-full flex max-h-[500px] flex-col overflow-y-auto">
+        <div className="scrollbar-thin scrollbar-thumb-euler-600 scrollbar-track-transparent scrollbar-thumb-rounded-full flex flex-col overflow-y-auto">
           {searchFilteredItems.length > 0 ? (
             searchFilteredItems.slice(0, isHidingItems ? MIN_ITEMS_FOR_SEARCH : undefined).map((item, i) => {
               const checked = filterValues.includes(item.value);

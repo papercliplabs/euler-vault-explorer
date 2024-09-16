@@ -20,11 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable}`}>
+      <body className={`${inter.variable}`} data-vaul-drawer-wrapper="">
         <Header />
         <div className="flex min-h-dvh flex-col justify-between">
-          <main className="w-full flex-grow px-[14px] pb-[14px] pt-[86px] md:px-[22px] md:pb-[22px]">{children}</main>
-          <Footer />
+          <main className="w-full flex-grow px-[14px] pb-[0px] pt-[86px] md:px-[22px] md:pb-[22px]">{children}</main>
+          {/* <Footer /> */}
         </div>
       </body>
     </html>

@@ -51,14 +51,14 @@ export default function VaultTableTable<TValue>({ data, columns }: TableProps<TV
   );
 
   return (
-    <div className="bg-background-component h-fit grow overflow-hidden rounded-[24px] border">
-      <Table>
-        <TableHeader className="top-[0px]">
+    <div className="bg-background-component sticky top-0 h-fit grow overflow-y-auto rounded-[24px] border">
+      <table className="h-full w-full">
+        <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className="bg-background-subtle hover:brightness-100">
+            <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="bg-background-subtle z-10 hover:brightness-100">
                     <div
                       className="text-foreground-subtle flex w-fit select-none items-center text-nowrap hover:cursor-pointer"
                       onClick={header.column.getToggleSortingHandler()}
@@ -103,7 +103,7 @@ export default function VaultTableTable<TValue>({ data, columns }: TableProps<TV
             </TableRow>
           )}
         </TableBody>
-      </Table>
+      </table>
     </div>
   );
 }

@@ -20,6 +20,8 @@ import { useMemo } from "react";
 import { CHAIN_CONFIGS } from "@/config";
 import { Drawer, DrawerClose, DrawerContent } from "@/components/ui/drawer";
 import { useScreenSize } from "@/hooks/useScreenSize";
+import { Button } from "../ui/button";
+import { useFilteredVaults } from "@/hooks/useFilteredVaults";
 
 interface TraitFilterDrawerProps {
   vaults: Vault[];
@@ -44,6 +46,7 @@ export default function TableFilterDrawer({ vaults }: TraitFilterDrawerProps) {
     removeShallowSearchParams,
   } = useShallowSearchParams({ keys: [FILTER_KEY_OPEN] });
   const screenSize = useScreenSize();
+  const filteredVaults = useFilteredVaults({ allVaults: vaults });
 
   const underlyingAssetItems = useMemo(() => {
     const symbolToIconSrc: Record<string, string | null> = {};
@@ -75,41 +78,48 @@ export default function TableFilterDrawer({ vaults }: TraitFilterDrawerProps) {
 
   const content = (
     <>
-      <div className="flex items-center justify-between border-b px-6 py-4">
-        <span className="font-medium">Filter Vaults</span>
-        <FilterClearButton filterKeys={ALL_TABLE_FILTER_KEYS} className="body-sm">
+      <div className="bg-background-base sticky top-0 z-10 flex items-center justify-between rounded-t-3xl border-b px-6 py-4">
+        <span className="text-nowrap font-medium">Filter Vaults</span>
+        <FilterClearButton filterKeys={ALL_TABLE_FILTER_KEYS} className="body-sm text-nowrap">
           Clear all
         </FilterClearButton>
       </div>
-      <div>
-        <Accordion type="multiple" defaultValue={ALL_TABLE_FILTER_KEYS}>
-          <TableFilterSection
-            name="Underlying asset"
-            filterKey={FILTER_KEY_UNDERLYING_ASSET}
-            items={underlyingAssetItems}
-          />
-          <TableFilterSection name="Collateral" filterKey={FILTER_KEY_COLLATERAL} items={collateralItems} />
-          <TableFilterSection name="Vault type" filterKey={FILTER_KEY_VAULT_TYPE} items={vaultTypeFilterItems} />
-          <TableFilterSection name="Chain" filterKey={FILTER_KEY_CHAIN} items={chainFilterItems} />
-        </Accordion>
-      </div>
+      <Accordion type="multiple" defaultValue={[FILTER_KEY_UNDERLYING_ASSET]}>
+        <TableFilterSection
+          name="Underlying asset"
+          filterKey={FILTER_KEY_UNDERLYING_ASSET}
+          items={underlyingAssetItems}
+        />
+        <TableFilterSection name="Collateral" filterKey={FILTER_KEY_COLLATERAL} items={collateralItems} />
+        <TableFilterSection name="Vault type" filterKey={FILTER_KEY_VAULT_TYPE} items={vaultTypeFilterItems} />
+        <TableFilterSection name="Chain" filterKey={FILTER_KEY_CHAIN} items={chainFilterItems} />
+      </Accordion>
     </>
   );
 
   return screenSize == "sm" ? (
-    <Drawer open={open != undefined} onClose={() => removeShallowSearchParams([FILTER_KEY_OPEN])}>
+    <Drawer open={open != undefined} onClose={() => removeShallowSearchParams([FILTER_KEY_OPEN])} shouldScaleBackground>
       <DrawerContent>
-        <div className="h-[calc(100dvh-90px)] overflow-y-auto">{content}</div>
+        <div className="flex h-[calc(100dvh-30px)] flex-col justify-between overflow-y-auto">
+          <div>{content}</div>
+          <div className="bg-background-base sticky bottom-0 border-t px-6 py-4">
+            <Button size="lg" className="w-full" onClick={() => removeShallowSearchParams([FILTER_KEY_OPEN])}>
+              Show results ({filteredVaults.length} items)
+            </Button>
+          </div>
+        </div>
       </DrawerContent>
     </Drawer>
   ) : (
-    <div
-      className={clsx(
-        "relative hidden h-fit shrink-0 overflow-hidden rounded-3xl border transition-all md:block",
-        open ? "left-0 mr-6 w-[292px]" : "-left-full mr-0 w-0 border-0"
-      )}
-    >
-      {content}
+    <div className={clsx("sticky top-[128px] h-[calc(100dvh-152px)] shrink-0 overflow-hidden transition-all")}>
+      <div
+        className={clsx(
+          "max-h-full overflow-y-auto rounded-3xl border transition-all",
+          open ? "left-0 mr-6 w-[292px]" : "-left-full mr-0 w-0 border-0"
+        )}
+      >
+        {content}
+      </div>
     </div>
   );
 }

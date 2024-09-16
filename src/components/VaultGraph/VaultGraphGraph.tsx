@@ -9,14 +9,17 @@ import {
   EdgeTypes,
   useNodesState,
   useEdgesState,
+  useReactFlow,
+  Panel,
 } from "@xyflow/react";
 import VaultNode, { VaultNodeType } from "./VaultNode";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import ViewportControls from "./panels/ViewportControls";
 import GraphTypeSelector, { GraphType } from "./panels/GraphTypeSelector";
 import AdvancedSwitch from "./panels/AdvancedSwitch";
 import CollateralEdge, { CollateralEdgeType } from "./CollateralEdge";
 import { constructGraph, getVaultInGraph, getVaultInGraphForCollateral, VaultGraphDataStructure } from "@/utils/graph";
+import Dagre from "@dagrejs/dagre";
 
 interface VaultGraphGraphProps {
   root: Vault;
@@ -30,41 +33,64 @@ const defaultEdgeOptions: DefaultEdgeOptions = {
 const nodeTypes: NodeTypes = { vault: VaultNode };
 const edgeTypes: EdgeTypes = { collateral: CollateralEdge };
 
+const getDagreLayoutedElements = (nodes: any, edges: any, options: any) => {
+  const g = new Dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}));
+  g.setGraph({ rankdir: options.direction });
+
+  edges.forEach((edge: any) => g.setEdge(edge.source, edge.target));
+  nodes.forEach((node: any) =>
+    g.setNode(node.id, {
+      ...node,
+      width: node.measured?.width ?? 0,
+      height: node.measured?.height ?? 0,
+    })
+  );
+
+  Dagre.layout(g);
+
+  return {
+    nodes: nodes.map((node: any) => {
+      const position = g.node(node.id);
+      // We are shifting the dagre node position (anchor=center center) to the top left
+      // so it matches the React Flow node anchor point (top left).
+      const x = position.x - (node.measured?.width ?? 0) / 2;
+      const y = position.y - (node.measured?.height ?? 0) / 2;
+
+      return { ...node, position: { x, y } };
+    }),
+    edges,
+  };
+};
+
 export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
   const [graphType, setGraphType] = useState<GraphType>("collateralExposure");
   const [advancedSwitchChecked, setAdvancedSwitchChecked] = useState<boolean>(false);
 
-  const initialNodes: VaultNodeType[] = [
-    { id: "0", type: "vault", position: { x: 0, y: 0 }, data: { vault: root } },
-    ...root.collateral.map(
-      (collateral, i) =>
-        ({
-          id: (i + 1).toString(),
-          type: "vault",
-          position: { x: 400 * i, y: 200 },
-          data: { vault: getVaultInGraphForCollateral(graph, collateral) },
-        }) as VaultNodeType
-    ),
-  ];
-
-  const initialEdges: CollateralEdgeType[] = [
-    { id: "e1-2", type: "collateral", source: "2", target: "1", data: { collateral: root.collateral[0] } },
-    { id: "e1-3", type: "collateral", source: "3", target: "1", data: { collateral: root.collateral[1] } },
-  ];
+  const { fitView } = useReactFlow();
 
   const { nodes: cNodes, edges: cEdges } = useMemo(
-    () => constructGraph(root, graph, !advancedSwitchChecked),
+    () => constructGraph(root, graph, true),
     [root, graph, advancedSwitchChecked]
   );
   console.log(cNodes, cEdges);
 
-  useEffect(() => {
-    setNodes(cNodes);
-    setEdges(cEdges);
-  }, [cNodes, cEdges]);
-
   const [nodes, setNodes, onNodesChange] = useNodesState(cNodes);
   const [edges, setEdges, onEdgeChange] = useEdgesState(cEdges);
+
+  const onDagreLayout = useCallback(
+    (direction: any) => {
+      console.log(nodes);
+      const layouted = getDagreLayoutedElements(nodes, edges, { direction });
+
+      setNodes([...layouted.nodes]);
+      setEdges([...layouted.edges]);
+
+      window.requestAnimationFrame(() => {
+        fitView();
+      });
+    },
+    [nodes, edges]
+  );
 
   return (
     <div className="bg-background-subtle h-[800px] w-full overflow-hidden rounded-[24px] border">
@@ -84,6 +110,9 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
         <GraphTypeSelector graphType={graphType} setGraphType={setGraphType} />
         <AdvancedSwitch checked={advancedSwitchChecked} setChecked={setAdvancedSwitchChecked} />
         <ViewportControls />
+        <Panel position="top-right">
+          <button onClick={() => onDagreLayout("BT")}>TB</button>
+        </Panel>
       </ReactFlow>
     </div>
   );

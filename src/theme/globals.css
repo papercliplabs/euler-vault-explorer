@@ -16,7 +16,7 @@
   *,
   ::before,
   ::after {
-    @apply border-border-base;
+    @apply border-border-base scrollbar-thin scrollbar-thumb-euler-600 scrollbar-track-transparent scrollbar-thumb-rounded-full;
   }
 
   body {

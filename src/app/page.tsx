@@ -9,19 +9,19 @@ import { Suspense } from "react";
 
 export default async function Home() {
   return (
-    <div className="flex w-full flex-col gap-6 p-[2px]">
+    <div className="flex w-full flex-col gap-2 p-[2px]">
       <h3>Vaults</h3>
-      <div className="flex w-full flex-col justify-start gap-4 md:flex-row md:items-start">
-        <div className="flex items-center justify-start gap-4">
+      <div className="bg-background-base sticky top-[64px] z-10 flex w-full flex-col justify-start gap-4 py-4 md:flex-row md:items-start">
+        <div className="flex grow items-center justify-start gap-4">
           <Suspense>
             <TableFilterToggle />
           </Suspense>
-          <Suspense fallback={<Skeleton className="h-[32px] w-[74px] shrink-0" />}>
-            <TableFilterCountWrapper />
+          <Suspense>
+            <TableFilterSearch />
           </Suspense>
         </div>
-        <Suspense>
-          <TableFilterSearch />
+        <Suspense fallback={<Skeleton className="h-[32px] w-[74px] shrink-0" />}>
+          <TableFilterCountWrapper />
         </Suspense>
       </div>
       <div className="flex">

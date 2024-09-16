@@ -10,8 +10,9 @@ export default function TableFilterCount({ allVaults }: TableFilterCountParams) 
   const filteredVaults = useFilteredVaults({ allVaults });
 
   return (
-    <div className="body-sm text-foreground-muted w-[74px] shrink-0 text-nowrap text-center">
-      {filteredVaults.length} vaults
+    <div className="body-xs flex shrink-0 gap-1 text-nowrap md:w-[74px] md:flex-col md:items-end md:justify-center md:gap-0">
+      <span className="text-foreground-muted">Showing</span>
+      <span>{filteredVaults.length} vaults</span>
     </div>
   );
 }
