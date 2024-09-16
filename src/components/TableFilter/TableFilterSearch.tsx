@@ -16,7 +16,7 @@ export default function TableFilterSearch() {
 
   useEffect(() => {
     addShallowSearchParams([{ key: FILTER_KEY_SEARCH, value: debouncedValue }]);
-  }, [debouncedValue]);
+  }, [debouncedValue, addShallowSearchParams]);
 
   return (
     <Input

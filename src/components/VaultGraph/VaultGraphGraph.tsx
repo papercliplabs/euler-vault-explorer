@@ -68,10 +68,7 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
 
   const { fitView } = useReactFlow();
 
-  const { nodes: cNodes, edges: cEdges } = useMemo(
-    () => constructGraph(root, graph, true),
-    [root, graph, advancedSwitchChecked]
-  );
+  const { nodes: cNodes, edges: cEdges } = useMemo(() => constructGraph(root, graph, true), [root, graph]);
   console.log(cNodes, cEdges);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(cNodes);
@@ -89,7 +86,7 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
         fitView();
       });
     },
-    [nodes, edges]
+    [nodes, edges, fitView, setNodes, setEdges]
   );
 
   return (

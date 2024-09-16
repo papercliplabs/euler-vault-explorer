@@ -1,5 +1,8 @@
 import { ArrowLeft, TokenAndChainIcon } from "@/components/Icons";
 import Metric from "@/components/Metric";
+import { Popover, PopoverContent } from "@/components/ui/popover";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import TooltipPopover from "@/components/ui/tooltipPopover";
 import VaultGraph from "@/components/VaultGraph";
 import { CHAIN_CONFIGS } from "@/config";
 import { getAllVaults, getAllVaultsOffline } from "@/data/vault/getAllVaults";
@@ -7,6 +10,7 @@ import { getVault } from "@/data/vault/getVault";
 import { VAULT_TYPE_NAME_MAPPING } from "@/utils/constants";
 import { formatAddress, formatNumber } from "@/utils/format";
 import { SupportedChainId } from "@/utils/types";
+import { PopoverTrigger } from "@radix-ui/react-popover";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Address, getAddress } from "viem";
@@ -44,7 +48,7 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
         <span>/</span>
         <span>{vault.symbol}</span>
       </div>
-      <div className="flex gap-4">
+      <div className="flex flex-col gap-6 md:flex-row">
         <TokenAndChainIcon
           chainId={chainId}
           tokenSymbol={vault.underlyingAssetSymbol}
@@ -56,8 +60,8 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
           <span className="text-foreground-muted">TODO: description</span>
         </div>
       </div>
-      <div className="flex gap-16">
-        {/* <Metric
+      <div className="flex flex-col flex-wrap gap-8 md:flex-row">
+        <Metric
           title="Total Supplied"
           popoverText="TOOD"
           primaryValue={vault.totalSuppliedUsd ? formatNumber({ input: vault.totalSuppliedUsd, unit: "USD" }) : "TODO"}
@@ -84,63 +88,65 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
           popoverText="TOOD"
           primaryValue={formatNumber({ input: vault.utilization, unit: "%" })}
         />
-        <Metric title="Total Shares" popoverText="TOOD" primaryValue={formatNumber({ input: vault.shares })} /> */}
+        <Metric title="Total Shares" popoverText="TOOD" primaryValue={formatNumber({ input: vault.shares })} />
       </div>
-      <div className="flex flex-col gap-2">
-        <h4>Vault Collateral Relationship</h4>
-        <span className="text-foreground-muted">
-          This graph illustrates the collateral relationships between credit vaults. While rehypothecation boosts
-          capital efficiency, it also introduces additional risk. Our goal is to provide transparency, helping users
-          better assess collateral risk.
-        </span>
-        <VaultGraph vault={vault} allVaults={allVaults} />
-      </div>
-      <div className="bg-background-component flex flex-col gap-6 rounded-[24px] p-6">
-        <h4>Vault Configuration</h4>
-        <div className="flex flex-wrap gap-16">
-          <Metric
-            title="Chain"
-            popoverText="TOOD"
-            primaryValue={CHAIN_CONFIGS[vault.chainId].publicClient.chain?.name ?? "UNKNOWN"}
-          />
-          <Metric title="Underling Asset" popoverText="TOOD" primaryValue={vault.underlyingAssetSymbol} />
-          <Metric title="Oracle" popoverText="TOOD" primaryValue={formatAddress({ address: vault.oracleAddress })} />
-          <Metric
-            title="Interest Rate Model"
-            popoverText="TOOD"
-            primaryValue={formatAddress({ address: vault.interestRateModelAddress })}
-          />
-          <Metric
-            title="Governor"
-            popoverText="TOOD"
-            primaryValue={vault.governor ? formatAddress({ address: vault.governor }) : "None"}
-          />
-          <Metric
-            title="Supply Cap"
-            popoverText="TOOD"
-            primaryValue={
-              vault.supplyCap ? formatNumber({ input: vault.supplyCap, unit: vault.underlyingAssetSymbol }) : "None"
-            }
-          />
-          <Metric
-            title="Borrow Cap"
-            popoverText="TOOD"
-            primaryValue={
-              vault.borrowCap ? formatNumber({ input: vault.borrowCap, unit: vault.underlyingAssetSymbol }) : "None"
-            }
-          />
-          <Metric
-            title="Vault Fee"
-            popoverText="TOOD"
-            primaryValue={formatNumber({ input: vault.vaultFee, unit: "%" })}
-          />
-          <Metric
-            title="Max liquidation discount"
-            popoverText="TOOD"
-            primaryValue={formatNumber({ input: vault.maxLiquidationDiscount, unit: "%" })}
-          />
-          <Metric title="Unit of account" popoverText="TOOD" primaryValue={vault.unitOfAccountSymbol} />
-          <Metric title="Vault type" popoverText="TOOD" primaryValue={VAULT_TYPE_NAME_MAPPING[vault.type]} />
+      <div className="flex flex-col gap-4 pt-4">
+        <div className="flex flex-col gap-2">
+          <h4>Vault Collateral Relationship</h4>
+          <span className="text-foreground-muted">
+            This graph illustrates the collateral relationships between credit vaults. While rehypothecation boosts
+            capital efficiency, it also introduces additional risk. Our goal is to provide transparency, helping users
+            better assess collateral risk.
+          </span>
+          <VaultGraph vault={vault} allVaults={allVaults} />
+        </div>
+        <div className="bg-background-component flex flex-col gap-6 rounded-[24px] p-6">
+          <h4>Vault Configuration</h4>
+          <div className="flex flex-wrap gap-6">
+            <Metric
+              title="Chain"
+              popoverText="TOOD"
+              primaryValue={CHAIN_CONFIGS[vault.chainId].publicClient.chain?.name ?? "UNKNOWN"}
+            />
+            <Metric title="Underling Asset" popoverText="TOOD" primaryValue={vault.underlyingAssetSymbol} />
+            <Metric title="Oracle" popoverText="TOOD" primaryValue={formatAddress({ address: vault.oracleAddress })} />
+            <Metric
+              title="Interest Rate Model"
+              popoverText="TOOD"
+              primaryValue={formatAddress({ address: vault.interestRateModelAddress })}
+            />
+            <Metric
+              title="Governor"
+              popoverText="TOOD"
+              primaryValue={vault.governor ? formatAddress({ address: vault.governor }) : "None"}
+            />
+            <Metric
+              title="Supply Cap"
+              popoverText="TOOD"
+              primaryValue={
+                vault.supplyCap ? formatNumber({ input: vault.supplyCap, unit: vault.underlyingAssetSymbol }) : "None"
+              }
+            />
+            <Metric
+              title="Borrow Cap"
+              popoverText="TOOD"
+              primaryValue={
+                vault.borrowCap ? formatNumber({ input: vault.borrowCap, unit: vault.underlyingAssetSymbol }) : "None"
+              }
+            />
+            <Metric
+              title="Vault Fee"
+              popoverText="TOOD"
+              primaryValue={formatNumber({ input: vault.vaultFee, unit: "%" })}
+            />
+            <Metric
+              title="Max liquidation discount"
+              popoverText="TOOD"
+              primaryValue={formatNumber({ input: vault.maxLiquidationDiscount, unit: "%" })}
+            />
+            <Metric title="Unit of account" popoverText="TOOD" primaryValue={vault.unitOfAccountSymbol} />
+            <Metric title="Vault type" popoverText="TOOD" primaryValue={VAULT_TYPE_NAME_MAPPING[vault.type]} />
+          </div>
         </div>
       </div>
     </>
