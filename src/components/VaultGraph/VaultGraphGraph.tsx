@@ -11,6 +11,7 @@ import {
   useEdgesState,
   useReactFlow,
   Panel,
+  applyNodeChanges,
 } from "@xyflow/react";
 import VaultNode, { VaultNodeType } from "./VaultNode";
 import { use, useCallback, useEffect, useMemo, useState } from "react";
@@ -18,7 +19,13 @@ import ViewportControls from "./panels/ViewportControls";
 import GraphTypeSelector, { GraphType } from "./panels/GraphTypeSelector";
 import AdvancedSwitch from "./panels/AdvancedSwitch";
 import CollateralEdge, { CollateralEdgeType } from "./CollateralEdge";
-import { constructGraph, getVaultInGraph, getVaultInGraphForCollateral, VaultGraphDataStructure } from "@/utils/graph";
+import {
+  constructCollateralExposureGraph,
+  constructRehypothecationGraph,
+  getVaultInGraph,
+  getVaultInGraphForCollateral,
+  VaultGraphDataStructure,
+} from "@/utils/graph";
 import Dagre from "@dagrejs/dagre";
 
 interface VaultGraphGraphProps {
@@ -65,7 +72,7 @@ const getDagreLayoutedElements = (nodes: any, edges: any, options: any) => {
 export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
   const [graphType, setGraphType] = useState<GraphType>("collateralExposure");
   const [advancedSwitchChecked, setAdvancedSwitchChecked] = useState<boolean>(false);
-
+  const [shouldFitView, setShouldFitView] = useState<boolean>(false);
   const { fitView } = useReactFlow();
 
   const {
@@ -73,22 +80,40 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
     allEdges,
     spanningTreeEdges,
   } = useMemo(
-    () => constructGraph(root, graph, advancedSwitchChecked ? undefined : 4),
-    [root, graph, advancedSwitchChecked]
+    () =>
+      graphType == "collateralExposure"
+        ? constructCollateralExposureGraph(root, graph, advancedSwitchChecked ? undefined : 4)
+        : constructRehypothecationGraph(root, graph),
+    [root, graph, advancedSwitchChecked, graphType]
   );
 
   // Only use spanning tree edges for layout
-  const [layoutedNodes, layoutedEdges] = useMemo(() => {
-    const { nodes, edges } = getDagreLayoutedElements(rawNodes, spanningTreeEdges, { direction: "BT" });
-    return [nodes, edges];
+  const layoutedNodes = useMemo(() => {
+    const { nodes } = getDagreLayoutedElements(rawNodes, spanningTreeEdges, {
+      direction: "BT",
+    });
+    return nodes;
   }, [rawNodes, spanningTreeEdges]);
 
-  const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
-  const [edges, setEdges, onEdgeChange] = useEdgesState(layoutedEdges);
+  const [nodes, setNodes] = useState<VaultNodeType[]>(layoutedNodes);
+  const [edges, setEdges, onEdgeChange] = useEdgesState(spanningTreeEdges);
+  const onNodesChange = useCallback(
+    (changes: any) => {
+      setNodes((oldNodes) => applyNodeChanges(changes, oldNodes));
+
+      // Fit view after nodes change if requested
+      if (shouldFitView) {
+        fitView();
+        setShouldFitView(false);
+      }
+    },
+    [setNodes, shouldFitView, setShouldFitView, fitView]
+  );
 
   useEffect(() => {
     setNodes(layoutedNodes);
-  }, [setNodes, layoutedNodes]);
+    setShouldFitView(true);
+  }, [setNodes, layoutedNodes, setShouldFitView]);
 
   useEffect(() => {
     setEdges(advancedSwitchChecked ? allEdges : spanningTreeEdges);
@@ -110,7 +135,11 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
         <Background gap={10} color="rgb(67 89 113 / 0.4)" variant={BackgroundVariant.Dots} size={2} />
 
         <GraphTypeSelector graphType={graphType} setGraphType={setGraphType} />
-        <AdvancedSwitch checked={advancedSwitchChecked} setChecked={setAdvancedSwitchChecked} />
+        <AdvancedSwitch
+          checked={advancedSwitchChecked}
+          setChecked={setAdvancedSwitchChecked}
+          visible={graphType == "collateralExposure"}
+        />
         <ViewportControls />
       </ReactFlow>
     </div>

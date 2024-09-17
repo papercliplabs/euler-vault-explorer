@@ -3,7 +3,7 @@ import { Panel, useReactFlow } from "@xyflow/react";
 import { Fit, Minus, Plus } from "@/components/Icons";
 
 export default function ViewportControls() {
-  const reactFlow = useReactFlow<any>();
+  const reactFlow = useReactFlow();
 
   const items: { icon: React.ReactNode; onClick: () => void }[] = [
     { icon: <Minus />, onClick: () => reactFlow.zoomOut() },

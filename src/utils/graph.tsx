@@ -29,8 +29,8 @@ export function getVaultInGraphForCollateral(
   return graph[getGraphKey(collateral.chainId, collateral.collateralVaultAddress)];
 }
 
-// Breath first search of the vault graph
-export function constructGraph(
+// Breath first search of the vault graph via collateral
+export function constructCollateralExposureGraph(
   root: Vault,
   graph: VaultGraphDataStructure,
   heightLimit?: number
@@ -114,4 +114,53 @@ export function constructGraph(
   }
 
   return { nodes, allEdges, spanningTreeEdges };
+}
+
+export function constructRehypothecationGraph(
+  root: Vault,
+  graph: VaultGraphDataStructure
+): { nodes: VaultNodeType[]; allEdges: CollateralEdgeType[]; spanningTreeEdges: CollateralEdgeType[] } {
+  const rootKey = getGraphKeyForVault(root);
+
+  const nodes: VaultNodeType[] = [];
+  const edges: CollateralEdgeType[] = [];
+
+  nodes.push({
+    id: rootKey,
+    type: "vault",
+    position: {
+      x: 0,
+      y: 0,
+    }, // layout position elsewhere
+    data: { vault: root, depth: 1 },
+  });
+
+  for (const vault of Object.values(graph)) {
+    if (vault) {
+      for (const collateral of vault?.collateral) {
+        if (getGraphKey(collateral.chainId, collateral.collateralVaultAddress) == rootKey) {
+          const vaultKey = getGraphKeyForVault(vault);
+          nodes.push({
+            id: vaultKey,
+            type: "vault",
+            position: {
+              x: 0,
+              y: 0,
+            }, // layout position elsewhere
+            data: { vault, depth: 0 },
+          });
+
+          edges.push({
+            id: `e${vaultKey}-${rootKey}`,
+            type: "collateral",
+            source: rootKey,
+            target: vaultKey,
+            data: { collateral },
+          });
+        }
+      }
+    }
+  }
+
+  return { nodes, allEdges: edges, spanningTreeEdges: [...edges] };
 }
