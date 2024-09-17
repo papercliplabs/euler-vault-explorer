@@ -21,7 +21,7 @@ export default function GraphTypeSelector({ graphType, setGraphType }: GraphType
   };
 
   return (
-    <Panel className="bg-background-base flex flex-col gap-1 rounded-2xl border p-2">
+    <Panel className="bg-background-base left-0 right-0 m-4 flex w-[calc(100%-32px)] flex-col gap-1 rounded-2xl border p-2 md:w-auto md:w-fit">
       {Object.entries(items).map(([type, { title, description }], i) => (
         <button
           key={i}

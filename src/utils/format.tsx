@@ -1,5 +1,7 @@
 import { Address, formatUnits } from "viem";
-import { BigIntString } from "./types";
+import { BigIntString, Vault } from "./types";
+import { ReactNode } from "react";
+import clsx from "clsx";
 
 interface FormatNumberParams {
   input: number | bigint;
@@ -42,4 +44,22 @@ export function formatTokenAmount({ tokenAmount, tokenDecimals, ...rest }: Forma
 
 export function formatAddress({ address }: { address: Address }): string {
   return `${address.slice(0, 6)}...${address.slice(-4)}`;
+}
+
+interface FormatVaultNameProps {
+  vault: Vault;
+  full?: boolean;
+  removeStyle?: boolean;
+}
+
+export function formatVaultName({ vault, full, removeStyle }: FormatVaultNameProps): ReactNode {
+  const offchainName = vault.offchainLabel?.name;
+
+  return full && offchainName ? (
+    offchainName
+  ) : (
+    <>
+      {vault.underlyingAssetSymbol} <span className={clsx(!removeStyle && "text-foreground-subtle")}>{vault.id}</span>
+    </>
+  );
 }

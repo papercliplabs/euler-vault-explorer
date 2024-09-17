@@ -1,21 +1,27 @@
 "use client";
 import { ReactNode, useState } from "react";
 import { Edge, EdgeProps, BaseEdge, EdgeLabelRenderer, useViewport } from "@xyflow/react";
-import { Collateral } from "@/utils/types";
+import { Collateral, Vault } from "@/utils/types";
 import { ArrowRight, OracleTypeIcon } from "../Icons";
 import clsx from "clsx";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import { palette } from "@/theme/tailwind.config";
 
 import "react-circular-progressbar/dist/styles.css";
-import { formatNumber } from "@/utils/format";
+import { formatNumber, formatVaultName } from "@/utils/format";
 import { PopoverContent, Popover, PopoverTrigger } from "../ui/popover";
 import Link from "next/link";
 import { getCustomBezierPath } from "@/utils/getCustomBezierCurve";
+import TooltipPopover from "../ui/tooltipPopover";
+import EtherscanLink from "../EtherscanLink";
+import { zeroAddress } from "viem";
+import { ORACLE_TYPE_INFO_MAPPING } from "@/utils/constants";
 
 export type CollateralEdgeType = Edge<
   {
     collateral: Collateral;
+    vault: Vault;
+    collateralVault: Vault;
   },
   "collateral"
 >;
@@ -34,6 +40,11 @@ export default function CollateralEdge({
   const [hovered, setHovered] = useState<boolean>(false);
 
   const collateral = data?.collateral;
+  const vault = data?.vault;
+  const collateralVault = data?.collateralVault;
+  if (!collateral || !vault || !collateralVault) {
+    return null;
+  }
 
   const [edgePath, labelX, labelY] = getCustomBezierPath({
     sourceX,
@@ -83,7 +94,7 @@ export default function CollateralEdge({
       </EdgeLabelRenderer>
       {selected && (
         <CustomEdgeToolbar labelX={labelX} labelY={labelY}>
-          <CollateralPopover collateral={collateral} />
+          <CollateralPopover collateral={collateral} vault={vault} collateralVault={collateralVault} />
         </CustomEdgeToolbar>
       )}
     </g>
@@ -109,27 +120,36 @@ function CustomEdgeToolbar({ labelX, labelY, children }: { labelX: number; label
   );
 }
 
-function CollateralPopover({ collateral }: { collateral?: Collateral }) {
+function CollateralPopover({
+  collateral,
+  vault,
+  collateralVault,
+}: {
+  collateral: Collateral;
+  vault: Vault;
+  collateralVault: Vault;
+}) {
   const items: { title: string; value: string | ReactNode; description: string }[] = [
     {
       title: "Oracle",
       value: (
-        <Link href="/TODO" className="flex items-center">
-          <OracleTypeIcon type={collateral?.oracle?.type ?? "CrossAdapter"} className="h-[20px] w-[20px]" />
-          <span className="text-semantic-accent">{collateral?.oracle?.type}</span>
-          {/* <ArrowUpRight /> */}
-        </Link>
+        <EtherscanLink chainId={collateral.chainId} address={collateral.oracle?.sourceAddress ?? zeroAddress}>
+          <OracleTypeIcon type={collateral.oracle?.type ?? "CrossAdapter"} className="h-[20px] w-[20px]" />
+          <span className="text-semantic-accent">
+            {ORACLE_TYPE_INFO_MAPPING[collateral.oracle?.type ?? "CrossAdapter"].name}
+          </span>
+        </EtherscanLink>
       ),
       description: "TODO",
     },
     {
       title: "Borrowing Loan to Value",
-      value: formatNumber({ input: collateral?.borrowLoanToValue ?? 0, unit: "%" }),
+      value: formatNumber({ input: collateral.borrowLoanToValue ?? 0, unit: "%" }),
       description: "TODO",
     },
     {
       title: "Liquidation Loan to Value",
-      value: formatNumber({ input: collateral?.liquidationLoanToValue ?? 0, unit: "%" }),
+      value: formatNumber({ input: collateral.liquidationLoanToValue ?? 0, unit: "%" }),
       description: "TODO",
     },
   ];
@@ -139,7 +159,7 @@ function CollateralPopover({ collateral }: { collateral?: Collateral }) {
       <div className="border-border-strong flex items-center justify-between border-b p-3 pb-2">
         <div className="flex flex-1 grow flex-col items-center justify-center text-center">
           <span className="body-xs text-foreground-subtle">Collateral</span>
-          <span className="body-sm font-medium">TODO</span>
+          <span className="body-sm font-medium">{formatVaultName({ vault: collateralVault })}</span>
         </div>
 
         <div className="flex w-[25px] shrink-0 items-center justify-center rounded-full bg-white/10">
@@ -147,16 +167,13 @@ function CollateralPopover({ collateral }: { collateral?: Collateral }) {
         </div>
         <div className="flex flex-1 grow flex-col items-center justify-center text-center">
           <span className="body-xs text-foreground-subtle">For</span>
-          <span className="body-sm font-medium">TODO</span>
+          <span className="body-sm font-medium">{formatVaultName({ vault })}</span>
         </div>
       </div>
       <div className="px-3 py-2">
         {items.map((item, i) => (
           <div className="flex justify-between py-1" key={i}>
-            <Popover>
-              <PopoverTrigger className="border-border-strong border-b border-dashed">{item.title}</PopoverTrigger>
-              <PopoverContent>{item.description}</PopoverContent>
-            </Popover>
+            <TooltipPopover trigger={item.title}>{item.description}</TooltipPopover>
             <div className="text-foreground-subtle">{item.value}</div>
           </div>
         ))}

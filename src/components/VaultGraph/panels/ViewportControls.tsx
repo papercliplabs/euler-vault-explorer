@@ -1,6 +1,7 @@
 "use client";
 import { Panel, useReactFlow } from "@xyflow/react";
 import { Fit, Minus, Plus } from "@/components/Icons";
+import clsx from "clsx";
 
 export default function ViewportControls() {
   const reactFlow = useReactFlow();
@@ -12,11 +13,14 @@ export default function ViewportControls() {
   ];
 
   return (
-    <Panel position="bottom-right" className="bg-background-base flex overflow-hidden rounded-full border">
+    <Panel position="bottom-right" className="bg-background-base m-4 flex overflow-hidden rounded-full border">
       {items.map((item, i) => (
         <button
           onClick={() => item.onClick()}
-          className="hover:bg-background-component flex h-12 w-12 items-center justify-center border-r"
+          className={clsx(
+            "hover:bg-background-component flex h-12 w-12 items-center justify-center border-r",
+            i != 2 && "hidden md:flex"
+          )}
           key={i}
         >
           {item.icon}

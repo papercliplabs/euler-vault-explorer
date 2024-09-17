@@ -1,17 +1,19 @@
 "use client";
-import { ReactNode, useCallback } from "react";
+import { ReactNode } from "react";
 import { Handle, Position, NodeProps, Node, NodeToolbar } from "@xyflow/react";
 import { Vault } from "@/utils/types";
 import { TokenIcon, VaultTypeIcon } from "../Icons";
-import { VAULT_TYPE_NAME_MAPPING } from "@/utils/constants";
+import { VAULT_TYPE_INFO_MAPPING } from "@/utils/constants";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import clsx from "clsx";
-import { formatAddress, formatNumber } from "@/utils/format";
+import { formatAddress, formatNumber, formatVaultName } from "@/utils/format";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import ArrowUpRight from "../Icons/core/ArrowUpRight";
-import { CHAIN_CONFIGS } from "@/config";
+import { etherscanLink } from "@/utils/etherscan";
 import { VaultIcon } from "../Icons/special/VaultIcon";
+import ExternalLink from "../ExternalLink";
+import TooltipPopover from "../ui/tooltipPopover";
 
 export type VaultNodeType = Node<
   {
@@ -22,43 +24,34 @@ export type VaultNodeType = Node<
 >;
 
 export default function VaultNode({ data: { vault }, selected }: NodeProps<VaultNodeType>) {
-  console.log(vault);
+  if (!vault) {
+    console.error("Missing vault");
+    return null;
+  }
+
   return (
     <div
       className={clsx(
-        // "nodrag",
-        "bg-euler-700/20 border-border-strong flex gap-2 rounded-full border p-1 pr-4 shadow-md backdrop-blur-sm",
+        "bg-euler-700/20 border-border-strong flex items-center gap-2 rounded-full border p-1 pr-4 shadow-md backdrop-blur-sm",
         selected ? "border-semantic-accent" : "hover:border-semantic-accent/50"
       )}
       onClick={() => console.log("CLICK")}
     >
       <Handle type="source" position={Position.Top} className="border-none bg-transparent" />
       <Handle type="target" position={Position.Bottom} className="border-none bg-transparent" />
-      {vault ? (
-        <>
-          <TokenIcon
-            symbol={vault.underlyingAssetSymbol}
-            imgSrc={vault.underlyingAssetImgSrc}
-            size={40}
-            className="border-white/16 aspect-square shrink-0 border"
-          />
-          <div className="flex flex-col">
-            <div className="font-medium">
-              <span>{vault.underlyingAssetSymbol}</span> <span className="text-foreground-subtle">{vault.id}</span>
-            </div>
-            <div className="body-cs text-foreground-muted flex items-center gap-1">
-              <VaultTypeIcon type={vault.type} className="fill-foreground-muted" />
-              <span>{VAULT_TYPE_NAME_MAPPING[vault.type]}</span>
-            </div>
-          </div>
 
-          <NodeToolbar position={Position.Right} className="nodrag nopan">
-            <VaultNodePopover vault={vault} />
-          </NodeToolbar>
-        </>
-      ) : (
-        "UNDEFINED"
-      )}
+      <VaultIcon vault={vault} size={40} />
+      <div className="flex flex-col">
+        <div className="font-medium">{formatVaultName({ vault })}</div>
+        <div className="body-cs text-foreground-muted flex items-center gap-1">
+          <VaultTypeIcon type={vault.type} className="fill-foreground-muted" />
+          <span>{VAULT_TYPE_INFO_MAPPING[vault.type].shortName}</span>
+        </div>
+      </div>
+
+      <NodeToolbar position={Position.Right} className="nodrag nopan">
+        <VaultNodePopover vault={vault} />
+      </NodeToolbar>
     </div>
   );
 }
@@ -82,7 +75,7 @@ function VaultNodePopover({ vault }: { vault: Vault }) {
       value: (
         <div className="flex items-center gap-1.5">
           <VaultTypeIcon type={vault.type} className="fill-foreground-subtle h-[20px] w-[20px]" />
-          <span className="text-nowrap">{VAULT_TYPE_NAME_MAPPING[vault.type]}</span>
+          <span className="text-nowrap">{VAULT_TYPE_INFO_MAPPING[vault.type].shortName}</span>
         </div>
       ),
       description: "TODO",
@@ -92,34 +85,18 @@ function VaultNodePopover({ vault }: { vault: Vault }) {
   return (
     <div className="bg-euler-700/20 body-sm w-[224px] rounded-[8px] border py-2 shadow-lg backdrop-blur-md">
       <div className="flex gap-3 border-b px-3 pb-2">
-        <TokenIcon
-          symbol={vault.underlyingAssetSymbol}
-          imgSrc={vault.underlyingAssetImgSrc}
-          size={40}
-          className="border-white/16 aspect-square shrink-0 border"
-        />
+        <VaultIcon vault={vault} size={40} badgeType="entity" />
         <div className="flex flex-col justify-center">
-          <span>{vault.symbol}</span>
-          <Link
-            href={
-              CHAIN_CONFIGS[vault.chainId].publicClient.chain?.blockExplorers?.default.url + `/address/${vault.address}`
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-semantic-accent body-xs flex hover:brightness-75"
-          >
+          <span>{formatVaultName({ vault })}</span>
+          <ExternalLink href={etherscanLink(vault.chainId, vault.address)} className="body-xs text-semantic-accent">
             {formatAddress({ address: vault.address })}
-            <ArrowUpRight className="h-[16px] w-[16px]" />
-          </Link>
+          </ExternalLink>
         </div>
       </div>
       <div className="px-3 pt-1">
         {items.map((item, i) => (
           <div className="flex justify-between py-1" key={i}>
-            <Popover>
-              <PopoverTrigger className="border-border-strong border-b border-dashed">{item.title}</PopoverTrigger>
-              <PopoverContent>{item.description}</PopoverContent>
-            </Popover>
+            <TooltipPopover trigger={item.title}>{item.description}</TooltipPopover>
             <div className="text-foreground-subtle">{item.value}</div>
           </div>
         ))}

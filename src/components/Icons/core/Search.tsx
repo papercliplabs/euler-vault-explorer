@@ -3,9 +3,14 @@ import { SVGProps } from "react";
 
 export default function Search({ className, ...props }: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className={cn("stroke-foreground-base h-6 w-6", className)} {...props}>
+    <svg
+      viewBox="0 0 15 15"
+      fill="none"
+      className={cn("stroke-foreground-base h-6 w-6 p-[4.5px]", className)}
+      {...props}
+    >
       <path
-        d="M17.5554 17.5554L14.031 14.031M15.3332 10.8888C15.3332 13.3434 13.3434 15.3332 10.8888 15.3332C8.43418 15.3332 6.44434 13.3434 6.44434 10.8888C6.44434 8.43418 8.43418 6.44434 10.8888 6.44434C13.3434 6.44434 15.3332 8.43418 15.3332 10.8888Z"
+        d="M13.0554 13.0554L9.531 9.531M10.8332 6.38878C10.8332 8.84338 8.84338 10.8332 6.38878 10.8332C3.93418 10.8332 1.94434 8.84338 1.94434 6.38878C1.94434 3.93418 3.93418 1.94434 6.38878 1.94434C8.84338 1.94434 10.8332 3.93418 10.8332 6.38878Z"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

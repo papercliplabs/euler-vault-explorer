@@ -11,7 +11,7 @@ interface VaultIconProps {
 
 export function VaultIcon({ vault, size, badgeType }: VaultIconProps) {
   return (
-    <div className="relative h-fit w-fit" style={{ paddingRight: size / 4 }}>
+    <div className="relative h-fit w-fit shrink-0" style={{ paddingRight: badgeType ? size / 4 : 0 }}>
       <TokenIcon symbol={vault.underlyingAssetSymbol} imgSrc={vault.underlyingAssetImgSrc} size={size} />
       {badgeType === "chain" && (
         <ChainIcon

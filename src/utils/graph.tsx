@@ -64,6 +64,12 @@ export function constructCollateralExposureGraph(
     for (const collateral of vault.collateral) {
       const key = getGraphKey(collateral.chainId, collateral.collateralVaultAddress);
       const nextVault = getVaultInGraph(graph, collateral.chainId, collateral.collateralVaultAddress);
+      if (!nextVault) {
+        // Should never occur
+        console.error(`Vault not found for collateral: ${collateral.collateralVaultAddress}`);
+        continue;
+      }
+
       const alreadyVisited = visited[key];
 
       // Add vault to queue, and mark visited
@@ -96,7 +102,7 @@ export function constructCollateralExposureGraph(
         type: "collateral",
         source: key,
         target: getGraphKeyForVault(vault),
-        data: { collateral },
+        data: { collateral, vault, collateralVault: nextVault },
       };
 
       allEdges.push(edge);
@@ -107,7 +113,7 @@ export function constructCollateralExposureGraph(
           type: "collateral",
           source: key,
           target: getGraphKeyForVault(vault),
-          data: { collateral },
+          data: { collateral, vault, collateralVault: nextVault },
         });
       }
     }
@@ -155,7 +161,7 @@ export function constructRehypothecationGraph(
             type: "collateral",
             source: rootKey,
             target: vaultKey,
-            data: { collateral },
+            data: { collateral, vault, collateralVault: root },
           });
         }
       }

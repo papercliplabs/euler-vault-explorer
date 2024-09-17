@@ -5,7 +5,9 @@ import { mainnet } from "viem/chains";
 export interface ChainConfig {
   chainId: SupportedChainId;
   publicClient: Client;
+  nativeTokenImgSrc: string;
   addresses: {
+    wrappedNativeAsset: Address;
     perspectives: Record<VaultType, Address>;
     lenses: {
       vault: Address;
@@ -24,7 +26,9 @@ export const CHAIN_CONFIGS: Record<SupportedChainId, ChainConfig> = {
         http(`https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`),
       ]),
     }),
+    nativeTokenImgSrc: "/nativeToken/eth.svg",
     addresses: {
+      wrappedNativeAsset: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       perspectives: {
         escrowedCollateral: "0xc68CB3658ACf1d49547Fa8605dc158D876cD5828",
         "ungoverned-0x": "0x5345562eD3Ce537582A1A568d3B06c8382Cd60BD",

@@ -11,7 +11,7 @@ import {
   FILTER_KEY_UNDERLYING_ASSET,
   FILTER_KEY_VAULT_TYPE,
 } from "./filterKeys";
-import { VAULT_TYPE_MATCH_ORDER, VAULT_TYPE_NAME_MAPPING } from "@/utils/constants";
+import { VAULT_TYPE_INFO_MAPPING, VAULT_TYPE_MATCH_ORDER } from "@/utils/constants";
 import { ChainIcon, TokenIcon, VaultTypeIcon } from "../Icons";
 import { TableFilterItemBase } from "./TableFilterItem";
 import FilterClearButton from "../FilterClearButton";
@@ -31,7 +31,7 @@ interface TraitFilterDrawerProps {
 
 const vaultTypeFilterItems: (TableFilterItemBase & { value: string })[] = VAULT_TYPE_MATCH_ORDER.map((type) => ({
   value: type,
-  name: VAULT_TYPE_NAME_MAPPING[type],
+  name: VAULT_TYPE_INFO_MAPPING[type].name,
   icon: <VaultTypeIcon type={type} className="h-6 w-6" />,
   //   popoverText: "TEST",
 }));

@@ -2,7 +2,6 @@ import ArrowDown from "./core/ArrowDown";
 import ArrowLeft from "./core/ArrowLeft";
 import ArrowRight from "./core/ArrowRight";
 import Check from "./core/Check";
-import ChevronUpDown from "./core/ChevronUpDown";
 import Expand from "./core/Expand";
 import Fit from "./core/Fit";
 import Minus from "./core/Minus";
@@ -23,7 +22,6 @@ export {
   ArrowLeft,
   ArrowRight,
   Check,
-  ChevronUpDown,
   Expand,
   Fit,
   Minus,

@@ -4,14 +4,13 @@ import { SVGProps } from "react";
 export default function ArrowUpRight({ className, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      viewBox="0 0 24 24"
+      viewBox="0 0 15 15"
       fill="none"
-      className={cn("fill-foreground-base stroke-foreground-base h-6 w-6", className)}
+      className={cn("fill-foreground-base stroke-foreground-base h-6 w-6 p-[4.5px]", className)}
       {...props}
     >
       <path
-        d="M15.9284 8.07163L8.07168 15.9284M15.9284 8.07163L10.5858 8.07163M15.9284 8.07163L15.9284 13.4142"
-        stroke="#728395"
+        d="M11.5353 3.67832L3.67851 11.5351M11.5353 3.67832H6.19267M11.5353 3.67832V9.0209"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

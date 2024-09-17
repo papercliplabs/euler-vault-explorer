@@ -1,3 +1,5 @@
+import EtherscanLink from "@/components/EtherscanLink";
+import ExternalLink from "@/components/ExternalLink";
 import { ArrowLeft, TokenAndChainIcon } from "@/components/Icons";
 import { VaultIcon } from "@/components/Icons/special/VaultIcon";
 import Metric from "@/components/Metric";
@@ -8,8 +10,9 @@ import VaultGraph from "@/components/VaultGraph";
 import { CHAIN_CONFIGS } from "@/config";
 import { getAllVaults, getAllVaultsOffline } from "@/data/vault/getAllVaults";
 import { getVault } from "@/data/vault/getVault";
-import { VAULT_TYPE_NAME_MAPPING } from "@/utils/constants";
-import { formatAddress, formatNumber } from "@/utils/format";
+import { VAULT_TYPE_INFO_MAPPING } from "@/utils/constants";
+import { etherscanLink } from "@/utils/etherscan";
+import { formatAddress, formatNumber, formatVaultName } from "@/utils/format";
 import { SupportedChainId } from "@/utils/types";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import Link from "next/link";
@@ -47,9 +50,7 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
           <span className="group-hover:text-semantic-accent">Vaults</span>
         </Link>
         <span>/</span>
-        <span>
-          {vault.underlyingAssetSymbol} {vault.id}
-        </span>
+        <span>{formatVaultName({ vault, removeStyle: true })}</span>
       </div>
       <div className="flex flex-col gap-6 md:flex-row">
         <VaultIcon vault={vault} size={64} badgeType="entity" />
@@ -60,13 +61,7 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
           size={64}
         /> */}
         <div className="flex flex-col justify-center gap-2">
-          <h3>
-            {vault.offchainLabel?.name ?? (
-              <>
-                <span>{vault.underlyingAssetSymbol}</span> <span className="text-foreground-subtle">{vault.id}</span>
-              </>
-            )}
-          </h3>
+          <h3>{formatVaultName({ vault, full: true })}</h3>
           <span className="text-foreground-muted">{vault.offchainLabel?.description}</span>
         </div>
       </div>
@@ -118,17 +113,31 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
               popoverText="TOOD"
               primaryValue={CHAIN_CONFIGS[vault.chainId].publicClient.chain?.name ?? "UNKNOWN"}
             />
-            <Metric title="Underling Asset" popoverText="TOOD" primaryValue={vault.underlyingAssetSymbol} />
-            <Metric title="Oracle" popoverText="TOOD" primaryValue={formatAddress({ address: vault.oracleAddress })} />
+            <Metric
+              title="Underling Asset"
+              popoverText="TOOD"
+              primaryValue={
+                <EtherscanLink chainId={vault.chainId} address={vault.underlyingAssetAddress}>
+                  {vault.underlyingAssetSymbol}
+                </EtherscanLink>
+              }
+            />
+            <Metric
+              title="Oracle"
+              popoverText="TOOD"
+              primaryValue={<EtherscanLink chainId={vault.chainId} address={vault.oracleAddress} />}
+            />
             <Metric
               title="Interest Rate Model"
               popoverText="TOOD"
-              primaryValue={formatAddress({ address: vault.interestRateModelAddress })}
+              primaryValue={<EtherscanLink chainId={vault.chainId} address={vault.interestRateModelAddress} />}
             />
             <Metric
               title="Governor"
               popoverText="TOOD"
-              primaryValue={vault.governor ? formatAddress({ address: vault.governor }) : "None"}
+              primaryValue={
+                vault.governor ? <EtherscanLink chainId={vault.chainId} address={vault.governor} /> : "None"
+              }
             />
             <Metric
               title="Supply Cap"
@@ -155,7 +164,7 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
               primaryValue={formatNumber({ input: vault.maxLiquidationDiscount, unit: "%" })}
             />
             <Metric title="Unit of account" popoverText="TOOD" primaryValue={vault.unitOfAccountSymbol} />
-            <Metric title="Vault type" popoverText="TOOD" primaryValue={VAULT_TYPE_NAME_MAPPING[vault.type]} />
+            <Metric title="Vault type" popoverText="TOOD" primaryValue={VAULT_TYPE_INFO_MAPPING[vault.type].name} />
           </div>
         </div>
       </div>

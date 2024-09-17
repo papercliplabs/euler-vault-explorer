@@ -14,16 +14,12 @@ export default function AdvancedSwitch({ checked, setChecked, visible }: Advance
     <Panel
       position="bottom-left"
       className={clsx(
-        "bg-background-base flex h-[48px] items-center gap-3 rounded-full border px-4 py-2.5",
+        "bg-background-base m-4 flex h-[48px] items-center gap-3 rounded-full border px-4 py-2.5",
         visible ? "visible" : "hidden"
       )}
     >
       <Switch checked={checked} onCheckedChange={setChecked} />
-      <TooltipPopover
-        trigger={
-          <span className="body-sm border-foreground-base border-b border-dashed font-medium">Advanced view</span>
-        }
-      >
+      <TooltipPopover trigger="Advanced view">
         Advanced view shows the entire depth, and all cycles in the graph.
       </TooltipPopover>
     </Panel>

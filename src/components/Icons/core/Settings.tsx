@@ -4,13 +4,13 @@ import { SVGProps } from "react";
 export default function Settings({ className, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      viewBox="0 0 24 24"
+      viewBox="0 0 15 15"
       fill="none"
-      className={cn("fill-foreground-base stroke-foreground-base h-6 w-6", className)}
+      className={cn("fill-foreground-base stroke-foreground-base h-6 w-6 p-[4.5px]", className)}
       {...props}
     >
       <path
-        d="M17.1111 12H18M6 12H14.4444M12.2222 7.77778H18M6 7.77778H9.55556M12.2222 16.2222H18M6 16.2222H9.55556M14.4444 10.2222V13.7778M9.55556 6V9.55556M9.55556 14.4444V18"
+        d="M12.6111 7.5H13.5M1.5 7.5H9.94444M7.72222 3.27778H13.5M1.5 3.27778H5.05556M7.72222 11.7222H13.5M1.5 11.7222H5.05556M9.94444 5.72222V9.27778M5.05556 1.5V5.05556M5.05556 9.94444V13.5"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

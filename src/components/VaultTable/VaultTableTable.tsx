@@ -23,7 +23,12 @@ interface TableProps<TValue> {
 }
 
 export default function VaultTableTable<TValue>({ data, columns }: TableProps<TValue>) {
-  const [sorting, setSorting] = useState<SortingState>([]);
+  const [sorting, setSorting] = useState<SortingState>([
+    {
+      id: "totalSupplied",
+      desc: true,
+    },
+  ]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const router = useRouter();

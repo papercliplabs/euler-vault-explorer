@@ -1,9 +1,9 @@
 "use client";
 import { Vault } from "@/utils/types";
 import { ColumnDef } from "@tanstack/react-table";
-import { TokenIcon, VaultTypeIcon } from "../Icons";
-import { formatNumber } from "@/utils/format";
-import { VAULT_TYPE_NAME_MAPPING } from "@/utils/constants";
+import { VaultTypeIcon } from "../Icons";
+import { formatNumber, formatVaultName } from "@/utils/format";
+import { VAULT_TYPE_INFO_MAPPING } from "@/utils/constants";
 import clsx from "clsx";
 import { VaultIcon } from "../Icons/special/VaultIcon";
 
@@ -16,13 +16,11 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
       const offchainName = vault.offchainLabel?.name;
       return (
         <div className="text-foreground-base flex items-center gap-3 font-medium">
-          {/* <TokenIcon symbol={vault.underlyingAssetSymbol} imgSrc={vault.underlyingAssetImgSrc} size={24} /> */}
           <VaultIcon vault={vault} size={28} badgeType="entity" />
           <div className="flex flex-col">
             <span>{offchainName}</span>
             <div className={clsx(offchainName && "body-xs text-foreground-muted")}>
-              <span>{vault.underlyingAssetSymbol}</span>{" "}
-              <span className={clsx(!offchainName && "text-foreground-subtle")}>{vault.id}</span>
+              {formatVaultName({ vault, removeStyle: !!offchainName })}
             </div>
           </div>
         </div>
@@ -85,7 +83,7 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
       return (
         <div className="flex items-center gap-2">
           <VaultTypeIcon type={vault.type} />
-          <div>{VAULT_TYPE_NAME_MAPPING[vault.type]}</div>
+          <div>{VAULT_TYPE_INFO_MAPPING[vault.type].name}</div>
         </div>
       );
     },
