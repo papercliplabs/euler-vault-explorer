@@ -1,4 +1,5 @@
 import { Switch } from "@/components/ui/switch";
+import TooltipPopover from "@/components/ui/tooltipPopover";
 import { Panel } from "@xyflow/react";
 
 interface AdvancedSwitchProps {
@@ -10,10 +11,16 @@ export default function AdvancedSwitch({ checked, setChecked }: AdvancedSwitchPr
   return (
     <Panel
       position="bottom-left"
-      className="bg-background-base flex items-center gap-3 rounded-full border px-4 py-2.5"
+      className="bg-background-base flex h-[48px] items-center gap-3 rounded-full border px-4 py-2.5"
     >
       <Switch checked={checked} onCheckedChange={setChecked} />
-      <span className="body-sm font-medium">Advanced view</span>
+      <TooltipPopover
+        trigger={
+          <span className="body-sm border-foreground-base border-b border-dashed font-medium">Advanced view</span>
+        }
+      >
+        Advanced view shows the entire depth, and all cycles in the graph.
+      </TooltipPopover>
     </Panel>
   );
 }

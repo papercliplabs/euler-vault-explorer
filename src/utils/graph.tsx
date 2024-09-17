@@ -29,21 +29,37 @@ export function getVaultInGraphForCollateral(
   return graph[getGraphKey(collateral.chainId, collateral.collateralVaultAddress)];
 }
 
-export function constructGraph(root: Vault, graph: VaultGraphDataStructure, simplified: boolean) {
+// Breath first search of the vault graph
+export function constructGraph(
+  root: Vault,
+  graph: VaultGraphDataStructure,
+  heightLimit?: number
+): { nodes: VaultNodeType[]; allEdges: CollateralEdgeType[]; spanningTreeEdges: CollateralEdgeType[] } {
   const queue: Queue<{ vault: Vault; layer: number }> = new Queue();
   queue.enqueue({ vault: root, layer: 0 });
 
   const nodes: VaultNodeType[] = [];
-  const edges: CollateralEdgeType[] = [];
+  const allEdges: CollateralEdgeType[] = [];
+  const spanningTreeEdges: CollateralEdgeType[] = [];
 
   const visited: Record<string, boolean> = {};
 
   // Setup first node
   visited[getGraphKey(root.chainId, root.address)] = true;
-  nodes.push({ id: getGraphKeyForVault(root), type: "vault", position: { x: 0, y: 0 }, data: { vault: root } });
+  nodes.push({
+    id: getGraphKeyForVault(root),
+    type: "vault",
+    position: { x: 0, y: 0 },
+    data: { vault: root, depth: 0 },
+  });
 
   while (!queue.isEmpty()) {
     const { vault, layer } = queue.dequeue()!; // Won't be empty, just checked
+
+    if (layer == heightLimit) {
+      // Stop at the height limit
+      break;
+    }
 
     for (const collateral of vault.collateral) {
       const key = getGraphKey(collateral.chainId, collateral.collateralVaultAddress);
@@ -64,17 +80,29 @@ export function constructGraph(root: Vault, graph: VaultGraphDataStructure, simp
             id: key,
             type: "vault",
             position: {
-              x: (Math.random() - 0.5) * 5000,
-              y: 400 * (layer + 1),
+              x: 0,
+              y: 0,
+              // x: (Math.random() - 0.5) * 5000,
+              // y: 400 * (layer + 1),
               // y: nextVault.type == "escrowedCollateral" ? 1000 : 400 * (layer + 1),
-            }, // TODO: actual position
-            data: { vault: nextVault },
+            }, // layout position elsewhere
+            data: { vault: nextVault, depth: layer + 1 },
           });
         }
       }
 
-      if (!simplified || !alreadyVisited || nextVault?.type == "escrowedCollateral") {
-        edges.push({
+      const edge: CollateralEdgeType = {
+        id: `e${key}-${getGraphKeyForVault(vault)}`,
+        type: "collateral",
+        source: key,
+        target: getGraphKeyForVault(vault),
+        data: { collateral },
+      };
+
+      allEdges.push(edge);
+
+      if (!alreadyVisited || nextVault?.type == "escrowedCollateral") {
+        spanningTreeEdges.push({
           id: `e${key}-${getGraphKeyForVault(vault)}`,
           type: "collateral",
           source: key,
@@ -85,5 +113,5 @@ export function constructGraph(root: Vault, graph: VaultGraphDataStructure, simp
     }
   }
 
-  return { nodes, edges };
+  return { nodes, allEdges, spanningTreeEdges };
 }

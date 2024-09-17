@@ -15,6 +15,7 @@ import { CHAIN_CONFIGS } from "@/config";
 export type VaultNodeType = Node<
   {
     vault?: Vault;
+    depth: number; // depth in tree
   },
   "vault"
 >;

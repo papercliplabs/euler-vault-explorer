@@ -13,7 +13,7 @@ import {
   Panel,
 } from "@xyflow/react";
 import VaultNode, { VaultNodeType } from "./VaultNode";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { use, useCallback, useEffect, useMemo, useState } from "react";
 import ViewportControls from "./panels/ViewportControls";
 import GraphTypeSelector, { GraphType } from "./panels/GraphTypeSelector";
 import AdvancedSwitch from "./panels/AdvancedSwitch";
@@ -35,7 +35,7 @@ const edgeTypes: EdgeTypes = { collateral: CollateralEdge };
 
 const getDagreLayoutedElements = (nodes: any, edges: any, options: any) => {
   const g = new Dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}));
-  g.setGraph({ rankdir: options.direction });
+  g.setGraph({ rankdir: options.direction, nodesep: 350, ranksep: 300 });
 
   edges.forEach((edge: any) => g.setEdge(edge.source, edge.target));
   nodes.forEach((node: any) =>
@@ -68,26 +68,31 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
 
   const { fitView } = useReactFlow();
 
-  const { nodes: cNodes, edges: cEdges } = useMemo(() => constructGraph(root, graph, true), [root, graph]);
-  console.log(cNodes, cEdges);
-
-  const [nodes, setNodes, onNodesChange] = useNodesState(cNodes);
-  const [edges, setEdges, onEdgeChange] = useEdgesState(cEdges);
-
-  const onDagreLayout = useCallback(
-    (direction: any) => {
-      console.log(nodes);
-      const layouted = getDagreLayoutedElements(nodes, edges, { direction });
-
-      setNodes([...layouted.nodes]);
-      setEdges([...layouted.edges]);
-
-      window.requestAnimationFrame(() => {
-        fitView();
-      });
-    },
-    [nodes, edges, fitView, setNodes, setEdges]
+  const {
+    nodes: rawNodes,
+    allEdges,
+    spanningTreeEdges,
+  } = useMemo(
+    () => constructGraph(root, graph, advancedSwitchChecked ? undefined : 4),
+    [root, graph, advancedSwitchChecked]
   );
+
+  // Only use spanning tree edges for layout
+  const [layoutedNodes, layoutedEdges] = useMemo(() => {
+    const { nodes, edges } = getDagreLayoutedElements(rawNodes, spanningTreeEdges, { direction: "BT" });
+    return [nodes, edges];
+  }, [rawNodes, spanningTreeEdges]);
+
+  const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
+  const [edges, setEdges, onEdgeChange] = useEdgesState(layoutedEdges);
+
+  useEffect(() => {
+    setNodes(layoutedNodes);
+  }, [setNodes, layoutedNodes]);
+
+  useEffect(() => {
+    setEdges(advancedSwitchChecked ? allEdges : spanningTreeEdges);
+  }, [setEdges, advancedSwitchChecked, allEdges, spanningTreeEdges]);
 
   return (
     <div className="bg-background-subtle h-[800px] w-full overflow-hidden rounded-[24px] border">
@@ -107,9 +112,6 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
         <GraphTypeSelector graphType={graphType} setGraphType={setGraphType} />
         <AdvancedSwitch checked={advancedSwitchChecked} setChecked={setAdvancedSwitchChecked} />
         <ViewportControls />
-        <Panel position="top-right">
-          <button onClick={() => onDagreLayout("BT")}>TB</button>
-        </Panel>
       </ReactFlow>
     </div>
   );

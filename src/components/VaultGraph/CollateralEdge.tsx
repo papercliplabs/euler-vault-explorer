@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode, useState } from "react";
-import { Edge, EdgeProps, BaseEdge, EdgeLabelRenderer, getSimpleBezierPath, useViewport } from "@xyflow/react";
+import { Edge, EdgeProps, BaseEdge, EdgeLabelRenderer, useViewport } from "@xyflow/react";
 import { Collateral } from "@/utils/types";
 import { ArrowRight, OracleTypeIcon } from "../Icons";
 import clsx from "clsx";
@@ -11,6 +11,7 @@ import "react-circular-progressbar/dist/styles.css";
 import { formatNumber } from "@/utils/format";
 import { PopoverContent, Popover, PopoverTrigger } from "../ui/popover";
 import Link from "next/link";
+import { getCustomBezierPath } from "@/utils/getCustomBezierCurve";
 
 export type CollateralEdgeType = Edge<
   {
@@ -23,8 +24,10 @@ export default function CollateralEdge({
   id,
   sourceX,
   sourceY,
+  sourcePosition,
   targetX,
   targetY,
+  targetPosition,
   data,
   selected,
 }: EdgeProps<CollateralEdgeType>) {
@@ -32,11 +35,14 @@ export default function CollateralEdge({
 
   const collateral = data?.collateral;
 
-  const [edgePath, labelX, labelY] = getSimpleBezierPath({
+  const [edgePath, labelX, labelY] = getCustomBezierPath({
     sourceX,
     sourceY,
+    sourcePosition,
     targetX,
     targetY,
+    targetPosition,
+    curvature: 0.35,
   });
 
   return (
@@ -52,7 +58,7 @@ export default function CollateralEdge({
             transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px)`,
             pointerEvents: "all",
           }}
-          className="nopan nodrag absolute flex h-[42px] w-[42px] items-center justify-center rounded-full"
+          className="nopan nodrag absolute flex h-[32px] w-[32px] items-center justify-center rounded-full"
         >
           <div className="absolute left-0 right-0 top-0">
             <CircularProgressbar
@@ -63,7 +69,7 @@ export default function CollateralEdge({
           </div>
           <div
             className={clsx(
-              "bg-euler-600 absolute flex h-8 w-8 rounded-full border",
+              "bg-euler-600 absolute flex h-6 w-6 rounded-full border",
               selected
                 ? "border-semantic-accent"
                 : hovered
@@ -71,7 +77,7 @@ export default function CollateralEdge({
                   : "border-border-strong hover:border-semantic-accent/50"
             )}
           >
-            <OracleTypeIcon type={collateral?.oracle?.type ?? "CrossAdapter"} />
+            <OracleTypeIcon type={collateral?.oracle?.type ?? "CrossAdapter"} className="h-full w-full" />
           </div>
         </div>
       </EdgeLabelRenderer>
