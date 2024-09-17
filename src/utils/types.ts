@@ -34,6 +34,16 @@ export interface Collateral {
   oracle?: Oracle;
 }
 
+// Offchain label
+export interface OffchainVaultLabel {
+  name: string;
+  description: string;
+
+  entityName: string;
+  entityLogo?: string;
+  entityDescription?: string;
+}
+
 export interface Vault {
   chainId: SupportedChainId;
   type: VaultType;
@@ -41,6 +51,8 @@ export interface Vault {
 
   name: string;
   symbol: string;
+  id: string;
+  offchainLabel?: OffchainVaultLabel;
 
   underlyingAssetAddress: Address;
   underlyingAssetName: string;

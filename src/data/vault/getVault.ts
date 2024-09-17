@@ -9,6 +9,7 @@ import { U256_MAX } from "@/utils/constants";
 import currencyCodes from "currency-codes";
 import { decodeEulerRouterOracle, decodeOracleInfo } from "./helpers/oracle";
 import { getTokenImgSrc } from "../token/getTokenImgSrc";
+import { getOffchainVaultLabel } from "./helpers/getOffchainVaultLabel";
 
 const IRM_DECIMALS = 27;
 const CONFIG_SCALE_DECIMALS = 4;
@@ -50,6 +51,8 @@ export async function getVaultWithKnownType(
 
   const underlyingAssetImgSrc = await getTokenImgSrc(chainId, vaultInfo.asset);
 
+  const offchainLabel = await getOffchainVaultLabel(chainId, address);
+
   const { unitOfAccountSymbol, unitOfAccountIsFiat } = inferUnitOfAccountSymbol(
     vaultInfo.unitOfAccount,
     vaultInfo.unitOfAccountSymbol
@@ -79,6 +82,8 @@ export async function getVaultWithKnownType(
 
     name: vaultInfo.vaultName,
     symbol: vaultInfo.vaultSymbol,
+    id: vaultInfo.vaultSymbol.split("-").pop()?.padStart(3, "0") ?? "",
+    offchainLabel,
 
     underlyingAssetAddress: vaultInfo.asset,
     underlyingAssetName: vaultInfo.assetName,

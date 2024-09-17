@@ -6,6 +6,7 @@ import {
   ALL_TABLE_FILTER_KEYS,
   FILTER_KEY_CHAIN,
   FILTER_KEY_COLLATERAL,
+  FILTER_KEY_ENTITY,
   FILTER_KEY_OPEN,
   FILTER_KEY_UNDERLYING_ASSET,
   FILTER_KEY_VAULT_TYPE,
@@ -22,6 +23,7 @@ import { Drawer, DrawerClose, DrawerContent } from "@/components/ui/drawer";
 import { useScreenSize } from "@/hooks/useScreenSize";
 import { Button } from "../ui/button";
 import { useFilteredVaults } from "@/hooks/useFilteredVaults";
+import { getGraphKey } from "@/utils/graph";
 
 interface TraitFilterDrawerProps {
   vaults: Vault[];
@@ -63,16 +65,36 @@ export default function TableFilterDrawer({ vaults }: TraitFilterDrawerProps) {
   }, [vaults]);
 
   const collateralItems = useMemo(() => {
-    const symbolToIconSrc: Record<string, string | null> = {};
+    const keyToInfo: Record<string, { symbol: string; name: string; imgSrc: string | null }> = {};
 
     vaults.forEach((vault) => {
-      symbolToIconSrc[vault.symbol] = vault.underlyingAssetImgSrc;
+      keyToInfo[getGraphKey(vault.chainId, vault.address)] = {
+        symbol: vault.underlyingAssetSymbol,
+        name: `${vault.underlyingAssetSymbol} ${vault.id}`,
+        imgSrc: vault.underlyingAssetImgSrc,
+      };
     });
 
-    return Object.entries(symbolToIconSrc).map(([symbol, iconSrc]) => ({
+    return Object.entries(keyToInfo).map(([key, info]) => ({
+      value: key, // Uses graph key, since this is unique chain + address
+      name: info.name,
+      icon: <TokenIcon symbol={info.symbol} imgSrc={info.imgSrc} size={15} />,
+    }));
+  }, [vaults]);
+
+  const entityItems = useMemo(() => {
+    const nameToIconSrc: Record<string, string | undefined> = {};
+
+    vaults.forEach((vault) => {
+      if (vault.offchainLabel) {
+        nameToIconSrc[vault.offchainLabel.entityName] = vault.offchainLabel.entityLogo;
+      }
+    });
+
+    return Object.entries(nameToIconSrc).map(([symbol, iconSrc]) => ({
       value: symbol,
       name: symbol,
-      icon: <TokenIcon symbol={symbol} imgSrc={iconSrc} size={15} />,
+      icon: iconSrc ? <TokenIcon symbol={symbol} imgSrc={iconSrc} size={15} /> : undefined,
     }));
   }, [vaults]);
 
@@ -92,6 +114,7 @@ export default function TableFilterDrawer({ vaults }: TraitFilterDrawerProps) {
         />
         <TableFilterSection name="Collateral" filterKey={FILTER_KEY_COLLATERAL} items={collateralItems} />
         <TableFilterSection name="Vault type" filterKey={FILTER_KEY_VAULT_TYPE} items={vaultTypeFilterItems} />
+        <TableFilterSection name="Governing entity" filterKey={FILTER_KEY_ENTITY} items={entityItems} />
         <TableFilterSection name="Chain" filterKey={FILTER_KEY_CHAIN} items={chainFilterItems} />
       </Accordion>
     </>

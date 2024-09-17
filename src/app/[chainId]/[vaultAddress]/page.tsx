@@ -1,4 +1,5 @@
 import { ArrowLeft, TokenAndChainIcon } from "@/components/Icons";
+import { VaultIcon } from "@/components/Icons/special/VaultIcon";
 import Metric from "@/components/Metric";
 import { Popover, PopoverContent } from "@/components/ui/popover";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -46,18 +47,27 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
           <span className="group-hover:text-semantic-accent">Vaults</span>
         </Link>
         <span>/</span>
-        <span>{vault.symbol}</span>
+        <span>
+          {vault.underlyingAssetSymbol} {vault.id}
+        </span>
       </div>
       <div className="flex flex-col gap-6 md:flex-row">
-        <TokenAndChainIcon
+        <VaultIcon vault={vault} size={64} badgeType="entity" />
+        {/* <TokenAndChainIcon
           chainId={chainId}
           tokenSymbol={vault.underlyingAssetSymbol}
           tokenImgSrc={vault.underlyingAssetImgSrc}
           size={64}
-        />
+        /> */}
         <div className="flex flex-col justify-center gap-2">
-          <h3>{vault.name}</h3>
-          <span className="text-foreground-muted">TODO: description</span>
+          <h3>
+            {vault.offchainLabel?.name ?? (
+              <>
+                <span>{vault.underlyingAssetSymbol}</span> <span className="text-foreground-subtle">{vault.id}</span>
+              </>
+            )}
+          </h3>
+          <span className="text-foreground-muted">{vault.offchainLabel?.description}</span>
         </div>
       </div>
       <div className="flex flex-col flex-wrap gap-8 md:flex-row">

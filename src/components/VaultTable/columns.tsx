@@ -1,13 +1,11 @@
 "use client";
 import { Vault } from "@/utils/types";
 import { ColumnDef } from "@tanstack/react-table";
-import { Button } from "../ui/button";
-import { ArrowUpDown } from "lucide-react";
-import { ChainIcon, TokenIcon, VaultTypeIcon } from "../Icons";
+import { TokenIcon, VaultTypeIcon } from "../Icons";
 import { formatNumber } from "@/utils/format";
 import { VAULT_TYPE_NAME_MAPPING } from "@/utils/constants";
-import { CHAIN_CONFIGS } from "@/config";
-import SortIcon from "../Icons/special/SortChevrons";
+import clsx from "clsx";
+import { VaultIcon } from "../Icons/special/VaultIcon";
 
 export const vaultTableColumns: ColumnDef<Vault>[] = [
   {
@@ -15,12 +13,17 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
     header: "Vault Name",
     cell: ({ row }) => {
       const vault = row.original;
+      const offchainName = vault.offchainLabel?.name;
       return (
-        <div className="flex items-center gap-3 font-medium">
-          <TokenIcon symbol={vault.underlyingAssetSymbol} imgSrc={vault.underlyingAssetImgSrc} size={24} />
-          <div>
-            <span className="text-foreground-base">{vault.underlyingAssetSymbol}</span>{" "}
-            <span className="text-foreground-subtle">{vault.symbol.split("-").pop()?.padStart(3, "0")}</span>
+        <div className="text-foreground-base flex items-center gap-3 font-medium">
+          {/* <TokenIcon symbol={vault.underlyingAssetSymbol} imgSrc={vault.underlyingAssetImgSrc} size={24} /> */}
+          <VaultIcon vault={vault} size={28} badgeType="entity" />
+          <div className="flex flex-col">
+            <span>{offchainName}</span>
+            <div className={clsx(offchainName && "body-xs text-foreground-muted")}>
+              <span>{vault.underlyingAssetSymbol}</span>{" "}
+              <span className={clsx(!offchainName && "text-foreground-subtle")}>{vault.id}</span>
+            </div>
           </div>
         </div>
       );

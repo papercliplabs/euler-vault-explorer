@@ -7,23 +7,19 @@ import {
   DefaultEdgeOptions,
   NodeTypes,
   EdgeTypes,
-  useNodesState,
   useEdgesState,
   useReactFlow,
-  Panel,
   applyNodeChanges,
 } from "@xyflow/react";
 import VaultNode, { VaultNodeType } from "./VaultNode";
-import { use, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import ViewportControls from "./panels/ViewportControls";
 import GraphTypeSelector, { GraphType } from "./panels/GraphTypeSelector";
 import AdvancedSwitch from "./panels/AdvancedSwitch";
-import CollateralEdge, { CollateralEdgeType } from "./CollateralEdge";
+import CollateralEdge from "./CollateralEdge";
 import {
   constructCollateralExposureGraph,
   constructRehypothecationGraph,
-  getVaultInGraph,
-  getVaultInGraphForCollateral,
   VaultGraphDataStructure,
 } from "@/utils/graph";
 import Dagre from "@dagrejs/dagre";
@@ -103,7 +99,7 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
 
       // Fit view after nodes change if requested
       if (shouldFitView) {
-        fitView();
+        fitView({ padding: 0.2 });
         setShouldFitView(false);
       }
     },
@@ -120,7 +116,7 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
   }, [setEdges, advancedSwitchChecked, allEdges, spanningTreeEdges]);
 
   return (
-    <div className="bg-background-subtle h-[800px] w-full overflow-hidden rounded-[24px] border">
+    <div className="bg-background-subtle h-full w-full overflow-hidden rounded-[24px] border">
       <ReactFlow
         nodes={nodes}
         onNodesChange={onNodesChange}
@@ -129,6 +125,7 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         fitView
+        fitViewOptions={{ padding: 0.2 }}
         defaultEdgeOptions={defaultEdgeOptions}
         proOptions={{ hideAttribution: true }}
       >

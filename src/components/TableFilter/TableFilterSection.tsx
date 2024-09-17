@@ -6,7 +6,7 @@ import { TableFilterItem, TableFilterItemBase } from "./TableFilterItem";
 import FilterClearButton from "../FilterClearButton";
 import { useShallowSearchParams } from "@/hooks/useShallowSearchParams";
 
-const MIN_ITEMS_FOR_SEARCH = 5;
+const MIN_ITEMS_FOR_SEARCH = 6;
 
 interface TableFilterSectionProps {
   name: string;

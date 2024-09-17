@@ -15,7 +15,7 @@ export default function VaultGraph({ vault, allVaults }: VaultGraphProps) {
   });
 
   return (
-    <div className="bg-background-subtle h-[800px] w-full overflow-hidden rounded-[24px] border">
+    <div className="bg-background-subtle h-[700px] w-full overflow-hidden rounded-[24px] border">
       <ReactFlowProvider>
         <VaultGraphGraph root={vault} graph={graph} />
       </ReactFlowProvider>

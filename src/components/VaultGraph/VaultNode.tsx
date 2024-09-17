@@ -11,6 +11,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import ArrowUpRight from "../Icons/core/ArrowUpRight";
 import { CHAIN_CONFIGS } from "@/config";
+import { VaultIcon } from "../Icons/special/VaultIcon";
 
 export type VaultNodeType = Node<
   {
@@ -42,8 +43,8 @@ export default function VaultNode({ data: { vault }, selected }: NodeProps<Vault
             className="border-white/16 aspect-square shrink-0 border"
           />
           <div className="flex flex-col">
-            <div>
-              <span>{vault.symbol}</span>
+            <div className="font-medium">
+              <span>{vault.underlyingAssetSymbol}</span> <span className="text-foreground-subtle">{vault.id}</span>
             </div>
             <div className="body-cs text-foreground-muted flex items-center gap-1">
               <VaultTypeIcon type={vault.type} className="fill-foreground-muted" />
