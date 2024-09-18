@@ -1,12 +1,13 @@
 "use server";
 import { perspectiveAbi } from "@/abis/perspectiveAbi";
 import { CHAIN_CONFIGS } from "@/config";
-import { VAULT_TYPE_MATCH_ORDER } from "@/utils/constants";
+import { SECONDS_PER_HOUR, VAULT_TYPE_MATCH_ORDER } from "@/utils/constants";
 import { SupportedChainId, VaultType } from "@/utils/types";
+import { unstable_cache } from "next/cache";
 import { Address } from "viem";
 import { readContract } from "viem/actions";
 
-export async function getVaultAddressesForType(chainId: SupportedChainId, type: VaultType): Promise<Address[]> {
+export async function getVaultAddressesForTypeUncached(chainId: SupportedChainId, type: VaultType): Promise<Address[]> {
   const chainConfig = CHAIN_CONFIGS[chainId];
   const perspectiveAddress = chainConfig.addresses.perspectives[type];
 
@@ -18,6 +19,10 @@ export async function getVaultAddressesForType(chainId: SupportedChainId, type: 
 
   return addresses as Address[];
 }
+
+const getVaultAddressesForType = unstable_cache(getVaultAddressesForTypeUncached, ["get-vault-addresses-for-type"], {
+  revalidate: SECONDS_PER_HOUR,
+});
 
 export async function getVaultTypesAndAddresses(chainId: SupportedChainId): Promise<Record<VaultType, Address[]>> {
   const chainConfig = CHAIN_CONFIGS[chainId];

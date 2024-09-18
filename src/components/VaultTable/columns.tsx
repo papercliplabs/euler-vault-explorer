@@ -28,7 +28,7 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
     },
   },
   {
-    accessorKey: "totalSupplied",
+    accessorKey: "totalSuppliedUsd",
     header: "Total Supplied",
     cell: ({ row }) => {
       const vault = row.original;

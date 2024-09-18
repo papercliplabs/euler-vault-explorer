@@ -42,7 +42,7 @@ export default async function Home() {
 }
 
 async function VaultTableWrapper() {
-  const allVaults = await getAllVaultsOffline();
+  const allVaults = await getAllVaults();
 
   return (
     <>
@@ -53,7 +53,7 @@ async function VaultTableWrapper() {
 }
 
 async function TableFilterCountWrapper() {
-  const allVaults = await getAllVaultsOffline();
+  const allVaults = await getAllVaults();
 
   return (
     <>

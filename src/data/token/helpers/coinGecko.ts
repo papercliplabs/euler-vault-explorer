@@ -1,3 +1,4 @@
+import { SECONDS_PER_WEEK } from "@/utils/constants";
 import { SupportedChainId } from "@/utils/types";
 import { unstable_cache } from "next/cache";
 import { Address, getAddress, isAddress, isAddressEqual } from "viem";
@@ -16,7 +17,7 @@ interface CoinGeckoCoin {
   symbol: string;
 }
 
-async function getCoinListUncached(): Promise<CoinGeckoCoin[]> {
+async function getCoinListUncached(): Promise<CoinGeckoCoin[] | null> {
   try {
     const response = await fetch("https://api.coingecko.com/api/v3/coins/list?include_platform=true", {
       method: "GET",
@@ -59,14 +60,21 @@ async function getCoinListUncached(): Promise<CoinGeckoCoin[]> {
     return list;
   } catch (e) {
     console.error("Error fetching Coin Gecko coin list", e);
-    return [];
+    return null;
   }
 }
 
-export const getCoinList = unstable_cache(getCoinListUncached, ["get-coin-gecko-coin-list"]);
+export const getCoinList = unstable_cache(getCoinListUncached, ["get-coin-gecko-coin-list"], {
+  revalidate: SECONDS_PER_WEEK,
+});
 
 async function getCoinId(chainId: SupportedChainId, address: Address): Promise<string | null> {
   const coinList = await getCoinList();
+
+  if (!coinList) {
+    return null;
+  }
+
   const coin = coinList.find((coin) => Number(coin.chainId) === Number(chainId) && coin.address == address);
   return coin?.coinGeckoId ?? null;
 }
@@ -87,7 +95,9 @@ export async function getCoinGeckoTokenImgSrc(chainId: SupportedChainId, address
           "Content-Type": "application/json",
           "x-gc-demo-api-key": process.env.COINGECKO_API_KEY!,
         },
-        cache: "force-cache",
+        next: {
+          revalidate: SECONDS_PER_WEEK,
+        },
       }
     );
 

@@ -10,6 +10,7 @@ import currencyCodes from "currency-codes";
 import { decodeEulerRouterOracle, decodeOracleInfo } from "./helpers/oracle";
 import { getTokenImgSrc } from "../token/getTokenImgSrc";
 import { getOffchainVaultLabel } from "./helpers/getOffchainVaultLabel";
+import { getTokenPrice } from "../token/getTokenPrice";
 
 const IRM_DECIMALS = 27;
 const CONFIG_SCALE_DECIMALS = 4;
@@ -42,21 +43,22 @@ export async function getVaultWithKnownType(
   const chainConfig = CHAIN_CONFIGS[chainId];
   const vaultLensAddress = chainConfig.addresses.lenses.vault;
 
-  const vaultInfo = await readContract(chainConfig.publicClient, {
-    abi: vaultLensAbi,
-    address: vaultLensAddress,
-    functionName: "getVaultInfoFull",
-    args: [address],
-  });
-
-  const underlyingAssetImgSrc = await getTokenImgSrc(chainId, vaultInfo.asset);
-
-  const offchainLabel = await getOffchainVaultLabel(chainId, address);
+  const [vaultInfo, offchainLabel] = await Promise.all([
+    readContract(chainConfig.publicClient, {
+      abi: vaultLensAbi,
+      address: vaultLensAddress,
+      functionName: "getVaultInfoFull",
+      args: [address],
+    }),
+    getOffchainVaultLabel(chainId, address),
+  ]);
 
   const { unitOfAccountSymbol, unitOfAccountIsFiat } = inferUnitOfAccountSymbol(
     vaultInfo.unitOfAccount,
     vaultInfo.unitOfAccountSymbol
   );
+
+  const underlyingAssetImgSrc = await getTokenImgSrc(chainId, vaultInfo.asset);
 
   let underlyingAssetOracle: Oracle | undefined = undefined;
   let collateralOracles: Oracle[] | undefined = undefined; // Same order as collateral
@@ -74,6 +76,36 @@ export async function getVaultWithKnownType(
 
   const totalSupplied = Number(formatUnits(vaultInfo.totalAssets, Number(vaultInfo.assetDecimals)));
   const totalBorrowed = Number(formatUnits(vaultInfo.totalBorrowed, Number(vaultInfo.assetDecimals)));
+
+  const unitOfAccountDecimals = Number(vaultInfo.unitOfAccountDecimals);
+
+  let totalSupplyUsd = 0;
+  let totalBorrowedUsd = 0;
+
+  const liabilityPriceInfo = vaultInfo.liabilityPriceInfo;
+  if (!liabilityPriceInfo.queryFailure) {
+    const totalSupplyInUnitOfAccount = Number(
+      formatUnits(
+        (vaultInfo.totalAssets / liabilityPriceInfo.amountIn) * liabilityPriceInfo.amountOutMid,
+        unitOfAccountDecimals
+      )
+    );
+    const totalBorrowedInUnitOfAccount = Number(
+      formatUnits(
+        (vaultInfo.totalBorrowed / liabilityPriceInfo.amountIn) * liabilityPriceInfo.amountOutMid,
+        unitOfAccountDecimals
+      )
+    );
+    const unitOfAccountPrice = unitOfAccountSymbol == "USD" ? 1 : await getTokenPrice(unitOfAccountSymbol);
+
+    totalSupplyUsd = totalSupplyInUnitOfAccount * unitOfAccountPrice;
+    totalBorrowedUsd = totalBorrowedInUnitOfAccount * unitOfAccountPrice;
+  } else {
+    const underlyingPrice = await getTokenPrice(vaultInfo.assetSymbol);
+
+    totalSupplyUsd = totalSupplied * underlyingPrice;
+    totalBorrowedUsd = totalBorrowed * underlyingPrice;
+  }
 
   return {
     chainId,
@@ -127,9 +159,8 @@ export async function getVaultWithKnownType(
     totalSupplied,
     totalBorrowed,
 
-    // TODO: need another oracle for this overwise
-    totalSuppliedUsd: unitOfAccountSymbol == "USD" ? totalSupplied : undefined,
-    totalBorrowedUsd: unitOfAccountSymbol == "USD" ? totalBorrowed : undefined,
+    totalSuppliedUsd: totalSupplyUsd,
+    totalBorrowedUsd: totalBorrowedUsd,
 
     utilization: totalSupplied == 0 ? 0 : totalBorrowed / totalSupplied,
 

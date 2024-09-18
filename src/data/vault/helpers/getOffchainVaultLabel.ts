@@ -1,4 +1,5 @@
 "use server";
+import { SECONDS_PER_DAY, SECONDS_PER_HOUR } from "@/utils/constants";
 import { OffchainVaultLabel, SupportedChainId } from "@/utils/types";
 import { Address } from "viem";
 
@@ -13,7 +14,9 @@ interface RawEulerVaultLabel {
 async function getRawEulerVaultLabels(
   chainId: SupportedChainId
 ): Promise<Record<Address, RawEulerVaultLabel | undefined>> {
-  const resp = await fetch(`${BASE_LABEL_URL}/${chainId}/vaults.json`, { cache: "force-cache" });
+  const resp = await fetch(`${BASE_LABEL_URL}/${chainId}/vaults.json`, {
+    next: { revalidate: SECONDS_PER_HOUR },
+  });
   const data = (await resp.json()) as Record<Address, RawEulerVaultLabel>;
   return data;
 }
@@ -27,7 +30,7 @@ interface RawEulerEntityLabel {
 async function getRawEulerEntityLabels(
   chainId: SupportedChainId
 ): Promise<Record<string, RawEulerEntityLabel | undefined>> {
-  const resp = await fetch(`${BASE_LABEL_URL}/${chainId}/entities.json`, { cache: "force-cache" });
+  const resp = await fetch(`${BASE_LABEL_URL}/${chainId}/entities.json`, { next: { revalidate: SECONDS_PER_DAY } });
   const data = (await resp.json()) as Record<string, RawEulerEntityLabel>;
   return data;
 }
