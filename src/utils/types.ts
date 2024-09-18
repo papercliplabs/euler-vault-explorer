@@ -44,7 +44,7 @@ export interface OffchainVaultLabel {
   entityDescription?: string;
 }
 
-export interface Vault {
+export interface VaultCore {
   chainId: SupportedChainId;
   type: VaultType;
   address: Address;
@@ -52,16 +52,17 @@ export interface Vault {
   name: string;
   symbol: string;
   id: string;
-  offchainLabel?: OffchainVaultLabel;
 
   underlyingAssetAddress: Address;
   underlyingAssetName: string;
   underlyingAssetSymbol: string;
-  underlyingAssetImgSrc: string | null;
+  underlyingAssetDecimals: number;
+  underlyingAssetToUnitOfAccountPrice?: number;
 
   unitOfAccountAddress: Address;
   unitOfAccountSymbol: string;
   unitOfAccountIsFiat: boolean;
+  unitOfAccountDecimals: number;
 
   debtTokenAddress: Address;
 
@@ -85,13 +86,19 @@ export interface Vault {
   totalSupplied: number; // In underlying asset
   totalBorrowed: number; // In underlying asset
 
-  totalSuppliedUsd?: number;
-  totalBorrowedUsd?: number;
-
   utilization: number;
 
   shares: number;
 
   supplyApy: number;
   borrowApy: number;
+}
+
+export interface Vault extends VaultCore {
+  offchainLabel?: OffchainVaultLabel;
+
+  underlyingAssetImgSrc: string | null;
+
+  totalSuppliedUsd?: number;
+  totalBorrowedUsd?: number;
 }

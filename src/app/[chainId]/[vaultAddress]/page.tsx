@@ -1,20 +1,14 @@
 import EtherscanLink from "@/components/EtherscanLink";
-import ExternalLink from "@/components/ExternalLink";
-import { ArrowLeft, TokenAndChainIcon } from "@/components/Icons";
+import { ArrowLeft } from "@/components/Icons";
 import { VaultIcon } from "@/components/Icons/special/VaultIcon";
 import Metric from "@/components/Metric";
-import { Popover, PopoverContent } from "@/components/ui/popover";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import TooltipPopover from "@/components/ui/tooltipPopover";
 import VaultGraph from "@/components/VaultGraph";
 import { CHAIN_CONFIGS } from "@/config";
-import { getAllVaults, getAllVaultsOffline } from "@/data/vault/getAllVaults";
+import { getAllVaults } from "@/data/vault/getAllVaults";
 import { getVault } from "@/data/vault/getVault";
 import { VAULT_TYPE_INFO_MAPPING } from "@/utils/constants";
-import { etherscanLink } from "@/utils/etherscan";
-import { formatAddress, formatNumber, formatVaultName } from "@/utils/format";
+import { formatNumber, formatVaultName } from "@/utils/format";
 import { SupportedChainId } from "@/utils/types";
-import { PopoverTrigger } from "@radix-ui/react-popover";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Address, getAddress } from "viem";
@@ -36,7 +30,7 @@ export default function VaultPage({ params }: { params: { chainId: string; vault
 }
 
 async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedChainId; vaultAddress: Address }) {
-  const [vault, allVaults] = await Promise.all([getVault(chainId, vaultAddress), getAllVaultsOffline()]);
+  const [vault, allVaults] = await Promise.all([getVault(chainId, vaultAddress), getAllVaults()]);
 
   if (!vault) {
     throw Error(`Vault ${vaultAddress} not found on chain ${chainId}`);

@@ -1,14 +1,31 @@
 "use server";
-import { SupportedChainId } from "@/utils/types";
-import { Address, isAddressEqual } from "viem";
-import { getCoinGeckoTokenImgSrc } from "./helpers/coinGecko";
-import { CHAIN_CONFIGS } from "@/config";
+import { getCoinGeckoTokenInfos } from "./coinGecko/getCoinGeckoTokenInfos";
+import { getTrustWalletTokenImgSrcs } from "./trustWallet/getTrustWalletTokenImgSrc";
 
-export async function getTokenImgSrc(chainId: SupportedChainId, address: Address): Promise<string | null> {
-  const config = CHAIN_CONFIGS[chainId];
-  if (isAddressEqual(config.addresses.wrappedNativeAsset, address)) {
-    return config.nativeTokenImgSrc;
+export async function getTokenImgSrcs(symbols: string[]): Promise<(string | null)[]> {
+  const [coinGeckoData, trustWalletData] = await Promise.all([
+    getCoinGeckoTokenInfos(symbols),
+    getTrustWalletTokenImgSrcs(symbols),
+  ]);
+
+  let imgSrcs: (string | null)[] = [];
+  for (const symbol of symbols) {
+    if (symbol == "ETH" || symbol == "WETH") {
+      imgSrcs.push("/nativeToken/eth.svg");
+      continue;
+    }
+
+    const trustWallet = trustWalletData[symbol.toLowerCase()];
+    const coinGecko = coinGeckoData[symbol.toLowerCase()];
+
+    if (trustWallet) {
+      imgSrcs.push(trustWallet);
+    } else if (coinGecko) {
+      imgSrcs.push(coinGecko.imgSrc);
+    } else {
+      imgSrcs.push(null);
+    }
   }
 
-  return getCoinGeckoTokenImgSrc(chainId, address);
+  return imgSrcs;
 }

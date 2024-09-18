@@ -15,7 +15,7 @@ async function getRawEulerVaultLabels(
   chainId: SupportedChainId
 ): Promise<Record<Address, RawEulerVaultLabel | undefined>> {
   const resp = await fetch(`${BASE_LABEL_URL}/${chainId}/vaults.json`, {
-    next: { revalidate: SECONDS_PER_HOUR },
+    next: { revalidate: SECONDS_PER_DAY },
   });
   const data = (await resp.json()) as Record<Address, RawEulerVaultLabel>;
   return data;

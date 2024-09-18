@@ -25,7 +25,7 @@ interface TableProps<TValue> {
 export default function VaultTableTable<TValue>({ data, columns }: TableProps<TValue>) {
   const [sorting, setSorting] = useState<SortingState>([
     {
-      id: "totalSupplied",
+      id: "totalSuppliedUsd",
       desc: true,
     },
   ]);
