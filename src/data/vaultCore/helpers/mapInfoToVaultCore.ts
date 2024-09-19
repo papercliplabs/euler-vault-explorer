@@ -1,15 +1,9 @@
-"use server";
-import { vaultLensAbi } from "@/abis/vaultLensAbi";
-import { CHAIN_CONFIGS } from "@/config";
 import { Oracle, OracleType, SupportedChainId, VaultCore, VaultType } from "@/utils/types";
 import { Address, formatUnits, isAddressEqual, zeroAddress } from "viem";
-import { readContract } from "viem/actions";
-import { getVaultType } from "../vaultAddresses/getVaultAddresses";
-import { SECONDS_PER_HOUR, U256_MAX } from "@/utils/constants";
+import { GetVaultInfoFullReturnType } from "../getAllVaultCores";
 import currencyCodes from "currency-codes";
-import { decodeEulerRouterOracle, decodeOracleInfo } from "./helpers/oracle";
-import { unstable_cache } from "next/cache";
-import { cache } from "react";
+import { decodeEulerRouterOracle, decodeOracleInfo } from "./oracle";
+import { U256_MAX } from "@/utils/constants";
 
 const IRM_DECIMALS = 27;
 const CONFIG_SCALE_DECIMALS = 4;
@@ -34,22 +28,12 @@ function inferUnitOfAccountSymbol(
   }
 }
 
-async function getVaultCoreWithKnownTypeUncached(
+export function mapInfoToVaultCore(
   chainId: SupportedChainId,
   address: Address,
-  type: VaultType
-): Promise<VaultCore | null> {
-  console.log("CACHE MISS - getVaultCoreWithKnownTypeUncached", address);
-  const chainConfig = CHAIN_CONFIGS[chainId];
-  const vaultLensAddress = chainConfig.addresses.lenses.vault;
-
-  const vaultInfo = await readContract(chainConfig.publicClient, {
-    abi: vaultLensAbi,
-    address: vaultLensAddress,
-    functionName: "getVaultInfoFull",
-    args: [address],
-  });
-
+  type: VaultType,
+  vaultInfo: GetVaultInfoFullReturnType
+): VaultCore {
   const { unitOfAccountSymbol, unitOfAccountIsFiat } = inferUnitOfAccountSymbol(
     vaultInfo.unitOfAccount,
     vaultInfo.unitOfAccountSymbol
@@ -143,19 +127,4 @@ async function getVaultCoreWithKnownTypeUncached(
     supplyApy: Number(formatUnits(vaultInfo.irmInfo.interestRateInfo[0]?.supplyAPY ?? 0, IRM_DECIMALS)),
     borrowApy: Number(formatUnits(vaultInfo.irmInfo.interestRateInfo[0]?.borrowAPY ?? 0, IRM_DECIMALS)),
   };
-}
-
-export const getVaultCoreWithKnownType = cache(
-  unstable_cache(getVaultCoreWithKnownTypeUncached, ["get-vault-core-with-known-type"], {
-    revalidate: SECONDS_PER_HOUR,
-  })
-);
-
-export async function getVaultCore(chainId: SupportedChainId, address: Address): Promise<VaultCore | null> {
-  const type = await getVaultType(chainId, address);
-  if (!type) {
-    return null;
-  }
-
-  return getVaultCoreWithKnownType(chainId, address, type);
 }

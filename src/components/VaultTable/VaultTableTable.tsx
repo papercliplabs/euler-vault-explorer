@@ -118,7 +118,7 @@ function TableRow({ className, ...props }: HTMLProps<HTMLDivElement>) {
 }
 
 function TableRowLink({ className, ...props }: ComponentProps<typeof Link>) {
-  return <Link className={cn("flex w-full min-w-fit items-center border-b", className)} {...props} />;
+  return <Link className={cn("flex w-full min-w-fit items-center border-b", className)} prefetch={false} {...props} />;
 }
 
 interface TableCellProps extends HTMLAttributes<HTMLDivElement> {

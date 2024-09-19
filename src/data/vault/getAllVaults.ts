@@ -1,10 +1,10 @@
 "use server";
 import { getAllVaultCores } from "../vaultCore/getAllVaultCores";
 import { Vault } from "@/utils/types";
-import { getVaultForVaultCore } from "./getVaultForVaultCore";
+import { getVaultForVaultCore } from "./helpers/getVaultForVaultCore";
 import { getTokenImgSrcs } from "../token/getTokenImgSrc";
 import { getTokenPrices } from "../token/getTokenPrices";
-import { allVaultsOffline } from "./offlineData";
+import { allVaultsOffline } from "./helpers/offlineData";
 
 export async function getAllVaults(): Promise<Vault[]> {
   // TODO: remove this, for dev only

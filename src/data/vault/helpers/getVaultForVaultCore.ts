@@ -1,6 +1,6 @@
 "use server";
 import { Vault, VaultCore } from "@/utils/types";
-import { getOffchainVaultLabel } from "../vaultOffchainLabel/getOffchainVaultLabel";
+import { getOffchainVaultLabel } from "../../vaultOffchainLabel/getOffchainVaultLabel";
 
 export async function getVaultForVaultCore(
   vaultCore: VaultCore,
