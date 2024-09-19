@@ -5,7 +5,7 @@ import TableFilterSearch from "@/components/TableFilter/TableFilterSearch";
 import TableFilterToggle from "@/components/TableFilter/TableFilterToggle";
 import { Skeleton } from "@/components/ui/skeleton";
 import VaultTable from "@/components/VaultTable";
-import { getAllVaults, getAllVaultsOffline } from "@/data/vault/getAllVaults";
+import { getAllVaults } from "@/data/vault/getAllVaults";
 import { Suspense } from "react";
 
 export default async function Home() {

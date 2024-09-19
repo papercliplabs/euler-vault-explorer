@@ -100,7 +100,7 @@ export default function TableFilterDrawer({ vaults }: TraitFilterDrawerProps) {
 
   const content = (
     <>
-      <div className="bg-background-base sticky top-0 z-10 flex items-center justify-between rounded-t-3xl border-b px-6 py-4">
+      <div className="bg-background-base sticky top-0 z-10 flex h-12 items-center justify-between rounded-t-3xl border-b px-6 py-4">
         <span className="text-nowrap font-medium">Filter Vaults</span>
         <FilterClearButton filterKeys={ALL_TABLE_FILTER_KEYS} className="body-sm text-nowrap">
           Clear all

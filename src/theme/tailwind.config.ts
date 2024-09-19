@@ -169,6 +169,9 @@ const config: Config = {
         },
       });
     }),
+    plugin(function ({ addVariant }: { addVariant: any }) {
+      addVariant("not-last", "&:not(:last-child)");
+    }),
     require("tailwindcss-animate"),
     require("tailwind-scrollbar")({ nocompatible: true }),
   ],

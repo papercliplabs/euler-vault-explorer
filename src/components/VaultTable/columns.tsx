@@ -26,6 +26,7 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
         </div>
       );
     },
+    minSize: 300,
   },
   {
     accessorKey: "totalSuppliedUsd",
@@ -45,11 +46,13 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
         </div>
       );
     },
+    minSize: 200,
   },
   {
     accessorKey: "supplyApy",
     header: "Supply APY",
     accessorFn: (vault) => formatNumber({ input: vault.supplyApy, unit: "%" }),
+    minSize: 140,
   },
   {
     accessorKey: "totalBorrowed",
@@ -69,11 +72,13 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
         </div>
       );
     },
+    minSize: 200,
   },
   {
     accessorKey: "borrowApy",
     header: "Borrow APY",
     accessorFn: (vault) => formatNumber({ input: vault.borrowApy, unit: "%" }),
+    minSize: 140,
   },
   {
     accessorKey: "type",
@@ -87,6 +92,7 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
         </div>
       );
     },
+    minSize: 200,
   },
   // {
   //   accessorKey: "chainId",

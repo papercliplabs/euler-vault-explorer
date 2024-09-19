@@ -4,8 +4,12 @@ import { Vault } from "@/utils/types";
 import { getVaultForVaultCore } from "./getVaultForVaultCore";
 import { getTokenImgSrcs } from "../token/getTokenImgSrc";
 import { getTokenPrices } from "../token/getTokenPrices";
+import { allVaultsOffline } from "./offlineData";
 
 export async function getAllVaults(): Promise<Vault[]> {
+  // TODO: remove this, for dev only
+  // return allVaultsOffline;
+
   const allVaultCores = await getAllVaultCores();
 
   const underlyingSymbols = allVaultCores.map((vaultCore) => vaultCore.underlyingAssetSymbol);
@@ -23,9 +27,4 @@ export async function getAllVaults(): Promise<Vault[]> {
   }
 
   return (await Promise.all(promises)).filter((entry) => entry !== null);
-}
-
-export async function getAllVaultsOffline(): Promise<Vault[]> {
-  // return allVaultsOfflineData;
-  return [];
 }
