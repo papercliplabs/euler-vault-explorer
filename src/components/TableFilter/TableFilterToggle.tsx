@@ -17,7 +17,7 @@ export default function TableFilterToggle() {
   return (
     <Button
       variant="secondary"
-      size="sm"
+      size="lg"
       className="rounded-[12px] transition-all"
       onClick={() => {
         open
@@ -27,9 +27,12 @@ export default function TableFilterToggle() {
     >
       <div className="relative">
         <ArrowLeft
-          className={clsx("stroke-foreground-muted absolute transition-opacity", open ? "opacity-100" : "opacity-0")}
+          className={clsx(
+            "stroke-foreground-muted absolute h-[15px] w-[15px] p-0 transition-opacity",
+            open ? "opacity-100" : "opacity-0"
+          )}
         />
-        <Settings className={clsx("transition-opacity", open ? "opacity-0" : "opacity-100")} />
+        <Settings className={clsx("h-[15px] w-[15px] p-0 transition-opacity", open ? "opacity-0" : "opacity-100")} />
       </div>
       <span className="hidden md:block">Filters</span>
       <div className="body-xs bg-background-base flex h-[20px] min-w-[20px] items-center justify-center rounded-full font-medium">

@@ -10,9 +10,9 @@ import { Suspense } from "react";
 
 export default async function Home() {
   return (
-    <div className="flex w-full flex-col gap-2 p-[2px]">
+    <div className="flex w-full flex-col gap-0 pt-4 md:gap-2 md:pt-6">
       <h3>Vaults</h3>
-      <div className="bg-background-base sticky top-[64px] z-10 flex w-full flex-col justify-start gap-4 py-4 md:flex-row md:items-start">
+      <div className="bg-background-base sticky top-[64px] z-10 flex w-full flex-col justify-start gap-4 py-4 md:flex-row md:items-center">
         <div className="flex grow items-center justify-start gap-4">
           <Suspense>
             <TableFilterToggle />

@@ -9,12 +9,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type,
   return (
     <div
       className={cn(
-        "bg-background-field body-lg md:body-sm flex h-8 w-full shrink-0 items-center rounded-[12px] px-3",
+        "bg-background-field body-lg md:body-md flex h-10 w-full shrink-0 items-center gap-2 rounded-[12px] px-3",
         "ring-offset-semantic-accent overflow-hidden text-ellipsis whitespace-nowrap focus-within:outline-none focus-within:ring-0 focus-within:ring-offset-2",
         className
       )}
     >
-      <Search className="stroke-foreground-muted" />
+      <Search className="stroke-foreground-muted h-[15px] w-[15px] p-0" />
       <input
         type={type}
         className={cn(

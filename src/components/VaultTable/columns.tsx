@@ -15,18 +15,18 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
       const vault = row.original;
       const offchainName = vault.offchainLabel?.name;
       return (
-        <div className="text-foreground-base flex items-center gap-3 font-medium">
+        <div className="text-foreground-base flex max-w-full items-center gap-3 font-medium">
           <VaultIcon vault={vault} size={28} badgeType="entity" />
-          <div className="flex flex-col">
-            <span>{offchainName}</span>
-            <div className={clsx(offchainName && "body-xs text-foreground-muted")}>
+          <div className="flex min-w-0 flex-col">
+            <span className="truncate">{offchainName}</span>
+            <div className={clsx("truncate", offchainName && "body-xs text-foreground-muted")}>
               {formatVaultName({ vault, removeStyle: !!offchainName })}
             </div>
           </div>
         </div>
       );
     },
-    minSize: 300,
+    minSize: 320,
   },
   {
     accessorKey: "totalSuppliedUsd",
@@ -37,11 +37,11 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
         <div className="flex flex-col">
           <span>
             {vault.totalSuppliedUsd == undefined
-              ? "TODO"
-              : formatNumber({ input: vault.totalSuppliedUsd, unit: "USD" })}
+              ? "-"
+              : formatNumber({ input: vault.totalSuppliedUsd, unit: "USD", compact: true })}
           </span>
           <span className="text-foreground-muted body-xs">
-            {formatNumber({ input: vault.totalSupplied, unit: vault.underlyingAssetSymbol })}
+            {formatNumber({ input: vault.totalSupplied, unit: vault.underlyingAssetSymbol, compact: true })}
           </span>
         </div>
       );
@@ -63,11 +63,11 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
         <div className="flex flex-col">
           <span>
             {vault.totalBorrowedUsd == undefined
-              ? "TODO"
-              : formatNumber({ input: vault.totalBorrowedUsd, unit: "USD" })}
+              ? "-"
+              : formatNumber({ input: vault.totalBorrowedUsd, unit: "USD", compact: true })}
           </span>
           <span className="text-foreground-muted body-xs">
-            {formatNumber({ input: vault.totalBorrowed, unit: vault.underlyingAssetSymbol })}
+            {formatNumber({ input: vault.totalBorrowed, unit: vault.underlyingAssetSymbol, compact: true })}
           </span>
         </div>
       );

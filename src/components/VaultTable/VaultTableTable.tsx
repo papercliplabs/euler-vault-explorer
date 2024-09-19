@@ -59,10 +59,10 @@ export default function VaultTableTable<TValue>({ data, columns }: TableProps<TV
 
   return (
     <ScrollSync>
-      <div className="h-fit w-full min-w-0">
-        <div className="bg-background-base sticky top-[160px] z-20 min-w-full md:top-[128px]">
+      <div className="text-foreground-subtle h-fit w-full min-w-0">
+        <div className="bg-background-base sticky top-[172px] z-20 min-w-full md:top-[136px]">
           <ScrollSyncPane>
-            <div className="bg-background-subtle scrollbar-none overflow-auto rounded-t-[24px] border-x border-t">
+            <div className="bg-background-subtle scrollbar-none overflow-auto overscroll-x-none rounded-t-[24px] border-x border-t">
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id} className="h-12">
                   {headerGroup.headers.map((header) => {
@@ -84,7 +84,7 @@ export default function VaultTableTable<TValue>({ data, columns }: TableProps<TV
           </ScrollSyncPane>
         </div>
         <ScrollSyncPane>
-          <div className="scrollbar-none flex w-full flex-col overflow-x-auto rounded-b-[24px] border-x border-b">
+          <div className="scrollbar-none flex w-full flex-col overflow-x-auto overscroll-x-none rounded-b-[24px] border-x border-b">
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRowLink
@@ -128,7 +128,10 @@ interface TableCellProps extends HTMLAttributes<HTMLDivElement> {
 function TableCell({ minWidth, className, style, ...props }: TableCellProps) {
   return (
     <div
-      className={cn("flex h-full flex-1 shrink-0 grow items-center text-nowrap px-4 first:pl-6 last:pr-6", className)}
+      className={cn(
+        "flex h-full w-[0px] flex-1 shrink-0 grow items-center overflow-hidden text-ellipsis text-nowrap px-4 first:pl-6 last:pr-6",
+        className
+      )}
       style={{
         minWidth,
         ...style,

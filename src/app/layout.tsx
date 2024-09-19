@@ -25,7 +25,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <div className="flex min-h-dvh flex-col justify-between">
-            <main className="w-full flex-grow px-[14px] pb-[22px] pt-[86px] md:px-[22px]">{children}</main>
+            <main className="w-full flex-grow px-4 pb-6 pt-[86px] md:px-6">{children}</main>
             {/* <Footer /> */}
           </div>
         </Providers>
