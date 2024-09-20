@@ -11,11 +11,11 @@ interface TooltipPopoverProps {
 export default function TooltipPopover({ trigger, children }: TooltipPopoverProps) {
   return (
     <>
-      <Tooltip delayDuration={500}>
+      <Tooltip delayDuration={200}>
         <TooltipTrigger
           className={clsx(
-            "hidden w-fit md:flex",
-            typeof trigger == "string" && "border-border-strong border-b border-dashed"
+            "hidden w-fit text-start md:flex",
+            typeof trigger == "string" && "border-border-strong hocus:border-foreground-muted border-b border-dashed"
           )}
         >
           {trigger}
@@ -25,8 +25,8 @@ export default function TooltipPopover({ trigger, children }: TooltipPopoverProp
       <Popover>
         <PopoverTrigger
           className={clsx(
-            "w-fit md:hidden",
-            typeof trigger == "string" && "border-border-strong border-b border-dashed"
+            "w-fit text-start md:hidden",
+            typeof trigger == "string" && "border-border-strong hocus:border-foreground-muted border-b border-dashed"
           )}
         >
           {trigger}

@@ -50,7 +50,7 @@ export function constructCollateralExposureGraph(
     id: getGraphKeyForVault(root),
     type: "vault",
     position: { x: 0, y: 0 },
-    data: { vault: root, depth: 0 },
+    data: { vault: root, isRoot: true },
   });
 
   while (!queue.isEmpty()) {
@@ -92,7 +92,7 @@ export function constructCollateralExposureGraph(
               // y: 400 * (layer + 1),
               // y: nextVault.type == "escrowedCollateral" ? 1000 : 400 * (layer + 1),
             }, // layout position elsewhere
-            data: { vault: nextVault, depth: layer + 1 },
+            data: { vault: nextVault, isRoot: false },
           });
         }
       }
@@ -138,7 +138,7 @@ export function constructRehypothecationGraph(
       x: 0,
       y: 0,
     }, // layout position elsewhere
-    data: { vault: root, depth: 1 },
+    data: { vault: root, isRoot: true },
   });
 
   for (const vault of Object.values(graph)) {
@@ -153,7 +153,7 @@ export function constructRehypothecationGraph(
               x: 0,
               y: 0,
             }, // layout position elsewhere
-            data: { vault, depth: 0 },
+            data: { vault, isRoot: false },
           });
 
           edges.push({

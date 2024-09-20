@@ -9,8 +9,6 @@ import { palette } from "@/theme/tailwind.config";
 
 import "react-circular-progressbar/dist/styles.css";
 import { formatNumber, formatVaultName } from "@/utils/format";
-import { PopoverContent, Popover, PopoverTrigger } from "../ui/popover";
-import Link from "next/link";
 import { getCustomBezierPath } from "@/utils/getCustomBezierCurve";
 import TooltipPopover from "../ui/tooltipPopover";
 import EtherscanLink from "../EtherscanLink";
@@ -61,7 +59,10 @@ export default function CollateralEdge({
       <BaseEdge
         id={id}
         path={edgePath}
-        className={clsx(selected ? "!stroke-semantic-accent" : hovered ? "stroke-semantic-accent/50" : "stroke-white")}
+        className={clsx(
+          selected ? "!stroke-semantic-accent" : hovered ? "stroke-semantic-accent/50" : "stroke-foreground-muted"
+        )}
+        style={{ strokeWidth: "2px", strokeDasharray: 5, animation: "dashdraw 0.6s linear infinite" }}
       />
       <EdgeLabelRenderer>
         <div
@@ -143,12 +144,12 @@ function CollateralPopover({
       description: "TODO",
     },
     {
-      title: "Borrowing Loan to Value",
+      title: "Borrowing LTV",
       value: formatNumber({ input: collateral.borrowLoanToValue ?? 0, unit: "%" }),
       description: "TODO",
     },
     {
-      title: "Liquidation Loan to Value",
+      title: "Liquidation LTV",
       value: formatNumber({ input: collateral.liquidationLoanToValue ?? 0, unit: "%" }),
       description: "TODO",
     },
@@ -156,18 +157,19 @@ function CollateralPopover({
 
   return (
     <div className="bg-euler-700/20 body-sm w-[224px] rounded-[8px] border shadow-lg backdrop-blur-md">
-      <div className="border-border-strong flex items-center justify-between border-b p-3 pb-2">
-        <div className="flex flex-1 grow flex-col items-center justify-center text-center">
-          <span className="body-xs text-foreground-subtle">Collateral</span>
-          <span className="body-sm font-medium">{formatVaultName({ vault: collateralVault })}</span>
+      <div className="border-border-strong relative flex justify-between gap-10 border-b p-3 pb-2">
+        <div className="absolute left-1/2 top-1/2 flex h-[25px] w-[25px] shrink-0 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/10">
+          <ArrowRight className="h-[10px] w-[10px] p-0" />
         </div>
 
-        <div className="flex w-[25px] shrink-0 items-center justify-center rounded-full bg-white/10">
-          <ArrowRight className="h-[20px w-[20px]" />
+        <div className="flex min-w-0 flex-1 shrink-0 grow flex-col overflow-hidden text-center">
+          <span className="body-xs text-foreground-subtle">Collateral</span>
+          <span className="body-sm truncate font-medium">{formatVaultName({ vault: collateralVault })}</span>
         </div>
-        <div className="flex flex-1 grow flex-col items-center justify-center text-center">
+
+        <div className="flex min-w-0 flex-1 shrink-0 grow flex-col overflow-hidden text-center">
           <span className="body-xs text-foreground-subtle">For</span>
-          <span className="body-sm font-medium">{formatVaultName({ vault })}</span>
+          <span className="body-sm truncate font-medium">{formatVaultName({ vault })}</span>
         </div>
       </div>
       <div className="px-3 py-2">

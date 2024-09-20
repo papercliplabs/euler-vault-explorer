@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 import "@xyflow/react/dist/style.css";
 import "@/theme/globals.css";
 import Providers from "@/providers";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = localFont({
+  src: "./inter-variable.ttf",
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,7 +28,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <div className="flex min-h-dvh flex-col justify-between">
-            <main className="w-full flex-grow px-4 pb-6 pt-[86px] md:px-6">{children}</main>
+            <main className="w-full max-w-[2560px] flex-grow self-center px-4 pb-6 pt-[86px] md:px-6">{children}</main>
             {/* <Footer /> */}
           </div>
         </Providers>

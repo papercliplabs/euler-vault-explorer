@@ -16,7 +16,7 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
       const offchainName = vault.offchainLabel?.name;
       return (
         <div className="text-foreground-base flex max-w-full items-center gap-3 font-medium">
-          <VaultIcon vault={vault} size={28} badgeType="entity" />
+          <VaultIcon vault={vault} size={28} badgeType="entity" keepPadding />
           <div className="flex min-w-0 flex-col">
             <span className="truncate">{offchainName}</span>
             <div className={clsx("truncate", offchainName && "body-xs text-foreground-muted")}>
@@ -26,7 +26,7 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
         </div>
       );
     },
-    minSize: 320,
+    minSize: 300,
   },
   {
     accessorKey: "totalSuppliedUsd",

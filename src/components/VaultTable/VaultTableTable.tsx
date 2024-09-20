@@ -126,10 +126,11 @@ interface TableCellProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 function TableCell({ minWidth, className, style, ...props }: TableCellProps) {
+  // shrink first col on mobile to allow more table to be displayed in resting position
   return (
     <div
       className={cn(
-        "flex h-full w-[0px] flex-1 shrink-0 grow items-center overflow-hidden text-ellipsis text-nowrap px-4 first:pl-6 last:pr-6",
+        "flex h-full w-[0px] flex-1 shrink-0 grow items-center overflow-hidden text-ellipsis text-nowrap px-4 first:!min-w-[240px] first:pl-6 last:pr-6",
         className
       )}
       style={{

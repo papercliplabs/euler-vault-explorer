@@ -66,7 +66,9 @@ const getDagreLayoutedElements = (nodes: any, edges: any, options: any) => {
 };
 
 export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
-  const [graphType, setGraphType] = useState<GraphType>("collateralExposure");
+  const [graphType, setGraphType] = useState<GraphType>(
+    root.type == "escrowedCollateral" ? "rehypothecation" : "collateralExposure"
+  );
   const [advancedSwitchChecked, setAdvancedSwitchChecked] = useState<boolean>(false);
   const [shouldFitView, setShouldFitView] = useState<boolean>(false);
   const { fitView } = useReactFlow();
@@ -131,7 +133,11 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
       >
         <Background gap={10} color="rgb(67 89 113 / 0.4)" variant={BackgroundVariant.Dots} size={2} />
 
-        <GraphTypeSelector graphType={graphType} setGraphType={setGraphType} />
+        <GraphTypeSelector
+          graphType={graphType}
+          setGraphType={setGraphType}
+          disableCollateralExpose={root.type == "escrowedCollateral"}
+        />
         <AdvancedSwitch
           checked={advancedSwitchChecked}
           setChecked={setAdvancedSwitchChecked}

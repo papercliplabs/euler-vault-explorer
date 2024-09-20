@@ -22,6 +22,7 @@
   body {
     @apply border-border-base text-foreground-base bg-background-base body-md antialiased;
     text-rendering: optimizeLegibility;
+    font-variant-numeric: slashed-zero;
   }
 
   h1 {

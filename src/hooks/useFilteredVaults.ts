@@ -10,6 +10,7 @@ import {
 } from "@/components/TableFilter/filterKeys";
 import { useMemo } from "react";
 import { getGraphKey } from "@/utils/graph";
+import { formatVaultName } from "@/utils/format";
 
 interface UseFilteredVaultsParams {
   allVaults: Vault[];
@@ -53,7 +54,8 @@ export function useFilteredVaults({ allVaults }: UseFilteredVaultsParams): Vault
         vault.address.toLowerCase().includes(searchValue) ||
         vault.underlyingAssetSymbol.toLowerCase().includes(searchValue) ||
         vault.underlyingAssetAddress.toLowerCase().includes(searchValue) ||
-        vault.offchainLabel?.name.toLowerCase().includes(searchValue);
+        vault.offchainLabel?.name.toLowerCase().includes(searchValue) ||
+        `${vault.underlyingAssetSymbol} ${vault.id}`.toLowerCase().includes(searchValue);
 
       return underlyingAssetMatch && collateralMatch && vaultTypeMatch && chainMatch && entityMatch && searchMatch;
     });
