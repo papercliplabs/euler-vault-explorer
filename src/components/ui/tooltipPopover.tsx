@@ -20,7 +20,7 @@ export default function TooltipPopover({ trigger, children }: TooltipPopoverProp
         >
           {trigger}
         </TooltipTrigger>
-        <TooltipContent className="hidden w-fit md:flex">{children}</TooltipContent>
+        <TooltipContent className="hidden w-fit max-w-[min(95dvw,400px)] md:flex">{children}</TooltipContent>
       </Tooltip>
       <Popover>
         <PopoverTrigger
@@ -31,7 +31,7 @@ export default function TooltipPopover({ trigger, children }: TooltipPopoverProp
         >
           {trigger}
         </PopoverTrigger>
-        <PopoverContent className="w-fit md:hidden">{children}</PopoverContent>
+        <PopoverContent className="w-fit max-w-[min(95dvw,400px)] md:hidden">{children}</PopoverContent>
       </Popover>
     </>
   );

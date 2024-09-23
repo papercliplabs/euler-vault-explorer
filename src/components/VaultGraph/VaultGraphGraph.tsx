@@ -118,7 +118,7 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
   }, [setEdges, advancedSwitchChecked, allEdges, spanningTreeEdges]);
 
   return (
-    <div className="bg-background-subtle h-full w-full overflow-hidden rounded-[24px] border">
+    <div className="bg-background-subtle h-full w-full overflow-visible rounded-[24px] border">
       <ReactFlow
         nodes={nodes}
         onNodesChange={onNodesChange}
@@ -130,6 +130,7 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
         fitViewOptions={{ padding: 0.2 }}
         defaultEdgeOptions={defaultEdgeOptions}
         proOptions={{ hideAttribution: true }}
+        // className="!overflow-visible"
       >
         <Background gap={10} color="rgb(67 89 113 / 0.4)" variant={BackgroundVariant.Dots} size={2} />
 

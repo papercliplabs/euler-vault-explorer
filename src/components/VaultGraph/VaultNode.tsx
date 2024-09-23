@@ -13,6 +13,7 @@ import { etherscanLink } from "@/utils/etherscan";
 import { VaultIcon } from "../Icons/special/VaultIcon";
 import ExternalLink from "../ExternalLink";
 import TooltipPopover from "../ui/tooltipPopover";
+import VaultTypeDescriptor from "../VaultTypeDescriptor";
 
 export type VaultNodeType = Node<
   {
@@ -51,7 +52,7 @@ export default function VaultNode({ data: { vault, isRoot }, selected }: NodePro
 }
 
 function VaultNodePopover({ vault, isRoot }: { vault: Vault; isRoot: boolean }) {
-  const items: { title: string; value: string | ReactNode; description: string }[] = [
+  const items: { title: string; value: string | ReactNode; popoverContent: ReactNode }[] = [
     {
       title: "Vault Type",
       value: (
@@ -60,42 +61,46 @@ function VaultNodePopover({ vault, isRoot }: { vault: Vault; isRoot: boolean }) 
           <span className="text-nowrap">{VAULT_TYPE_INFO_MAPPING[vault.type].shortName}</span>
         </div>
       ),
-      description: "TODO",
+      popoverContent: <VaultTypeDescriptor />,
     },
-    ...(vault.type != "escrowedCollateral"
-      ? [
-          {
-            title: "Supply APY",
-            value: formatNumber({ input: vault.supplyApy, unit: "%" }),
-            description: "TODO",
-          },
-        ]
-      : []),
     {
       title: "Total Supplied",
       value:
         vault.totalSuppliedUsd != undefined
           ? formatNumber({ input: vault.totalSuppliedUsd, unit: "USD", compact: true })
           : "-",
-      description: "TODO",
+      popoverContent: "The total amount and value of the underlying assets currently supplied into this vault.",
     },
     ...(vault.type != "escrowedCollateral"
       ? [
-          { title: "Borrow APY", value: formatNumber({ input: vault.borrowApy, unit: "%" }), description: "TODO" },
+          {
+            title: "Supply APY",
+            value: formatNumber({ input: vault.supplyApy, unit: "%" }),
+            popoverContent: "The annual percent yield (APY) earned for lending into this vault.",
+          },
+        ]
+      : []),
+    ...(vault.type != "escrowedCollateral"
+      ? [
           {
             title: "Total Borrowed",
             value:
               vault.totalBorrowedUsd != undefined
                 ? formatNumber({ input: vault.totalBorrowedUsd, unit: "USD", compact: true })
                 : "-",
-            description: "TODO",
+            popoverContent: "The total amount and value of the underlying assets currently borrowed from this vault.",
+          },
+          {
+            title: "Borrow APY",
+            value: formatNumber({ input: vault.borrowApy, unit: "%" }),
+            popoverContent: "The annual percent yield (APY) paid for borrowing from this vault.",
           },
         ]
       : []),
   ];
 
   return (
-    <div className="bg-euler-700/20 body-sm w-[224px] overflow-hidden rounded-[8px] border py-2 shadow-lg backdrop-blur-md">
+    <div className="bg-euler-700/20 body-sm w-[224px] overflow-visible rounded-[8px] border py-2 shadow-lg backdrop-blur-md">
       <div className="flex gap-3 border-b px-3 pb-2">
         <VaultIcon vault={vault} size={40} badgeType="entity" />
         <div className="flex min-w-0 flex-col justify-center">
@@ -108,7 +113,7 @@ function VaultNodePopover({ vault, isRoot }: { vault: Vault; isRoot: boolean }) 
       <div className="px-3 pt-1">
         {items.map((item, i) => (
           <div className="flex justify-between py-1" key={i}>
-            <TooltipPopover trigger={item.title}>{item.description}</TooltipPopover>
+            <TooltipPopover trigger={item.title}>{item.popoverContent}</TooltipPopover>
             <div className="text-foreground-subtle">{item.value}</div>
           </div>
         ))}

@@ -141,17 +141,19 @@ function CollateralPopover({
           </span>
         </EtherscanLink>
       ),
-      description: "TODO",
+      description: "The oracle used by the parent vault to price the collateral vault in its unit of account.",
     },
     {
       title: "Borrowing LTV",
       value: formatNumber({ input: collateral.borrowLoanToValue ?? 0, unit: "%" }),
-      description: "TODO",
+      description:
+        "The maximum percentage of a loan that can be borrowed relative to the value of the collateral when initiating a new loan.",
     },
     {
       title: "Liquidation LTV",
       value: formatNumber({ input: collateral.liquidationLoanToValue ?? 0, unit: "%" }),
-      description: "TODO",
+      description:
+        "The threshold percentage at which the value of an existing loan relative to the collateral can trigger liquidation.",
     },
   ];
 
