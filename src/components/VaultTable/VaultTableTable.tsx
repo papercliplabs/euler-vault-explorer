@@ -4,20 +4,16 @@ import {
   flexRender,
   getCoreRowModel,
   useReactTable,
-  ColumnFiltersState,
   getFilteredRowModel,
   SortingState,
   getSortedRowModel,
-  Row,
 } from "@tanstack/react-table";
-import { ComponentProps, HTMLAttributes, HTMLProps, useCallback, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Vault } from "@/utils/types";
 import SortIcon from "../Icons/special/SortChevrons";
 import clsx from "clsx";
+import { TableCell, TableRow, TableRowLink } from "./TableComponents";
 import { ScrollSync, ScrollSyncPane } from "react-scroll-sync";
-import { cn } from "@/utils/shadcn";
-import Link from "next/link";
 
 interface TableProps<TValue> {
   columns: ColumnDef<Vault, TValue>[];
@@ -31,31 +27,19 @@ export default function VaultTableTable<TValue>({ data, columns }: TableProps<TV
       desc: true,
     },
   ]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-
-  const router = useRouter();
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     state: {
       sorting,
-      columnFilters,
     },
     manualFiltering: true,
   });
-
-  const handleRowClick = useCallback(
-    (row: Row<Vault>) => {
-      router.push(`/${row.original.chainId}/${row.original.address}`);
-    },
-    [router]
-  );
 
   return (
     <ScrollSync>
@@ -110,34 +94,5 @@ export default function VaultTableTable<TValue>({ data, columns }: TableProps<TV
         </ScrollSyncPane>
       </div>
     </ScrollSync>
-  );
-}
-
-function TableRow({ className, ...props }: HTMLProps<HTMLDivElement>) {
-  return <div className={cn("flex w-full min-w-fit items-center border-b", className)} {...props} />;
-}
-
-function TableRowLink({ className, ...props }: ComponentProps<typeof Link>) {
-  return <Link className={cn("flex w-full min-w-fit items-center border-b", className)} prefetch={false} {...props} />;
-}
-
-interface TableCellProps extends HTMLAttributes<HTMLDivElement> {
-  minWidth?: number;
-}
-
-function TableCell({ minWidth, className, style, ...props }: TableCellProps) {
-  // shrink first col on mobile to allow more table to be displayed in resting position
-  return (
-    <div
-      className={cn(
-        "flex h-full w-[0px] flex-1 shrink-0 grow items-center overflow-hidden text-ellipsis text-nowrap px-4 first:!min-w-[240px] first:pl-6 last:pr-6",
-        className
-      )}
-      style={{
-        minWidth,
-        ...style,
-      }}
-      {...props}
-    />
   );
 }

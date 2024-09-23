@@ -1,4 +1,3 @@
-"use client";
 import { Vault } from "@/utils/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { VaultTypeIcon } from "../Icons";

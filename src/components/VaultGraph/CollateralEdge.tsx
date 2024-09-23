@@ -113,7 +113,7 @@ function CustomEdgeToolbar({ labelX, labelY, children }: { labelX: number; label
           transform: `translate(31px, -50%) translate(${labelX}px, ${labelY}px) scale(${1 / zoom}) `,
           pointerEvents: "all",
         }}
-        className={clsx("nopan nodrag absolute z-10")}
+        className={clsx("nopan nodrag absolute z-[1]")}
       >
         {children}
       </div>

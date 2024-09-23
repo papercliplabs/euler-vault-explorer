@@ -67,7 +67,6 @@ export interface VaultCore {
   debtTokenAddress: Address;
 
   governor?: Address;
-  upgradable?: boolean; // TODO: not in VaultInfoFull
 
   oracleAddress: Address;
   underlyingAssetOracle?: Oracle;

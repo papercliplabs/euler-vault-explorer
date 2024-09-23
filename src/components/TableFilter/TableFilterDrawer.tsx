@@ -24,6 +24,7 @@ import { useScreenSize } from "@/hooks/useScreenSize";
 import { Button } from "../ui/button";
 import { useFilteredVaults } from "@/hooks/useFilteredVaults";
 import { getGraphKey } from "@/utils/graph";
+import { useIsFilterDrawerOpen } from "@/hooks/useIsFilterDrawerOpen";
 
 interface TraitFilterDrawerProps {
   vaults: Vault[];
@@ -44,11 +45,14 @@ const chainFilterItems: (TableFilterItemBase & { value: string })[] = Object.val
 
 export default function TableFilterDrawer({ vaults }: TraitFilterDrawerProps) {
   const {
-    values: [[open]],
+    values: [],
     removeShallowSearchParams,
-  } = useShallowSearchParams({ keys: [FILTER_KEY_OPEN] });
+  } = useShallowSearchParams({ keys: [] });
+
   const screenSize = useScreenSize();
   const filteredVaults = useFilteredVaults({ allVaults: vaults });
+
+  const open = useIsFilterDrawerOpen();
 
   const underlyingAssetItems = useMemo(() => {
     const symbolToIconSrc: Record<string, string | null> = {};
@@ -123,7 +127,7 @@ export default function TableFilterDrawer({ vaults }: TraitFilterDrawerProps) {
   );
 
   return screenSize == "sm" ? (
-    <Drawer open={open != undefined} onClose={() => removeShallowSearchParams([FILTER_KEY_OPEN])} shouldScaleBackground>
+    <Drawer open={open} onClose={() => removeShallowSearchParams([FILTER_KEY_OPEN])} shouldScaleBackground>
       <DrawerContent>
         <div className="flex h-[calc(100dvh-30px)] flex-col justify-between overflow-hidden">
           <div className="flex h-full flex-col overflow-hidden">{content}</div>

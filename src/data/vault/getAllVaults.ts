@@ -26,5 +26,7 @@ export async function getAllVaults(): Promise<Vault[]> {
     promises.push(getVaultForVaultCore(vaultCore, imgSrcs[i], underlyingPrices[i], unitOfAccountPrices[i]));
   }
 
-  return (await Promise.all(promises)).filter((entry) => entry !== null);
+  const vaults = await Promise.all(promises);
+
+  return vaults.filter((entry) => entry !== null);
 }

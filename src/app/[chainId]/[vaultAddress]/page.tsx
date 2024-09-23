@@ -2,6 +2,7 @@ import EtherscanLink from "@/components/EtherscanLink";
 import { ArrowLeft, ChainIcon, VaultTypeIcon } from "@/components/Icons";
 import { VaultIcon } from "@/components/Icons/special/VaultIcon";
 import Metric from "@/components/Metric";
+import { Skeleton } from "@/components/ui/skeleton";
 import VaultGraph from "@/components/VaultGraph";
 import VaultTypeDescriptor from "@/components/VaultTypeDescriptor";
 import { CHAIN_CONFIGS } from "@/config";
@@ -9,7 +10,7 @@ import { getAllVaults } from "@/data/vault/getAllVaults";
 import { getVault } from "@/data/vault/getVault";
 import { VAULT_TYPE_INFO_MAPPING } from "@/utils/constants";
 import { formatNumber, formatVaultName } from "@/utils/format";
-import { SupportedChainId } from "@/utils/types";
+import { SupportedChainId, Vault } from "@/utils/types";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Address, getAddress } from "viem";
@@ -23,15 +24,14 @@ export default function VaultPage({ params }: { params: { chainId: string; vault
 
   return (
     <div className="flex w-full flex-col gap-6 p-[2px]">
-      <Suspense fallback={"LOADING"}>
-        <VaultPageWrapper chainId={chainId} vaultAddress={vaultAddress} />
-      </Suspense>
+      {/* Removed suspense here, data is cached and suspense causes very short flicker of loading */}
+      <VaultPageWrapper chainId={chainId} vaultAddress={vaultAddress} />
     </div>
   );
 }
 
 async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedChainId; vaultAddress: Address }) {
-  const [vault, allVaults] = await Promise.all([getVault(chainId, vaultAddress), getAllVaults()]);
+  const vault = await getVault(chainId, vaultAddress);
 
   if (!vault) {
     throw Error(`Vault ${vaultAddress} not found on chain ${chainId}`);
@@ -115,7 +115,11 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
             capital efficiency, it also introduces additional risk. Our goal is to provide transparency, helping users
             better assess collateral risk.
           </span>
-          <VaultGraph vault={vault} allVaults={allVaults} />
+          <Suspense
+            fallback={<Skeleton className="h-[700px] max-h-[calc(100svh-90px)] w-full rounded-[24px] border" />}
+          >
+            <VaultGraphWrapper vault={vault} />
+          </Suspense>
         </div>
         <div className="bg-background-component flex flex-col gap-6 rounded-[24px] p-6">
           <h4>Vault Configuration</h4>
@@ -141,7 +145,6 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
             />
             <Metric
               title="Vault type"
-              // popoverContent="The type of vault as classified by Euler's vault type settings. Click on the vault type icon to learn more about the individual types."
               popoverContent={<VaultTypeDescriptor />}
               primaryValue={
                 <div className="flex items-center gap-1">
@@ -213,4 +216,9 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
       </div>
     </>
   );
+}
+
+async function VaultGraphWrapper({ vault }: { vault: Vault }) {
+  const allVaults = await getAllVaults();
+  return <VaultGraph vault={vault} allVaults={allVaults} />;
 }

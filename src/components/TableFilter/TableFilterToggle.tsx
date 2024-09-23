@@ -4,15 +4,18 @@ import { ArrowLeft, Settings } from "../Icons";
 import { Button } from "../ui/button";
 import { useShallowSearchParams } from "@/hooks/useShallowSearchParams";
 import { ALL_TABLE_FILTER_KEYS, FILTER_KEY_OPEN } from "./filterKeys";
+import { useMemo } from "react";
+import { useIsFilterDrawerOpen } from "@/hooks/useIsFilterDrawerOpen";
 
 export default function TableFilterToggle() {
   const {
-    values: [[open], ...rest],
+    values: [vals],
     addShallowSearchParams,
-    removeShallowSearchParams,
-  } = useShallowSearchParams({ keys: [FILTER_KEY_OPEN, ...ALL_TABLE_FILTER_KEYS] });
+  } = useShallowSearchParams({ keys: ALL_TABLE_FILTER_KEYS });
 
-  const filterCount = rest.reduce((acc, filterList) => acc + (filterList?.length ?? 0), 0);
+  const open = useIsFilterDrawerOpen();
+
+  const filterCount = vals.reduce((acc, filterList) => acc + (filterList?.length ?? 0), 0);
 
   return (
     <Button
@@ -21,7 +24,7 @@ export default function TableFilterToggle() {
       className="rounded-[12px] transition-all"
       onClick={() => {
         open
-          ? removeShallowSearchParams([FILTER_KEY_OPEN])
+          ? addShallowSearchParams([{ key: FILTER_KEY_OPEN, value: "0" }])
           : addShallowSearchParams([{ key: FILTER_KEY_OPEN, value: "1" }]);
       }}
     >
