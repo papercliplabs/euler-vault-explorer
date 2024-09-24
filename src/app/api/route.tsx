@@ -4,6 +4,7 @@ import { getAllVaults } from "@/data/vault/getAllVaults";
 import { getAllVaultCores } from "@/data/vaultCore/getAllVaultCores";
 import { zeroAddress } from "viem";
 
+// Used for debugging only
 export async function GET() {
   // const vaults = await getAllVaults();
   // const data = await getAllVaults();

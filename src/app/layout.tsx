@@ -5,6 +5,7 @@ import "@xyflow/react/dist/style.css";
 import "@/theme/globals.css";
 import Providers from "@/providers";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = localFont({
   src: "./inter-variable.ttf",
@@ -48,9 +49,9 @@ export default function RootLayout({
           <Header />
           <div className="flex min-h-dvh flex-col justify-between">
             <main className="w-full max-w-[2560px] flex-grow self-center px-4 pb-6 pt-[86px] md:px-6">{children}</main>
-            {/* <Footer /> */}
           </div>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
