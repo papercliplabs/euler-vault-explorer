@@ -1,5 +1,5 @@
 import { SECONDS_PER_HOUR } from "@/utils/constants";
-import { unstable_cache } from "next/cache";
+import { safeUnstableCache } from "@/utils/safeFetch";
 import { cache } from "react";
 import redstone from "redstone-api";
 import { PriceData } from "redstone-api/lib/types";
@@ -12,5 +12,5 @@ async function getRedstoneTokenPriceDatasUncached(symbols: string[]): Promise<Re
 }
 
 export const getRedstoneTokenPriceDatas = cache(
-  unstable_cache(getRedstoneTokenPriceDatasUncached, ["get-redstone-token-price"], { revalidate: SECONDS_PER_HOUR })
+  safeUnstableCache(getRedstoneTokenPriceDatasUncached, ["get-redstone-token-price"], { revalidate: SECONDS_PER_HOUR })
 );

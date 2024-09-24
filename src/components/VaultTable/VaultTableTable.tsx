@@ -43,7 +43,7 @@ export default function VaultTableTable<TValue>({ data, columns }: TableProps<TV
 
   return (
     <ScrollSync>
-      <div className="text-foreground-subtle h-fit w-full min-w-0">
+      <div className="text-foreground-subtle h-fit min-w-0 grow">
         <div className="bg-background-base sticky top-[172px] z-20 min-w-full md:top-[136px]">
           <ScrollSyncPane>
             <div className="bg-background-subtle scrollbar-none overflow-auto overscroll-x-none rounded-t-[24px] border-x border-t">

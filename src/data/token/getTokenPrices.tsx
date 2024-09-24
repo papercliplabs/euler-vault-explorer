@@ -16,7 +16,7 @@ export async function getTokenPrices(symbols: string[]): Promise<(number | null)
       continue;
     }
 
-    const redstone = redstoneData[symbol == "WETH" ? "ETH" : symbol];
+    const redstone = redstoneData?.[symbol == "WETH" ? "ETH" : symbol];
     const coinGecko = coinGeckoData[symbol == "ETH" ? "WETH" : symbol];
 
     if (redstone) {
@@ -25,7 +25,7 @@ export async function getTokenPrices(symbols: string[]): Promise<(number | null)
       prices.push(coinGecko.priceUsd);
     } else {
       console.error("getTokenPrices: no price found", symbol);
-      prices.push(0);
+      prices.push(null);
     }
   }
 

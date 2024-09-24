@@ -1,7 +1,6 @@
 "use server";
 import { SECONDS_PER_HOUR } from "@/utils/constants";
-import { safeFetch } from "@/utils/safeFetch";
-import { unstable_cache } from "next/cache";
+import { safeFetch, safeUnstableCache } from "@/utils/safeFetch";
 import { cache } from "react";
 import { CoinGeckoCoin, getCoinGeckoList } from "./getCoinGeckoList";
 
@@ -30,25 +29,20 @@ async function getCoinGeckoTokenInfosBatch(coinIds: string[]): Promise<CoinGecko
   return data.map((d: any) => ({ coinId: d.id, symbol: d.symbol, imgSrc: d.image, priceUsd: d.current_price }));
 }
 
-async function getCoinGeckoTokenInfosForCoinIdsUncached(coinIds: string[]): Promise<CoinGeckoTokenInfo[] | null> {
+async function getCoinGeckoTokenInfosForCoinIdsUncached(coinIds: string[]): Promise<CoinGeckoTokenInfo[]> {
   console.log("CACHE MISS: getCoinGeckoTokenInfosUncached", coinIds.length);
-  try {
-    const promises = [];
-    for (let i = 0; i < coinIds.length; i += BATCH_SIZE) {
-      const batch = coinIds.slice(i, i + BATCH_SIZE);
-      promises.push(getCoinGeckoTokenInfosBatch(batch));
-    }
-
-    const results = await Promise.all(promises);
-    return results.reduce((acc, r) => acc.concat(r), []);
-  } catch (e) {
-    console.error(`getCoinGeckoTokenInfosUncached - ${e}`);
-    return null;
+  const promises = [];
+  for (let i = 0; i < coinIds.length; i += BATCH_SIZE) {
+    const batch = coinIds.slice(i, i + BATCH_SIZE);
+    promises.push(getCoinGeckoTokenInfosBatch(batch));
   }
+
+  const results = await Promise.all(promises);
+  return results.reduce((acc, r) => acc.concat(r), []);
 }
 
 const getCoinGeckoTokenInfosForCoinIds = cache(
-  unstable_cache(getCoinGeckoTokenInfosForCoinIdsUncached, ["get-coin-gecko-token-info"], {
+  safeUnstableCache(getCoinGeckoTokenInfosForCoinIdsUncached, ["get-coin-gecko-token-info"], {
     revalidate: SECONDS_PER_HOUR,
   })
 );
@@ -57,8 +51,7 @@ const getCoinGeckoTokenInfosForCoinIds = cache(
 export async function getCoinGeckoTokenInfos(
   symbols: string[]
 ): Promise<Record<string, CoinGeckoTokenInfo | undefined>> {
-  const coinList = await getCoinGeckoList();
-
+  let coinList = await getCoinGeckoList();
   if (!coinList) {
     return {};
   }
@@ -80,8 +73,8 @@ export async function getCoinGeckoTokenInfos(
   }
 
   const coinIds = Array.from(coinIdsSet);
-  const tokenInfos = await getCoinGeckoTokenInfosForCoinIds(coinIds);
 
+  let tokenInfos = await getCoinGeckoTokenInfosForCoinIds(coinIds);
   if (!tokenInfos) {
     return {};
   }

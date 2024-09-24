@@ -6,6 +6,8 @@ import { VAULT_TYPE_INFO_MAPPING } from "@/utils/constants";
 import clsx from "clsx";
 import { VaultIcon } from "../Icons/special/VaultIcon";
 
+const SMALL_NON_ZERO_VAL = 0.001;
+
 export const vaultTableColumns: ColumnDef<Vault>[] = [
   {
     accessorKey: "symbol",
@@ -46,6 +48,13 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
       );
     },
     minSize: 200,
+    sortingFn: (a, b) => {
+      const aVal = a.original.totalSuppliedUsd ?? SMALL_NON_ZERO_VAL;
+      const bVal = b.original.totalSuppliedUsd ?? SMALL_NON_ZERO_VAL;
+
+      return aVal > bVal ? 1 : -1;
+    },
+    sortUndefined: undefined,
   },
   {
     accessorKey: "supplyApy",
@@ -72,6 +81,13 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
       );
     },
     minSize: 200,
+    sortingFn: (a, b) => {
+      const aVal = a.original.totalBorrowedUsd ?? SMALL_NON_ZERO_VAL;
+      const bVal = b.original.totalBorrowedUsd ?? SMALL_NON_ZERO_VAL;
+
+      return aVal > bVal ? 1 : -1;
+    },
+    sortUndefined: undefined,
   },
   {
     accessorKey: "borrowApy",

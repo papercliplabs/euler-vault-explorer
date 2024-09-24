@@ -1,6 +1,8 @@
 "use server";
-import { SECONDS_PER_DAY, SECONDS_PER_HOUR } from "@/utils/constants";
+import { SECONDS_PER_DAY } from "@/utils/constants";
+import { safeUnstableCache } from "@/utils/safeFetch";
 import { OffchainVaultLabel, SupportedChainId } from "@/utils/types";
+import { cache } from "react";
 import { Address } from "viem";
 
 const BASE_LABEL_URL = "https://raw.githubusercontent.com/euler-xyz/euler-labels/master";
@@ -11,15 +13,19 @@ interface RawEulerVaultLabel {
   entity: string | string[];
 }
 
-async function getRawEulerVaultLabels(
+async function getRawEulerVaultLabelsUncached(
   chainId: SupportedChainId
 ): Promise<Record<Address, RawEulerVaultLabel | undefined>> {
   const resp = await fetch(`${BASE_LABEL_URL}/${chainId}/vaults.json`, {
-    next: { revalidate: SECONDS_PER_DAY },
+    cache: "no-cache",
   });
   const data = (await resp.json()) as Record<Address, RawEulerVaultLabel>;
   return data;
 }
+
+const getRawEulerVaultLabels = cache(
+  safeUnstableCache(getRawEulerVaultLabelsUncached, ["get-euler-vault-labels"], { revalidate: SECONDS_PER_DAY })
+);
 
 interface RawEulerEntityLabel {
   name: string;
@@ -27,20 +33,24 @@ interface RawEulerEntityLabel {
   description?: string;
 }
 
-async function getRawEulerEntityLabels(
+async function getRawEulerEntityLabelsUncached(
   chainId: SupportedChainId
 ): Promise<Record<string, RawEulerEntityLabel | undefined>> {
-  const resp = await fetch(`${BASE_LABEL_URL}/${chainId}/entities.json`, { next: { revalidate: SECONDS_PER_DAY } });
+  const resp = await fetch(`${BASE_LABEL_URL}/${chainId}/entities.json`, { cache: "no-cache" });
   const data = (await resp.json()) as Record<string, RawEulerEntityLabel>;
   return data;
 }
+
+const getRawEulerEntityLabels = cache(
+  safeUnstableCache(getRawEulerEntityLabelsUncached, ["get-euler-entity-labels"], { revalidate: SECONDS_PER_DAY })
+);
 
 export async function getOffchainVaultLabel(
   chainId: SupportedChainId,
   vaultAddress: Address
 ): Promise<OffchainVaultLabel | undefined> {
   const vaultLabels = await getRawEulerVaultLabels(chainId);
-  const vaultLabel = vaultLabels[vaultAddress];
+  const vaultLabel = vaultLabels?.[vaultAddress];
 
   if (!vaultLabel) {
     return undefined;
@@ -48,7 +58,7 @@ export async function getOffchainVaultLabel(
 
   const entity = typeof vaultLabel.entity == "string" ? vaultLabel.entity : vaultLabel.entity[0];
   const entityLabels = await getRawEulerEntityLabels(chainId);
-  const entityLabel = entityLabels[entity];
+  const entityLabel = entityLabels?.[entity];
 
   if (!entityLabel) {
     return undefined;

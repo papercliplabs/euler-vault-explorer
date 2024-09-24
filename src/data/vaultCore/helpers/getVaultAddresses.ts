@@ -2,8 +2,8 @@
 import { perspectiveAbi } from "@/abis/perspectiveAbi";
 import { CHAIN_CONFIGS } from "@/config";
 import { SECONDS_PER_DAY } from "@/utils/constants";
+import { safeUnstableCache } from "@/utils/safeFetch";
 import { SupportedChainId, VaultType } from "@/utils/types";
-import { unstable_cache } from "next/cache";
 import { cache } from "react";
 import { Address } from "viem";
 import { readContract } from "viem/actions";
@@ -22,7 +22,7 @@ async function getVaultAddressesForTypeUncached(chainId: SupportedChainId, type:
 }
 
 const getVaultAddressesForType = cache(
-  unstable_cache(getVaultAddressesForTypeUncached, ["get-vault-addresses-for-type"], {
+  safeUnstableCache(getVaultAddressesForTypeUncached, ["get-vault-addresses-for-type"], {
     revalidate: SECONDS_PER_DAY,
   })
 );
@@ -37,13 +37,15 @@ async function getVaultTypesAndAddresses(chainId: SupportedChainId): Promise<Rec
 
   const resolvedAddresses = await Promise.all(addressPromises);
 
-  return resolvedAddresses.reduce(
-    (acc, { type, addresses }) => {
-      acc[type] = addresses;
-      return acc;
-    },
-    {} as Record<VaultType, Address[]>
-  );
+  return resolvedAddresses
+    .filter(({ addresses }) => addresses != null)
+    .reduce(
+      (acc, { type, addresses }) => {
+        acc[type] = addresses!; // Already filtered
+        return acc;
+      },
+      {} as Record<VaultType, Address[]>
+    );
 }
 
 export async function getAllVaultTypesAndAddresses(): Promise<Record<SupportedChainId, Record<VaultType, Address[]>>> {

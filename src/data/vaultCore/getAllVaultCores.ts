@@ -8,7 +8,7 @@ import { CHAIN_CONFIGS } from "@/config";
 import { vaultLensAbi } from "@/abis/vaultLensAbi";
 import { mapInfoToVaultCore } from "./helpers/mapInfoToVaultCore";
 import { cache } from "react";
-import { unstable_cache } from "next/cache";
+import { safeUnstableCache } from "@/utils/safeFetch";
 
 export type GetVaultInfoFullContractParams = {
   abi: typeof vaultLensAbi;
@@ -50,27 +50,30 @@ async function getVaultCoresForChainIdUncached(
 
   const vaultCores: VaultCore[] = [];
   for (const [i, info] of vaultInfo.entries()) {
-    const inputs = multiInputs[i];
+    // Ignore vaults with no underlying asset symbol
+    if (info.assetSymbol != "") {
+      const inputs = multiInputs[i];
 
-    vaultCores.push(mapInfoToVaultCore(chainId, inputs.address, inputs.type, info));
+      vaultCores.push(mapInfoToVaultCore(chainId, inputs.address, inputs.type, info));
+    }
   }
 
   return vaultCores;
 }
 
 const getVaultCoresForChainId = cache(
-  unstable_cache(getVaultCoresForChainIdUncached, ["get-vault-cores-for-chain-id"], { revalidate: SECONDS_PER_HOUR })
+  safeUnstableCache(getVaultCoresForChainIdUncached, ["get-vault-cores-for-chain-id"], { revalidate: SECONDS_PER_HOUR })
 );
 
 export async function getAllVaultCores(): Promise<VaultCore[]> {
   const allVaultTypesAndAddresses = await getAllVaultTypesAndAddresses();
 
-  const promises: Promise<VaultCore[]>[] = [];
+  const promises: Promise<VaultCore[] | null>[] = [];
   for (const [chainId, record] of Object.entries(allVaultTypesAndAddresses)) {
     const chainIdCasted = Number(chainId) as any as SupportedChainId;
     promises.push(getVaultCoresForChainId(chainIdCasted, record));
   }
 
   const vaultResp = await Promise.all(promises);
-  return vaultResp.flat();
+  return vaultResp.flat().filter((v) => v != null) as VaultCore[];
 }

@@ -27,6 +27,13 @@ export async function getVaultForVaultCore(
 
     totalSuppliedUsd = totalSupplyInUnitOfAccount * unitOfAccountPrice;
     totalBorrowedUsd = totalBorrowedInUnitOfAccount * unitOfAccountPrice;
+  } else {
+    if (vaultCore.totalSupplied == 0) {
+      totalSuppliedUsd = 0;
+    }
+    if (vaultCore.totalBorrowed == 0) {
+      totalBorrowedUsd = 0;
+    }
   }
 
   return {
