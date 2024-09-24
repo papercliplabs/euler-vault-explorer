@@ -62,7 +62,7 @@ async function getVaultCoresForChainIdUncached(
 }
 
 const getVaultCoresForChainId = cache(
-  safeUnstableCache(getVaultCoresForChainIdUncached, ["get-vault-cores-for-chain-id"], { revalidate: SECONDS_PER_HOUR })
+  safeUnstableCache(getVaultCoresForChainIdUncached, ["get-vault-cores-for-chain-id"], { revalidate: 60 * 15 })
 );
 
 export async function getAllVaultCores(): Promise<VaultCore[]> {

@@ -1,4 +1,4 @@
-import { SECONDS_PER_HOUR } from "@/utils/constants";
+import { SECONDS_PER_DAY } from "@/utils/constants";
 import { safeUnstableCache } from "@/utils/safeFetch";
 import { SupportedChainId } from "@/utils/types";
 import { cache } from "react";
@@ -63,6 +63,6 @@ async function getCoinGeckoListUncached(): Promise<CoinGeckoCoin[]> {
 
 export const getCoinGeckoList = cache(
   safeUnstableCache(getCoinGeckoListUncached, ["get-coin-gecko-coin-list"], {
-    revalidate: SECONDS_PER_HOUR,
+    revalidate: SECONDS_PER_DAY,
   })
 );

@@ -1,7 +1,7 @@
 "use server";
 import { perspectiveAbi } from "@/abis/perspectiveAbi";
 import { CHAIN_CONFIGS } from "@/config";
-import { SECONDS_PER_DAY } from "@/utils/constants";
+import { SECONDS_PER_DAY, SECONDS_PER_HOUR } from "@/utils/constants";
 import { safeUnstableCache } from "@/utils/safeFetch";
 import { SupportedChainId, VaultType } from "@/utils/types";
 import { cache } from "react";
@@ -23,7 +23,7 @@ async function getVaultAddressesForTypeUncached(chainId: SupportedChainId, type:
 
 const getVaultAddressesForType = cache(
   safeUnstableCache(getVaultAddressesForTypeUncached, ["get-vault-addresses-for-type"], {
-    revalidate: SECONDS_PER_DAY,
+    revalidate: SECONDS_PER_HOUR,
   })
 );
 

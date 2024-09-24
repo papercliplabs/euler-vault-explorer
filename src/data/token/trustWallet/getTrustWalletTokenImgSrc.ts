@@ -14,7 +14,7 @@ async function getTrustWalletTokenListUncached(
 ): Promise<{ symbol: string; imgSrc: string }[]> {
   const url = `${TRUST_WALLET_ASSET_BASE_URL}/${CHAIN_ID_TO_NAME_MAP[chainId]}/tokenlist.json`;
   const resp = await fetch(url, {
-    next: { revalidate: SECONDS_PER_WEEK },
+    cache: "no-cache",
   });
 
   const data = (await resp.json())["tokens"] as { symbol: string; logoURI: string }[];
@@ -23,7 +23,7 @@ async function getTrustWalletTokenListUncached(
 }
 
 const getTrustWalletTokenList = cache(
-  safeUnstableCache(getTrustWalletTokenListUncached, ["get-trust-wallet-token-list"], { revalidate: SECONDS_PER_DAY })
+  safeUnstableCache(getTrustWalletTokenListUncached, ["get-trust-wallet-token-list"], { revalidate: SECONDS_PER_WEEK })
 );
 
 // Returns symbol (lower case) -> data
