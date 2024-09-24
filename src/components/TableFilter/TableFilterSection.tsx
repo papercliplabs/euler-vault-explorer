@@ -67,7 +67,7 @@ export function TableFilterSection({ name, filterKey, items }: TableFilterSectio
             className="h-[28px]"
           />
         )}
-        <div className="scrollbar-thin scrollbar-thumb-euler-600 scrollbar-track-transparent scrollbar-thumb-rounded-full flex flex-col overflow-y-auto">
+        <div className="scrollbar-thin scrollbar-thumb-euler-600 scrollbar-track-transparent scrollbar-thumb-rounded-full flex flex-col overflow-y-auto overflow-x-hidden">
           {searchFilteredItems.length > 0 ? (
             searchFilteredItems.slice(0, isHidingItems ? MIN_ITEMS_FOR_SEARCH : undefined).map((item, i) => {
               const checked = filterValues.includes(item.value);
@@ -87,7 +87,7 @@ export function TableFilterSection({ name, filterKey, items }: TableFilterSectio
           )}
         </div>
         {isHidingItems && (
-          <button onClick={() => setShowMore(true)} className="text-foreground-subtle body-sm ml-2 w-fit">
+          <button onClick={() => setShowMore(true)} className="text-foreground-subtle body-sm ml-2 w-fit text-nowrap">
             Show more ({searchFilteredItems.length - MIN_ITEMS_FOR_SEARCH})
           </button>
         )}

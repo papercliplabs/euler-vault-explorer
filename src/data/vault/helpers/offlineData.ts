@@ -30,7 +30,7 @@ export const allVaultsOffline: Vault[] = [
     supplyApy: 0,
     borrowApy: 0,
     underlyingAssetImgSrc: "/nativeToken/eth.svg",
-    totalSuppliedUsd: 437.5921543657,
+    totalSuppliedUsd: 495.193972213579,
     totalBorrowedUsd: 0,
   },
   {
@@ -55,14 +55,14 @@ export const allVaultsOffline: Vault[] = [
     collateral: [],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0,
-    totalSupplied: 584.319904667021,
+    totalSupplied: 573.132159993143,
     totalBorrowed: 0,
     utilization: 0,
-    shares: 584.319904667021,
+    shares: 573.132159993143,
     supplyApy: 0,
     borrowApy: 0,
     underlyingAssetImgSrc: "https://coin-images.coingecko.com/coins/images/18834/large/wstETH.png?1696518295",
-    totalSuppliedUsd: 1602182.90417028,
+    totalSuppliedUsd: 1780168.14690182,
     totalBorrowedUsd: 0,
   },
   {
@@ -95,7 +95,7 @@ export const allVaultsOffline: Vault[] = [
     borrowApy: 0,
     underlyingAssetImgSrc:
       "https://assets-cdn.trustwallet.com/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
-    totalSuppliedUsd: 34.999883042774,
+    totalSuppliedUsd: 34.99685,
     totalBorrowedUsd: 0,
   },
   {
@@ -546,7 +546,7 @@ export const allVaultsOffline: Vault[] = [
     supplyApy: 0,
     borrowApy: 0,
     underlyingAssetImgSrc: "https://coin-images.coingecko.com/coins/images/32417/large/chain-logo.png?1698114384",
-    totalSuppliedUsd: 226524.40239998,
+    totalSuppliedUsd: 243979.27830383,
     totalBorrowedUsd: 0,
   },
   {
@@ -592,7 +592,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped Ether",
     underlyingAssetSymbol: "WETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2327.27,
+    underlyingAssetToUnitOfAccountPrice: 2647.844511,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -602,7 +602,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x83B3b76873D36A28440cF53371dF404c42497136",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+      oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+      baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x3fF20b354dCc623073647e4F2a2cD955A45Defb1",
     collateral: [
@@ -613,7 +615,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.89,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
         },
       },
       {
@@ -623,7 +625,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.76,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -633,7 +637,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.76,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+          oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+          baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -643,7 +649,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.87,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
         },
       },
       {
@@ -653,7 +659,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.74,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -663,18 +671,20 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.74,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+          oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+          baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0.15,
-    totalSupplied: 634.036585698021,
-    totalBorrowed: 356.171600208491,
-    utilization: 0.5617524418033,
-    shares: 633.847318352723,
-    supplyApy: 0.0084427225250791,
-    borrowApy: 0.0167681095520797,
+    totalSupplied: 633.860581552743,
+    totalBorrowed: 359.344037888209,
+    utilization: 0.56691336919538,
+    shares: 633.593788002236,
+    supplyApy: 0.00859923311629622,
+    borrowApy: 0.0169234576732437,
     offchainLabel: {
       name: "Euler Prime WETH",
       description:
@@ -685,8 +695,8 @@ export const allVaultsOffline: Vault[] = [
         "The Euler DAO is the organisation responsible for the creation of the Euler lending/borrowing platform.",
     },
     underlyingAssetImgSrc: "/nativeToken/eth.svg",
-    totalSuppliedUsd: 1475577.46413025,
-    totalBorrowedUsd: 828909.243545092,
+    totalSuppliedUsd: 1669349.46630448,
+    totalBorrowedUsd: 946376.530307181,
   },
   {
     chainId: 1,
@@ -699,7 +709,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped liquid staked Ether 2.0",
     underlyingAssetSymbol: "wstETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2742.93648545066,
+    underlyingAssetToUnitOfAccountPrice: 3123.95393765236,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -709,7 +719,7 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x83B3b76873D36A28440cF53371dF404c42497136",
     underlyingAssetOracle: {
       type: "CrossAdapter",
-      sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+      oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
     },
     interestRateModelAddress: "0xBFa0Fe198e28753D200059d6eE3E238357673E31",
     collateral: [
@@ -720,7 +730,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.89,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -730,7 +742,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.76,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -740,7 +754,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.76,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+          oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+          baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -750,7 +766,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.87,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -760,7 +778,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.74,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -770,18 +790,20 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.74,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+          oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+          baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0.15,
-    totalSupplied: 24.2373871810835,
-    totalBorrowed: 0.0100004618775142,
-    utilization: 0.000412604782966014,
-    shares: 24.2373868985169,
-    supplyApy: 1.58006924548953e-8,
-    borrowApy: 0.000042550884167874,
+    totalSupplied: 24.2373871871825,
+    totalBorrowed: 0.0100004679764621,
+    utilization: 0.000412605034496071,
+    shares: 24.2373868991268,
+    supplyApy: 1.58007110034724e-8,
+    borrowApy: 0.000042550908179618,
     offchainLabel: {
       name: "Euler Prime wstETH",
       description:
@@ -792,8 +814,8 @@ export const allVaultsOffline: Vault[] = [
         "The Euler DAO is the organisation responsible for the creation of the Euler lending/borrowing platform.",
     },
     underlyingAssetImgSrc: "https://coin-images.coingecko.com/coins/images/18834/large/wstETH.png?1696518295",
-    totalSuppliedUsd: 66457.99171503,
-    totalBorrowedUsd: 27.4208852479372,
+    totalSuppliedUsd: 75282.1559258947,
+    totalBorrowedUsd: 31.0617965427424,
   },
   {
     chainId: 1,
@@ -806,7 +828,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "USD Coin",
     underlyingAssetSymbol: "USDC",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99993242,
+    underlyingAssetToUnitOfAccountPrice: 1,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -816,7 +838,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x83B3b76873D36A28440cF53371dF404c42497136",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+      oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+      baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0xDf8a49e42E475811F02fADB6d921492AEc826056",
     collateral: [
@@ -827,7 +851,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.83,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -837,7 +863,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
         },
       },
       {
@@ -847,7 +873,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.87,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+          oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+          baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -857,7 +885,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.81,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -867,7 +897,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.78,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
         },
       },
       {
@@ -877,18 +907,20 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.85,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+          oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+          baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0.15,
-    totalSupplied: 2259291.805528,
-    totalBorrowed: 415697.711953,
-    utilization: 0.183994697336518,
-    shares: 2259206.779418,
-    supplyApy: 0.00208778151352941,
-    borrowApy: 0.0126742427671724,
+    totalSupplied: 2286079.185142,
+    totalBorrowed: 433276.865204,
+    utilization: 0.189528371554237,
+    shares: 2285921.500766,
+    supplyApy: 0.00221539186600715,
+    borrowApy: 0.0130579010444191,
     offchainLabel: {
       name: "Euler Prime USDC",
       description:
@@ -900,8 +932,8 @@ export const allVaultsOffline: Vault[] = [
     },
     underlyingAssetImgSrc:
       "https://assets-cdn.trustwallet.com/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
-    totalSuppliedUsd: 2259284.25579936,
-    totalBorrowedUsd: 415696.322842964,
+    totalSuppliedUsd: 2285873.43801534,
+    totalBorrowedUsd: 433237.870286132,
   },
   {
     chainId: 1,
@@ -914,7 +946,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Tether USD",
     underlyingAssetSymbol: "USDT",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99999497,
+    underlyingAssetToUnitOfAccountPrice: 1.00005295,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -924,7 +956,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x83B3b76873D36A28440cF53371dF404c42497136",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+      oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+      baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x34985632DEF71436D42825FEfE4960697681aeDe",
     collateral: [
@@ -935,7 +969,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.83,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -945,7 +981,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
         },
       },
       {
@@ -955,7 +991,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.87,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -965,7 +1003,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.81,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -975,7 +1015,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.78,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
         },
       },
       {
@@ -985,18 +1025,20 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.85,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0.15,
-    totalSupplied: 181.968554,
-    totalBorrowed: 0.640038,
-    utilization: 0.0035173000275641,
+    totalSupplied: 181.968556,
+    totalBorrowed: 0.64004,
+    utilization: 0.00351731097981566,
     shares: 181.968546,
-    supplyApy: 7.62149995805102e-7,
-    borrowApy: 0.000240791217754896,
+    supplyApy: 7.62154740219574e-7,
+    borrowApy: 0.000240791966995873,
     offchainLabel: {
       name: "Euler Prime USDT",
       description:
@@ -1008,8 +1050,8 @@ export const allVaultsOffline: Vault[] = [
     },
     underlyingAssetImgSrc:
       "https://assets-cdn.trustwallet.com/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png",
-    totalSuppliedUsd: 181.986144541959,
-    totalBorrowedUsd: 0.640099871213718,
+    totalSuppliedUsd: 181.9549083583,
+    totalBorrowedUsd: 0.639991997,
   },
   {
     chainId: 1,
@@ -1022,7 +1064,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "USD Coin",
     underlyingAssetSymbol: "USDC",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99993242,
+    underlyingAssetToUnitOfAccountPrice: 1,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -1032,7 +1074,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x99281E62Aa1e9ce6AD5622073690590773D38247",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+      oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+      baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0xAF985E745047Dbb28eBA39ea56b5168A6C559465",
     collateral: [
@@ -1043,7 +1087,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.82,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
         },
       },
       {
@@ -1053,18 +1097,20 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.83,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0.15,
-    totalSupplied: 72560.711812,
-    totalBorrowed: 247.43241,
-    utilization: 0.00341000527449456,
-    shares: 72560.582052,
-    supplyApy: 6.77548449826235e-7,
-    borrowApy: 0.000220795688912253,
+    totalSupplied: 76847.377406,
+    totalBorrowed: 247.43316,
+    utilization: 0.00321979966463607,
+    shares: 76847.239293,
+    supplyApy: 6.04070929304291e-7,
+    borrowApy: 0.000208478710041868,
     offchainLabel: {
       name: "Apostro Lido Ecosystem USDC",
       description:
@@ -1074,8 +1120,8 @@ export const allVaultsOffline: Vault[] = [
     },
     underlyingAssetImgSrc:
       "https://assets-cdn.trustwallet.com/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
-    totalSuppliedUsd: 72560.4693405836,
-    totalBorrowedUsd: 247.431583171191,
+    totalSuppliedUsd: 76840.4611420335,
+    totalBorrowedUsd: 247.4108910156,
   },
   {
     chainId: 1,
@@ -1088,7 +1134,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped Ether",
     underlyingAssetSymbol: "WETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2327.27,
+    underlyingAssetToUnitOfAccountPrice: 2647.844511,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -1098,7 +1144,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x99281E62Aa1e9ce6AD5622073690590773D38247",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+      oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+      baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x1b1e8fa7039c9da49A2672A1E2664FB1648aC6F9",
     collateral: [
@@ -1109,18 +1157,18 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.92,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
         },
       },
     ],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0.1,
-    totalSupplied: 21.8165716952415,
-    totalBorrowed: 16.3197875633684,
-    utilization: 0.748045467057865,
-    shares: 21.8058885388357,
-    supplyApy: 0.0164961399371566,
-    borrowApy: 0.0246003939974091,
+    totalSupplied: 20.0725619540357,
+    totalBorrowed: 1.80264486185865,
+    utilization: 0.0898064166391186,
+    shares: 20.0614670205679,
+    supplyApy: 0.000235849290729542,
+    borrowApy: 0.00292191247225309,
     offchainLabel: {
       name: "Apostro Lido Ecosystem WETH",
       description:
@@ -1129,8 +1177,8 @@ export const allVaultsOffline: Vault[] = [
       entityLogo: "https://raw.githubusercontent.com/euler-xyz/euler-labels/master/logo/apostro.png",
     },
     underlyingAssetImgSrc: "/nativeToken/eth.svg",
-    totalSuppliedUsd: 50773.1608305215,
-    totalBorrowedUsd: 37980.6328074716,
+    totalSuppliedUsd: 52863.5500621439,
+    totalBorrowedUsd: 4747.4860019038,
   },
   {
     chainId: 1,
@@ -1160,7 +1208,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.9,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x19219BC90F48DeE4d5cF202E09c438FAacFd8Bea",
+          oracleAddress: "0xc8339D67d3c110dEc5226A497e86d4E18bDe6115",
+          baseAddress: "0x9Ba021B0a9b958B5E75cE9f6dff97C7eE52cb3E6",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
     ],
@@ -1195,7 +1245,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped Ether",
     underlyingAssetSymbol: "WETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2327.27,
+    underlyingAssetToUnitOfAccountPrice: 2647.844511,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -1205,7 +1255,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xa62Fa63445fADA0e90949778f8C84003F6D69004",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+      oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+      baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x8d4d17373A3bEA4B490B808fb8f2024b21FA2728",
     collateral: [
@@ -1216,7 +1268,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.96,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
         },
       },
       {
@@ -1226,7 +1278,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8350b7De6a6a2C1368E7D4Bd968190e13E354297",
+          oracleAddress: "0x1bDc02Cc6F129815Cb666Cb10f08037985D8A7d2",
+          baseAddress: "0x18084fbA666a33d37592fA2633fD49a74DD93a88",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -1236,18 +1290,20 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0.1,
-    totalSupplied: 0.0200065212684829,
-    totalBorrowed: 0.01661604059474,
-    utilization: 0.830531223882286,
-    shares: 0.020000651936604,
-    supplyApy: 0.0205978465184201,
-    borrowApy: 0.027651899877897,
+    totalSupplied: 0.020013018189391,
+    totalBorrowed: 0.0166225375156482,
+    utilization: 0.830586239333949,
+    shares: 0.0200013010588991,
+    supplyApy: 0.0206006033788752,
+    borrowApy: 0.0276537566670834,
     offchainLabel: {
       name: "Re7 Labs Basic WETH",
       description: "A WETH vault collateralized by other vaults in the Re7 Labs Basic Cluster.",
@@ -1257,8 +1313,8 @@ export const allVaultsOffline: Vault[] = [
         "Re7 Labs is the innovation arm of digital asset investment firm Re7 Capital, taking the practical experience of DeFi risk management to on-chain vaults.",
     },
     underlyingAssetImgSrc: "/nativeToken/eth.svg",
-    totalSuppliedUsd: 46.5606758116577,
-    totalBorrowedUsd: 38.6700950666424,
+    totalSuppliedUsd: 52.7067342660143,
+    totalBorrowedUsd: 43.7774882015826,
   },
   {
     chainId: 1,
@@ -1271,7 +1327,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped liquid staked Ether 2.0",
     underlyingAssetSymbol: "wstETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2742.93648545066,
+    underlyingAssetToUnitOfAccountPrice: 3123.95393765236,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -1281,7 +1337,7 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xa62Fa63445fADA0e90949778f8C84003F6D69004",
     underlyingAssetOracle: {
       type: "CrossAdapter",
-      sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+      oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
     },
     interestRateModelAddress: "0x8d4d17373A3bEA4B490B808fb8f2024b21FA2728",
     collateral: [
@@ -1292,7 +1348,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.96,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -1302,7 +1360,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8350b7De6a6a2C1368E7D4Bd968190e13E354297",
+          oracleAddress: "0x1bDc02Cc6F129815Cb666Cb10f08037985D8A7d2",
+          baseAddress: "0x18084fbA666a33d37592fA2633fD49a74DD93a88",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -1312,7 +1372,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -1347,7 +1409,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "tBTC v2",
     underlyingAssetSymbol: "tBTC",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 59622.59645027,
+    underlyingAssetToUnitOfAccountPrice: 64035.67206348,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -1357,7 +1419,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xa62Fa63445fADA0e90949778f8C84003F6D69004",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x8350b7De6a6a2C1368E7D4Bd968190e13E354297",
+      oracleAddress: "0x1bDc02Cc6F129815Cb666Cb10f08037985D8A7d2",
+      baseAddress: "0x18084fbA666a33d37592fA2633fD49a74DD93a88",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x5dB2A8025405356A04be91922113E2D7f86917d1",
     collateral: [
@@ -1368,7 +1432,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
         },
       },
       {
@@ -1378,7 +1442,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -1388,7 +1454,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -1424,7 +1492,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "USD Coin",
     underlyingAssetSymbol: "USDC",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99993242,
+    underlyingAssetToUnitOfAccountPrice: 1,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -1434,7 +1502,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xa62Fa63445fADA0e90949778f8C84003F6D69004",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+      oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+      baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0xabF28324f0092eCC5834A9cB2895EBeDBc5AccD0",
     collateral: [
@@ -1445,7 +1515,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
         },
       },
       {
@@ -1455,7 +1525,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -1465,7 +1537,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8350b7De6a6a2C1368E7D4Bd968190e13E354297",
+          oracleAddress: "0x1bDc02Cc6F129815Cb666Cb10f08037985D8A7d2",
+          baseAddress: "0x18084fbA666a33d37592fA2633fD49a74DD93a88",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -1487,7 +1561,7 @@ export const allVaultsOffline: Vault[] = [
     },
     underlyingAssetImgSrc:
       "https://assets-cdn.trustwallet.com/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
-    totalSuppliedUsd: 48.9596613941337,
+    totalSuppliedUsd: 48.95541861575,
     totalBorrowedUsd: 0,
   },
   {
@@ -1501,7 +1575,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Renzo Restaked ETH",
     underlyingAssetSymbol: "ezETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.0184,
+    underlyingAssetToUnitOfAccountPrice: 1.019,
     unitOfAccountAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     unitOfAccountSymbol: "WETH",
     unitOfAccountIsFiat: false,
@@ -1511,7 +1585,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xa62Fa63445fADA0e90949778f8C84003F6D69004",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x636A000262F6aA9e1F094ABF0aD8f645C44f641C",
+      oracleAddress: "0x0F239a09D9B4f048d2EfE36a4204692F8DF5B564",
+      baseAddress: "0xbf5495Efe5DB9ce00f80364C8B423567e58d2110",
+      quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     },
     interestRateModelAddress: "0x8d4d17373A3bEA4B490B808fb8f2024b21FA2728",
     collateral: [
@@ -1522,7 +1598,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.96,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0xA9E18Ece44DcCd4E623135098C8B0887C87F6128",
         },
       },
       {
@@ -1532,7 +1608,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.96,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x0d7697a15bce933cE8671Ba3D60ab062dA216C60",
+          oracleAddress: "0x0E45B0bc6D05872E355cca26f14ec5519E302db6",
+          baseAddress: "0x8c9532a60E0E7C6BbD2B2c1303F63aCE1c3E9811",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
     ],
@@ -1568,7 +1646,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Renzo Restaked LST ",
     underlyingAssetSymbol: "pzETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.17919919,
+    underlyingAssetToUnitOfAccountPrice: 1.17961948,
     unitOfAccountAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     unitOfAccountSymbol: "WETH",
     unitOfAccountIsFiat: false,
@@ -1578,7 +1656,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xa62Fa63445fADA0e90949778f8C84003F6D69004",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x0d7697a15bce933cE8671Ba3D60ab062dA216C60",
+      oracleAddress: "0x0E45B0bc6D05872E355cca26f14ec5519E302db6",
+      baseAddress: "0x8c9532a60E0E7C6BbD2B2c1303F63aCE1c3E9811",
+      quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     },
     interestRateModelAddress: "0x8d4d17373A3bEA4B490B808fb8f2024b21FA2728",
     collateral: [
@@ -1589,7 +1669,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.96,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0xA9E18Ece44DcCd4E623135098C8B0887C87F6128",
         },
       },
       {
@@ -1599,16 +1679,18 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.96,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x636A000262F6aA9e1F094ABF0aD8f645C44f641C",
+          oracleAddress: "0x0F239a09D9B4f048d2EfE36a4204692F8DF5B564",
+          baseAddress: "0xbf5495Efe5DB9ce00f80364C8B423567e58d2110",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
     ],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0.15,
-    totalSupplied: 4.97531159922712,
+    totalSupplied: 1.15107231262376,
     totalBorrowed: 0,
     utilization: 0,
-    shares: 4.97531159922712,
+    shares: 1.15107231262376,
     supplyApy: 0,
     borrowApy: 0,
     offchainLabel: {
@@ -1620,7 +1702,7 @@ export const allVaultsOffline: Vault[] = [
         "Re7 Labs is the innovation arm of digital asset investment firm Re7 Capital, taking the practical experience of DeFi risk management to on-chain vaults.",
     },
     underlyingAssetImgSrc: "https://coin-images.coingecko.com/coins/images/39124/large/200x200.png?1720629607",
-    totalSuppliedUsd: 13601.6758627947,
+    totalSuppliedUsd: 3571.78628247922,
     totalBorrowedUsd: 0,
   },
   {
@@ -1651,7 +1733,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.96,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x0d7697a15bce933cE8671Ba3D60ab062dA216C60",
+          oracleAddress: "0x0E45B0bc6D05872E355cca26f14ec5519E302db6",
+          baseAddress: "0x8c9532a60E0E7C6BbD2B2c1303F63aCE1c3E9811",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -1661,7 +1745,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.96,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0xA9E18Ece44DcCd4E623135098C8B0887C87F6128",
         },
       },
       {
@@ -1671,18 +1755,20 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.96,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x636A000262F6aA9e1F094ABF0aD8f645C44f641C",
+          oracleAddress: "0x0F239a09D9B4f048d2EfE36a4204692F8DF5B564",
+          baseAddress: "0xbf5495Efe5DB9ce00f80364C8B423567e58d2110",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
     ],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0.15,
-    totalSupplied: 7.69798962704035,
-    totalBorrowed: 5.27029609169122,
-    utilization: 0.684632786874448,
-    shares: 7.68686070183278,
-    supplyApy: 0.0139509045316383,
-    borrowApy: 0.0227395518376271,
+    totalSupplied: 1.30011108893775,
+    totalBorrowed: 1.27063464254759,
+    utilization: 0.977327747881723,
+    shares: 1.29166100301917,
+    supplyApy: 0.611802382328252,
+    borrowApy: 0.720640184260668,
     offchainLabel: {
       name: "Re7 Labs Renzo WETH",
       description: "A WETH vault collateralized by other vaults in the Re7 Labs Renzo Cluster.",
@@ -1692,8 +1778,8 @@ export const allVaultsOffline: Vault[] = [
         "Re7 Labs is the innovation arm of digital asset investment firm Re7 Capital, taking the practical experience of DeFi risk management to on-chain vaults.",
     },
     underlyingAssetImgSrc: "/nativeToken/eth.svg",
-    totalSuppliedUsd: 17915.3384347118,
-    totalBorrowedUsd: 12265.4280803556,
+    totalSuppliedUsd: 3424.00176887191,
+    totalBorrowedUsd: 3346.37193751462,
   },
   {
     chainId: 1,
@@ -1706,7 +1792,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped liquid staked Ether 2.0",
     underlyingAssetSymbol: "wstETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.17837374875602,
+    underlyingAssetToUnitOfAccountPrice: 1.17969174505785,
     unitOfAccountAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     unitOfAccountSymbol: "WETH",
     unitOfAccountIsFiat: false,
@@ -1716,7 +1802,7 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xa62Fa63445fADA0e90949778f8C84003F6D69004",
     underlyingAssetOracle: {
       type: "CrossAdapter",
-      sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+      oracleAddress: "0xA9E18Ece44DcCd4E623135098C8B0887C87F6128",
     },
     interestRateModelAddress: "0x8d4d17373A3bEA4B490B808fb8f2024b21FA2728",
     collateral: [
@@ -1727,7 +1813,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.96,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x0d7697a15bce933cE8671Ba3D60ab062dA216C60",
+          oracleAddress: "0x0E45B0bc6D05872E355cca26f14ec5519E302db6",
+          baseAddress: "0x8c9532a60E0E7C6BbD2B2c1303F63aCE1c3E9811",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -1737,7 +1825,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.96,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x636A000262F6aA9e1F094ABF0aD8f645C44f641C",
+          oracleAddress: "0x0F239a09D9B4f048d2EfE36a4204692F8DF5B564",
+          baseAddress: "0xbf5495Efe5DB9ce00f80364C8B423567e58d2110",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
     ],
@@ -1772,7 +1862,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "USD Coin",
     underlyingAssetSymbol: "USDC",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99993242,
+    underlyingAssetToUnitOfAccountPrice: 1,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -1782,7 +1872,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x17F2A62A555323E3BF6d1a95f0b752D5626FC87B",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+      oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+      baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0xc98b532a4Ed05862eDd7886CaCC5EE2bDE623F0C",
     collateral: [
@@ -1793,7 +1885,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -1803,7 +1897,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -1840,7 +1936,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped Ether",
     underlyingAssetSymbol: "WETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2327.27,
+    underlyingAssetToUnitOfAccountPrice: 2647.844511,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -1850,7 +1946,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x17F2A62A555323E3BF6d1a95f0b752D5626FC87B",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+      oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+      baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0xa04CE30E78ed5F2B158a957F66E91AE97332962b",
     collateral: [
@@ -1861,7 +1959,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.9,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -1871,7 +1971,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.85,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -1907,7 +2009,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped liquid staked Ether 2.0",
     underlyingAssetSymbol: "wstETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2769.08940489952,
+    underlyingAssetToUnitOfAccountPrice: 3117.8818460048,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -1917,7 +2019,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x17F2A62A555323E3BF6d1a95f0b752D5626FC87B",
     underlyingAssetOracle: {
       type: "ChronicleOracle",
-      sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+      oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+      baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0xbD5B4FcfA795CB623aD12621B0C2f82826878C2e",
     collateral: [
@@ -1928,7 +2032,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.9,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -1938,7 +2044,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.85,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -2444,7 +2552,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.945,
         oracle: {
           type: "LidoFundamentalOracle",
-          sourceAddress: "0x0000000000000000000000000000000000000000",
+          oracleAddress: "0x7c37aB8Cd76Ee8888ad7F19C1F8a3A6D1622e9B8",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -2454,7 +2564,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0xF017fcB346A1885194689bA23Eff2fE6fA5C483b",
+          oracleAddress: "0xD41641d2D8b3B0DCaEdFab917AA4c140C4dBAb77",
+          baseAddress: "0xBe9895146f7AF43049ca1c1AE358B0541Ea49704",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -2464,7 +2576,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x536218f9E9Eb48863970252233c8F271f554C2d0",
+          oracleAddress: "0xE39Da17508ec3fE7806a58b0aBe15A2df742cBfE",
+          baseAddress: "0xae78736Cd615f374D3085123A210448E74Fc6393",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -2480,7 +2594,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x3B9c09bde7776C32C518e2E787412A9bBaA7685F",
+          oracleAddress: "0xD4dF645c88767275fE1C22709BE415bD7B509199",
+          baseAddress: "0xE72B141DF173b999AE7c1aDcbF60Cc9833Ce56a8",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -2490,7 +2606,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8751F736E94F6CD167e8C5B97E245680FbD9CC36",
+          oracleAddress: "0x04F50861b2CeC7831B27b74b565EfEeCeABED4Fd",
+          baseAddress: "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -2506,7 +2624,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0xA736eAe8805dDeFFba40cAB8c99bCB309dEaBd9B",
+          oracleAddress: "0xB0dC8194eCA11EF10B4451BD596ed29049a2cf7c",
+          baseAddress: "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -2528,7 +2648,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.9,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x0d7697a15bce933cE8671Ba3D60ab062dA216C60",
+          oracleAddress: "0x0E45B0bc6D05872E355cca26f14ec5519E302db6",
+          baseAddress: "0x8c9532a60E0E7C6BbD2B2c1303F63aCE1c3E9811",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -2540,12 +2662,12 @@ export const allVaultsOffline: Vault[] = [
     ],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0.15,
-    totalSupplied: 18.4873070284838,
-    totalBorrowed: 8.33700702848384,
-    utilization: 0.450958434110431,
-    shares: 18.4870198918408,
-    supplyApy: 0.00543270024338632,
-    borrowApy: 0.0134388368580609,
+    totalSupplied: 12.087540931818,
+    totalBorrowed: 5.33755351099295,
+    utilization: 0.441574803436067,
+    shares: 12.0856286680101,
+    supplyApy: 0.00520838151447256,
+    borrowApy: 0.0131573673881003,
     offchainLabel: {
       name: "MEV Capital WETH Borrowable",
       description: "Component of the MEV Capital wETH Cluster",
@@ -2555,8 +2677,8 @@ export const allVaultsOffline: Vault[] = [
         "MEV Capital is a digital asset manager that focuses on finding and extracting value from the nascent DeFi markets. The strategies are conducted following a stable asset exposure mandate supported by well-defined benchmarks. The operations mainly consist of risk curations and liquidity provisioning to a set of public protocols. These protocols are selected to reflect internal risk management rules, fit regulatory criteria, and answer investor needs. MEV Capital aims to achieve consistent returns for the investors, while operating in a highly liquid environment and battle-tested security framework.",
     },
     underlyingAssetImgSrc: "/nativeToken/eth.svg",
-    totalSuppliedUsd: 43025.046565184,
-    totalBorrowedUsd: 19402.5076265637,
+    totalSuppliedUsd: 31834.0193265116,
+    totalBorrowedUsd: 14057.1008266843,
   },
   {
     chainId: 1,
@@ -2569,7 +2691,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped liquid staked Ether 2.0",
     underlyingAssetSymbol: "wstETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.17919918818775,
+    underlyingAssetToUnitOfAccountPrice: 1.17972252133708,
     unitOfAccountAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     unitOfAccountSymbol: "WETH",
     unitOfAccountIsFiat: false,
@@ -2579,7 +2701,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xA1913655f12E84d4bfb3fbB50f65F8C30f8F4D09",
     underlyingAssetOracle: {
       type: "LidoFundamentalOracle",
-      sourceAddress: "0x0000000000000000000000000000000000000000",
+      oracleAddress: "0x7c37aB8Cd76Ee8888ad7F19C1F8a3A6D1622e9B8",
+      baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+      quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     },
     interestRateModelAddress: "0x3fF20b354dCc623073647e4F2a2cD955A45Defb1",
     collateral: [
@@ -2602,7 +2726,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.9,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x0d7697a15bce933cE8671Ba3D60ab062dA216C60",
+          oracleAddress: "0x0E45B0bc6D05872E355cca26f14ec5519E302db6",
+          baseAddress: "0x8c9532a60E0E7C6BbD2B2c1303F63aCE1c3E9811",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -2614,10 +2740,10 @@ export const allVaultsOffline: Vault[] = [
     ],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0.15,
-    totalSupplied: 2.5456233521048,
+    totalSupplied: 0,
     totalBorrowed: 0,
     utilization: 0,
-    shares: 2.5456233521048,
+    shares: 0,
     supplyApy: 0,
     borrowApy: 0,
     offchainLabel: {
@@ -2629,7 +2755,7 @@ export const allVaultsOffline: Vault[] = [
         "MEV Capital is a digital asset manager that focuses on finding and extracting value from the nascent DeFi markets. The strategies are conducted following a stable asset exposure mandate supported by well-defined benchmarks. The operations mainly consist of risk curations and liquidity provisioning to a set of public protocols. These protocols are selected to reflect internal risk management rules, fit regulatory criteria, and answer investor needs. MEV Capital aims to achieve consistent returns for the investors, while operating in a highly liquid environment and battle-tested security framework.",
     },
     underlyingAssetImgSrc: "https://coin-images.coingecko.com/coins/images/18834/large/wstETH.png?1696518295",
-    totalSuppliedUsd: 6980.00219164731,
+    totalSuppliedUsd: 0,
     totalBorrowedUsd: 0,
   },
   {
@@ -2643,7 +2769,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Coinbase Wrapped BTC",
     underlyingAssetSymbol: "cbBTC",
     underlyingAssetDecimals: 8,
-    underlyingAssetToUnitOfAccountPrice: 60416.320504,
+    underlyingAssetToUnitOfAccountPrice: 62991.0172,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -2653,7 +2779,7 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x74C8211626Debe31E296Cacb833f817281b7c299",
     underlyingAssetOracle: {
       type: "CrossAdapter",
-      sourceAddress: "0x14C855046e91E91033Aaff3191EA6717Fb759A05",
+      oracleAddress: "0x04A56636015Ef379e21Bb78aa61069E721D0cf1C",
     },
     interestRateModelAddress: "0x59283722541F60430963EC83E171E59155008D1d",
     collateral: [
@@ -2664,7 +2790,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.83,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -2674,7 +2802,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
         },
       },
       {
@@ -2684,7 +2812,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.76,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -2694,7 +2824,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.76,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+          oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+          baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -2704,7 +2836,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.81,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -2714,7 +2848,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.78,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7",
         },
       },
       {
@@ -2724,7 +2858,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.74,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -2734,7 +2870,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.74,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+          oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+          baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -2811,7 +2949,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "USD Coin",
     underlyingAssetSymbol: "USDC",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99993889,
+    underlyingAssetToUnitOfAccountPrice: 1.00000314,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -2821,7 +2959,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xfe3ED784f0244B24Df186e576313d682f6Ee9865",
     underlyingAssetOracle: {
       type: "PythOracle",
-      sourceAddress: "0x4305FB66699C3B2702D4d05CF36551390A4c69C6",
+      oracleAddress: "0xC039229EBCef32f898031eB81f646880F39a190B",
+      baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0xabF28324f0092eCC5834A9cB2895EBeDBc5AccD0",
     collateral: [
@@ -2832,7 +2972,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.95,
         oracle: {
           type: "PythOracle",
-          sourceAddress: "0x4305FB66699C3B2702D4d05CF36551390A4c69C6",
+          oracleAddress: "0xf6D8CcAa6677265F0A419F47539A7A87AA65C987",
+          baseAddress: "0x9D39A5DE30e57443BfF2A8307A4256c8797A3497",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -2842,7 +2984,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.95,
         oracle: {
           type: "PythOracle",
-          sourceAddress: "0x4305FB66699C3B2702D4d05CF36551390A4c69C6",
+          oracleAddress: "0x8918D496d0AA72d3de7C8f2a5F02C27a1472CaDb",
+          baseAddress: "0x4c9EDD5852cd905f086C759E8383e09bff1E68B3",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -2864,18 +3008,20 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.95,
         oracle: {
           type: "PythOracle",
-          sourceAddress: "0x4305FB66699C3B2702D4d05CF36551390A4c69C6",
+          oracleAddress: "0x922D0c82d70c3c9F8928742E8f75004DEa228FE6",
+          baseAddress: "0x96F6eF951840721AdBF46Ac996b59E0235CB985C",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0.1,
-    totalSupplied: 48633.507397,
-    totalBorrowed: 39130.463902,
-    utilization: 0.804598845453902,
-    shares: 48630.983545,
-    supplyApy: 0.0384419835127812,
-    borrowApy: 0.0534721488769703,
+    totalSupplied: 852072.209188,
+    totalBorrowed: 259657.871528,
+    utilization: 0.30473693277175,
+    shares: 851867.880135,
+    supplyApy: 0.00542570048710481,
+    borrowApy: 0.0199252560070165,
     offchainLabel: {
       name: "Stablecoin Maxi USDC",
       description: "The Stablecoin Maxi USDC vault",
@@ -2886,8 +3032,8 @@ export const allVaultsOffline: Vault[] = [
     },
     underlyingAssetImgSrc:
       "https://assets-cdn.trustwallet.com/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
-    totalSuppliedUsd: 48633.3448815681,
-    totalBorrowedUsd: 39130.3331422711,
+    totalSuppliedUsd: 851995.522689173,
+    totalBorrowedUsd: 259634.502319562,
   },
   {
     chainId: 1,
@@ -2909,7 +3055,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xfe3ED784f0244B24Df186e576313d682f6Ee9865",
     underlyingAssetOracle: {
       type: "PythOracle",
-      sourceAddress: "0x4305FB66699C3B2702D4d05CF36551390A4c69C6",
+      oracleAddress: "0xf6D8CcAa6677265F0A419F47539A7A87AA65C987",
+      baseAddress: "0x9D39A5DE30e57443BfF2A8307A4256c8797A3497",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x0000000000000000000000000000000000000000",
     collateral: [],
@@ -2931,7 +3079,7 @@ export const allVaultsOffline: Vault[] = [
     },
     underlyingAssetImgSrc:
       "https://coin-images.coingecko.com/coins/images/33669/large/sUSDe-Symbol-Color.png?1716307680",
-    totalSuppliedUsd: 11087.3996719234,
+    totalSuppliedUsd: 11099.3885815052,
     totalBorrowedUsd: 0,
   },
   {
@@ -2954,7 +3102,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xfe3ED784f0244B24Df186e576313d682f6Ee9865",
     underlyingAssetOracle: {
       type: "PythOracle",
-      sourceAddress: "0x4305FB66699C3B2702D4d05CF36551390A4c69C6",
+      oracleAddress: "0x8918D496d0AA72d3de7C8f2a5F02C27a1472CaDb",
+      baseAddress: "0x4c9EDD5852cd905f086C759E8383e09bff1E68B3",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x0000000000000000000000000000000000000000",
     collateral: [],
@@ -3006,7 +3156,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.95,
         oracle: {
           type: "PythOracle",
-          sourceAddress: "0x4305FB66699C3B2702D4d05CF36551390A4c69C6",
+          oracleAddress: "0xf6D8CcAa6677265F0A419F47539A7A87AA65C987",
+          baseAddress: "0x9D39A5DE30e57443BfF2A8307A4256c8797A3497",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3016,7 +3168,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.95,
         oracle: {
           type: "PythOracle",
-          sourceAddress: "0x4305FB66699C3B2702D4d05CF36551390A4c69C6",
+          oracleAddress: "0x8918D496d0AA72d3de7C8f2a5F02C27a1472CaDb",
+          baseAddress: "0x4c9EDD5852cd905f086C759E8383e09bff1E68B3",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -3024,10 +3178,10 @@ export const allVaultsOffline: Vault[] = [
     maxLiquidationDiscount: 0.1,
     supplyCap: 10000000,
     borrowCap: 9000000,
-    totalSupplied: 9948.66007492882,
+    totalSupplied: 255296.827077259,
     totalBorrowed: 0,
     utilization: 0,
-    shares: 9948.66007492882,
+    shares: 255296.827077259,
     supplyApy: 0,
     borrowApy: 0,
     offchainLabel: {
@@ -3062,7 +3216,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xfe3ED784f0244B24Df186e576313d682f6Ee9865",
     underlyingAssetOracle: {
       type: "PythOracle",
-      sourceAddress: "0x4305FB66699C3B2702D4d05CF36551390A4c69C6",
+      oracleAddress: "0x922D0c82d70c3c9F8928742E8f75004DEa228FE6",
+      baseAddress: "0x96F6eF951840721AdBF46Ac996b59E0235CB985C",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x75846C89cbb80FB52B5Dc4c14a459358186528DE",
     collateral: [],
@@ -3097,7 +3253,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Staked USDA",
     underlyingAssetSymbol: "stUSD",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.05610953730255,
+    underlyingAssetToUnitOfAccountPrice: 1.05712660523289,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -3138,7 +3294,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped eETH",
     underlyingAssetSymbol: "weETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2450.68709952,
+    underlyingAssetToUnitOfAccountPrice: 2769.94078952,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -3148,7 +3304,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xE916836ce696D630f38bd57E27A3d847660b52E6",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0xdDb6F90fFb4d3257dd666b69178e5B3c5Bf41136",
+      oracleAddress: "0x175b1A1347F207AA0529430012385A14C46D9638",
+      baseAddress: "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x0f8A7308A574BB04A0EE0921E9D687F781cf577f",
     collateral: [
@@ -3159,7 +3317,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.77,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3169,7 +3329,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.77,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0xFaBEb1474C2Ab34838081BFdDcE4132f640E7D2d",
+          oracleAddress: "0xBc7A03E1791C0d29FC9Eb8921B9F16035041a2C1",
+          baseAddress: "0xA35b1B31Ce002FBF2058D22F30f95D405200A15b",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3179,7 +3341,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.88,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+          oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+          baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3189,7 +3353,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.88,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -3216,7 +3382,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "ETHx",
     underlyingAssetSymbol: "ETHx",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2423.58783685,
+    underlyingAssetToUnitOfAccountPrice: 2755.46874489,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -3226,7 +3392,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xE916836ce696D630f38bd57E27A3d847660b52E6",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0xFaBEb1474C2Ab34838081BFdDcE4132f640E7D2d",
+      oracleAddress: "0xBc7A03E1791C0d29FC9Eb8921B9F16035041a2C1",
+      baseAddress: "0xA35b1B31Ce002FBF2058D22F30f95D405200A15b",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x0f8A7308A574BB04A0EE0921E9D687F781cf577f",
     collateral: [
@@ -3237,7 +3405,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.77,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3247,7 +3417,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.73,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0xdDb6F90fFb4d3257dd666b69178e5B3c5Bf41136",
+          oracleAddress: "0x175b1A1347F207AA0529430012385A14C46D9638",
+          baseAddress: "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3257,7 +3429,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.88,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+          oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+          baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3267,7 +3441,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.88,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -3294,7 +3470,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped liquid staked Ether 2.0",
     underlyingAssetSymbol: "wstETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2769.08940489952,
+    underlyingAssetToUnitOfAccountPrice: 3117.8818460048,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -3304,7 +3480,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xE916836ce696D630f38bd57E27A3d847660b52E6",
     underlyingAssetOracle: {
       type: "ChronicleOracle",
-      sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+      oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+      baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x0f8A7308A574BB04A0EE0921E9D687F781cf577f",
     collateral: [
@@ -3315,7 +3493,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.73,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0xdDb6F90fFb4d3257dd666b69178e5B3c5Bf41136",
+          oracleAddress: "0x175b1A1347F207AA0529430012385A14C46D9638",
+          baseAddress: "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3325,7 +3505,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.77,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0xFaBEb1474C2Ab34838081BFdDcE4132f640E7D2d",
+          oracleAddress: "0xBc7A03E1791C0d29FC9Eb8921B9F16035041a2C1",
+          baseAddress: "0xA35b1B31Ce002FBF2058D22F30f95D405200A15b",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3335,7 +3517,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.88,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+          oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+          baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3345,7 +3529,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.88,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -3372,7 +3558,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Tether USD",
     underlyingAssetSymbol: "USDT",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99999497,
+    underlyingAssetToUnitOfAccountPrice: 1.00005295,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -3382,7 +3568,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xE916836ce696D630f38bd57E27A3d847660b52E6",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+      oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+      baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0xC7638452c88E0eA279a5Bd21697B9517cd7e5043",
     collateral: [
@@ -3393,7 +3581,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.77,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3403,7 +3593,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.7,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0xdDb6F90fFb4d3257dd666b69178e5B3c5Bf41136",
+          oracleAddress: "0x175b1A1347F207AA0529430012385A14C46D9638",
+          baseAddress: "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3413,7 +3605,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.76,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0xFaBEb1474C2Ab34838081BFdDcE4132f640E7D2d",
+          oracleAddress: "0xBc7A03E1791C0d29FC9Eb8921B9F16035041a2C1",
+          baseAddress: "0xA35b1B31Ce002FBF2058D22F30f95D405200A15b",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3423,7 +3617,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.87,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+          baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -3451,7 +3647,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Pax Dollar",
     underlyingAssetSymbol: "USDP",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.0009762,
+    underlyingAssetToUnitOfAccountPrice: 1.00069992,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -3461,7 +3657,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x7d67eFCFF0757992141511D6dfB60AEf89629974",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x09023c0DA49Aaf8fc3fA3ADF34C6A7016D38D5e3",
+      oracleAddress: "0x8dAf2C71fCa7C9BfE07C3a269c04b9d5e7AB043E",
+      baseAddress: "0x8E870D67F660D95d5be530380D0eC0bd388289E1",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x30196C4ff735E826a64438DfeFe1a195fbdf38E3",
     collateral: [
@@ -3472,7 +3670,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.81,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3482,7 +3682,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x0fe1A11CC41459A60471BEF0177C08C4f09f94d9",
+          oracleAddress: "0x1DF4f5afD2Ad4E830a343C7C32824A9F4b525496",
         },
       },
       {
@@ -3492,7 +3692,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x8116Ff3BCF7460FEF6B1b258dd7959Ea3DfDF778",
+          oracleAddress: "0x6A7c5B6EBFFc65c464f0A3D88913c906bF7A72aF",
         },
       },
       {
@@ -3502,7 +3702,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.85,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0x46ef0071b1E2fF6B42d36e5A177EA43Ae5917f4E",
+          oracleAddress: "0x956C9b887cB8779140EED942fa91f51B13Bd1b86",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -3529,7 +3731,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "PayPal USD",
     underlyingAssetSymbol: "PYUSD",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99944857,
+    underlyingAssetToUnitOfAccountPrice: 0.99972041,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -3539,7 +3741,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x7d67eFCFF0757992141511D6dfB60AEf89629974",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x8f1dF6D7F2db73eECE86a18b4381F4707b918FB1",
+      oracleAddress: "0x27895A6295a5117CB989d610DF1Df39DC2CDBf8F",
+      baseAddress: "0x6c3ea9036406852006290770BEdFcAbA0e23A0e8",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x30196C4ff735E826a64438DfeFe1a195fbdf38E3",
     collateral: [
@@ -3550,7 +3754,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.81,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3560,7 +3766,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x0fe1A11CC41459A60471BEF0177C08C4f09f94d9",
+          oracleAddress: "0x1DF4f5afD2Ad4E830a343C7C32824A9F4b525496",
         },
       },
       {
@@ -3570,7 +3776,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x8116Ff3BCF7460FEF6B1b258dd7959Ea3DfDF778",
+          oracleAddress: "0x6A7c5B6EBFFc65c464f0A3D88913c906bF7A72aF",
         },
       },
       {
@@ -3580,7 +3786,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.85,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0x46ef0071b1E2fF6B42d36e5A177EA43Ae5917f4E",
+          oracleAddress: "0x956C9b887cB8779140EED942fa91f51B13Bd1b86",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -3608,7 +3816,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "TrueUSD",
     underlyingAssetSymbol: "TUSD",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 0.99889872,
+    underlyingAssetToUnitOfAccountPrice: 0.99896044,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -3618,7 +3826,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x7d67eFCFF0757992141511D6dfB60AEf89629974",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0xec746eCF986E2927Abd291a2A1716c940100f8Ba",
+      oracleAddress: "0xc56F9a895688AA6164cADe142D6C0c006f88C4E8",
+      baseAddress: "0x0000000000085d4780B73119b644AE5ecd22b376",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x30196C4ff735E826a64438DfeFe1a195fbdf38E3",
     collateral: [
@@ -3629,7 +3839,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.81,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3639,7 +3851,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x0fe1A11CC41459A60471BEF0177C08C4f09f94d9",
+          oracleAddress: "0x1DF4f5afD2Ad4E830a343C7C32824A9F4b525496",
         },
       },
       {
@@ -3649,7 +3861,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x8116Ff3BCF7460FEF6B1b258dd7959Ea3DfDF778",
+          oracleAddress: "0x6A7c5B6EBFFc65c464f0A3D88913c906bF7A72aF",
         },
       },
       {
@@ -3659,7 +3871,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.85,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0x46ef0071b1E2fF6B42d36e5A177EA43Ae5917f4E",
+          oracleAddress: "0x956C9b887cB8779140EED942fa91f51B13Bd1b86",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -3687,7 +3901,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "USDe",
     underlyingAssetSymbol: "USDe",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 0.99892032,
+    underlyingAssetToUnitOfAccountPrice: 0.99906909,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -3697,7 +3911,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x7d67eFCFF0757992141511D6dfB60AEf89629974",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0xa569d910839Ae8865Da8F8e70FfFb0cBA869F961",
+      oracleAddress: "0x8211B9ae40b06d3Db0215E520F232184Af355378",
+      baseAddress: "0x4c9EDD5852cd905f086C759E8383e09bff1E68B3",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x6a48d71b849f88977a681E2391F064A22e953fb9",
     collateral: [
@@ -3708,7 +3924,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.81,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3718,7 +3936,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x0fe1A11CC41459A60471BEF0177C08C4f09f94d9",
+          oracleAddress: "0x1DF4f5afD2Ad4E830a343C7C32824A9F4b525496",
         },
       },
       {
@@ -3728,7 +3946,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x8116Ff3BCF7460FEF6B1b258dd7959Ea3DfDF778",
+          oracleAddress: "0x6A7c5B6EBFFc65c464f0A3D88913c906bF7A72aF",
         },
       },
       {
@@ -3738,7 +3956,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.85,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0x46ef0071b1E2fF6B42d36e5A177EA43Ae5917f4E",
+          oracleAddress: "0x956C9b887cB8779140EED942fa91f51B13Bd1b86",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -3765,7 +3985,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Curve.Fi USD Stablecoin",
     underlyingAssetSymbol: "crvUSD",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 0.99844623,
+    underlyingAssetToUnitOfAccountPrice: 0.99983559,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -3775,7 +3995,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x7d67eFCFF0757992141511D6dfB60AEf89629974",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0xEEf0C605546958c1f899b6fB336C20671f9cD49F",
+      oracleAddress: "0x24eFfF312944A66eE45058550fEBDcc65C9f099e",
+      baseAddress: "0xf939E0A03FB07F59A73314E73794Be0E57ac1b4E",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x6a48d71b849f88977a681E2391F064A22e953fb9",
     collateral: [
@@ -3786,7 +4008,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.81,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3796,7 +4020,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x0fe1A11CC41459A60471BEF0177C08C4f09f94d9",
+          oracleAddress: "0x1DF4f5afD2Ad4E830a343C7C32824A9F4b525496",
         },
       },
       {
@@ -3806,7 +4030,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x8116Ff3BCF7460FEF6B1b258dd7959Ea3DfDF778",
+          oracleAddress: "0x6A7c5B6EBFFc65c464f0A3D88913c906bF7A72aF",
         },
       },
       {
@@ -3816,7 +4040,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.85,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0x46ef0071b1E2fF6B42d36e5A177EA43Ae5917f4E",
+          oracleAddress: "0x956C9b887cB8779140EED942fa91f51B13Bd1b86",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -3844,7 +4070,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Gho Token",
     underlyingAssetSymbol: "GHO",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.00676065,
+    underlyingAssetToUnitOfAccountPrice: 1.00564301,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -3854,7 +4080,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x7d67eFCFF0757992141511D6dfB60AEf89629974",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x3f12643D3f6f874d39C2a4c9f2Cd6f2DbAC877FC",
+      oracleAddress: "0x5291579cA14767A54E00fEd2872D609E7850dF75",
+      baseAddress: "0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x6a48d71b849f88977a681E2391F064A22e953fb9",
     collateral: [
@@ -3865,7 +4093,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.81,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3875,7 +4105,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x0fe1A11CC41459A60471BEF0177C08C4f09f94d9",
+          oracleAddress: "0x1DF4f5afD2Ad4E830a343C7C32824A9F4b525496",
         },
       },
       {
@@ -3885,7 +4115,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x8116Ff3BCF7460FEF6B1b258dd7959Ea3DfDF778",
+          oracleAddress: "0x6A7c5B6EBFFc65c464f0A3D88913c906bF7A72aF",
         },
       },
       {
@@ -3895,7 +4125,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.85,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0x46ef0071b1E2fF6B42d36e5A177EA43Ae5917f4E",
+          oracleAddress: "0x956C9b887cB8779140EED942fa91f51B13Bd1b86",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -3922,7 +4154,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "USD Coin",
     underlyingAssetSymbol: "USDC",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99993242,
+    underlyingAssetToUnitOfAccountPrice: 1,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -3932,7 +4164,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x7d67eFCFF0757992141511D6dfB60AEf89629974",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+      oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+      baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x8679B942AFFF501346EBc5a6f8Ea9C96bc83DB8A",
     collateral: [
@@ -3943,7 +4177,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.81,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -3953,7 +4189,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x0fe1A11CC41459A60471BEF0177C08C4f09f94d9",
+          oracleAddress: "0x1DF4f5afD2Ad4E830a343C7C32824A9F4b525496",
         },
       },
       {
@@ -3963,7 +4199,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x8116Ff3BCF7460FEF6B1b258dd7959Ea3DfDF778",
+          oracleAddress: "0x6A7c5B6EBFFc65c464f0A3D88913c906bF7A72aF",
         },
       },
       {
@@ -3973,7 +4209,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.85,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0x46ef0071b1E2fF6B42d36e5A177EA43Ae5917f4E",
+          oracleAddress: "0x956C9b887cB8779140EED942fa91f51B13Bd1b86",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -4001,7 +4239,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Dai Stablecoin",
     underlyingAssetSymbol: "DAI",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.00010355,
+    underlyingAssetToUnitOfAccountPrice: 0.99976402,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -4011,7 +4249,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x7d67eFCFF0757992141511D6dfB60AEf89629974",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0xAed0c38402a5d19df6E4c03F4E2DceD6e29c1ee9",
+      oracleAddress: "0xBb918933b510CDF9008E0f1B6AFE50A587CD9224",
+      baseAddress: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x8679B942AFFF501346EBc5a6f8Ea9C96bc83DB8A",
     collateral: [
@@ -4022,7 +4262,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.81,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -4032,7 +4274,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x0fe1A11CC41459A60471BEF0177C08C4f09f94d9",
+          oracleAddress: "0x1DF4f5afD2Ad4E830a343C7C32824A9F4b525496",
         },
       },
       {
@@ -4042,7 +4284,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x8116Ff3BCF7460FEF6B1b258dd7959Ea3DfDF778",
+          oracleAddress: "0x6A7c5B6EBFFc65c464f0A3D88913c906bF7A72aF",
         },
       },
       {
@@ -4052,7 +4294,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.85,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0x46ef0071b1E2fF6B42d36e5A177EA43Ae5917f4E",
+          oracleAddress: "0x956C9b887cB8779140EED942fa91f51B13Bd1b86",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -4080,7 +4324,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Tether USD",
     underlyingAssetSymbol: "USDT",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99999497,
+    underlyingAssetToUnitOfAccountPrice: 1.00005295,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -4090,7 +4334,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x7d67eFCFF0757992141511D6dfB60AEf89629974",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+      oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+      baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x8679B942AFFF501346EBc5a6f8Ea9C96bc83DB8A",
     collateral: [
@@ -4101,7 +4347,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.81,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0xA770582353b573CbfdCC948751750EeB3Ccf23CF",
+          oracleAddress: "0x9Ee335e15692317A4fAdb221feA0AFfe48953130",
+          baseAddress: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -4111,7 +4359,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x0fe1A11CC41459A60471BEF0177C08C4f09f94d9",
+          oracleAddress: "0x1DF4f5afD2Ad4E830a343C7C32824A9F4b525496",
         },
       },
       {
@@ -4121,7 +4369,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.8,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0x8116Ff3BCF7460FEF6B1b258dd7959Ea3DfDF778",
+          oracleAddress: "0x6A7c5B6EBFFc65c464f0A3D88913c906bF7A72aF",
         },
       },
       {
@@ -4131,7 +4379,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.85,
         oracle: {
           type: "ChronicleOracle",
-          sourceAddress: "0x46ef0071b1E2fF6B42d36e5A177EA43Ae5917f4E",
+          oracleAddress: "0x956C9b887cB8779140EED942fa91f51B13Bd1b86",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -4176,7 +4426,7 @@ export const allVaultsOffline: Vault[] = [
     shares: 0,
     supplyApy: 0,
     borrowApy: 0,
-    underlyingAssetImgSrc: "https://coin-images.coingecko.com/coins/images/29222/large/GS.jpeg?1725447410",
+    underlyingAssetImgSrc: "https://coin-images.coingecko.com/coins/images/35589/large/avatar404.jpeg?1709204091",
     totalSuppliedUsd: 0,
     totalBorrowedUsd: 0,
   },
@@ -4191,7 +4441,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Autocompounding Pirex Ether",
     underlyingAssetSymbol: "apxETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.0496412,
+    underlyingAssetToUnitOfAccountPrice: 1.05167786,
     unitOfAccountAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     unitOfAccountSymbol: "WETH",
     unitOfAccountIsFiat: false,
@@ -4201,7 +4451,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xf68c9aDC7f7fde32a32fEE0c157bc255BEE2327E",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x19219BC90F48DeE4d5cF202E09c438FAacFd8Bea",
+      oracleAddress: "0xc8339D67d3c110dEc5226A497e86d4E18bDe6115",
+      baseAddress: "0x9Ba021B0a9b958B5E75cE9f6dff97C7eE52cb3E6",
+      quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     },
     interestRateModelAddress: "0x0000000000000000000000000000000000000000",
     collateral: [],
@@ -4229,7 +4481,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Coinbase Wrapped Staked ETH",
     underlyingAssetSymbol: "cbETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2511.12433,
+    underlyingAssetToUnitOfAccountPrice: 2855.35225674784,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -4239,7 +4491,7 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xE916836ce696D630f38bd57E27A3d847660b52E6",
     underlyingAssetOracle: {
       type: "CrossAdapter",
-      sourceAddress: "0xD41641d2D8b3B0DCaEdFab917AA4c140C4dBAb77",
+      oracleAddress: "0x8710019824E557F907Fb0B8BD23d610d74dD7444",
     },
     interestRateModelAddress: "0x0000000000000000000000000000000000000000",
     collateral: [],
@@ -4266,7 +4518,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "USD Coin",
     underlyingAssetSymbol: "USDC",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99993242,
+    underlyingAssetToUnitOfAccountPrice: 1,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -4276,7 +4528,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xE916836ce696D630f38bd57E27A3d847660b52E6",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+      oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+      baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x0000000000000000000000000000000000000000",
     collateral: [],
@@ -4304,7 +4558,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Renzo Restaked ETH",
     underlyingAssetSymbol: "ezETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2370.091768,
+    underlyingAssetToUnitOfAccountPrice: 2698.153556709,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -4314,7 +4568,7 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xE916836ce696D630f38bd57E27A3d847660b52E6",
     underlyingAssetOracle: {
       type: "CrossAdapter",
-      sourceAddress: "0x0F239a09D9B4f048d2EfE36a4204692F8DF5B564",
+      oracleAddress: "0x2B23B4EAAe78D0343d5168A6A489F7daBc9a8205",
     },
     interestRateModelAddress: "0x0000000000000000000000000000000000000000",
     collateral: [],
@@ -4342,7 +4596,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "rswETH",
     underlyingAssetSymbol: "rswETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2364.21540321663,
+    underlyingAssetToUnitOfAccountPrice: 2685.86981709297,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -4352,7 +4606,7 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xE916836ce696D630f38bd57E27A3d847660b52E6",
     underlyingAssetOracle: {
       type: "CrossAdapter",
-      sourceAddress: "0xcEa9Db0E0602879DCcB2DC2D1Bb343B7f9143073",
+      oracleAddress: "0x951bcDd3551Bb617f3B98FcD9E6A5c0e70432928",
     },
     interestRateModelAddress: "0x0000000000000000000000000000000000000000",
     collateral: [],
@@ -4388,7 +4642,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xE916836ce696D630f38bd57E27A3d847660b52E6",
     underlyingAssetOracle: {
       type: "RedstoneCoreOracle",
-      sourceAddress: "0x7075664554480000000000000000000000000000000000000000000000000000",
+      oracleAddress: "0x6e23447000a924f5CF6a5748A2F14c36b2C65aec",
+      baseAddress: "0xD9A442856C234a39a81a089C06451EBAa4306a72",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x0000000000000000000000000000000000000000",
     collateral: [],
@@ -4416,7 +4672,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Curve.Fi USD Stablecoin",
     underlyingAssetSymbol: "crvUSD",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 0.99844623,
+    underlyingAssetToUnitOfAccountPrice: 0.99983559,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -4426,7 +4682,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xE916836ce696D630f38bd57E27A3d847660b52E6",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0xEEf0C605546958c1f899b6fB336C20671f9cD49F",
+      oracleAddress: "0x24eFfF312944A66eE45058550fEBDcc65C9f099e",
+      baseAddress: "0xf939E0A03FB07F59A73314E73794Be0E57ac1b4E",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x0000000000000000000000000000000000000000",
     collateral: [],
@@ -4454,7 +4712,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "USDe",
     underlyingAssetSymbol: "USDe",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 0.99892032,
+    underlyingAssetToUnitOfAccountPrice: 0.99906909,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -4464,7 +4722,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xE916836ce696D630f38bd57E27A3d847660b52E6",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0xa569d910839Ae8865Da8F8e70FfFb0cBA869F961",
+      oracleAddress: "0x8211B9ae40b06d3Db0215E520F232184Af355378",
+      baseAddress: "0x4c9EDD5852cd905f086C759E8383e09bff1E68B3",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x0000000000000000000000000000000000000000",
     collateral: [],
@@ -4491,7 +4751,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped BTC",
     underlyingAssetSymbol: "WBTC",
     underlyingAssetDecimals: 8,
-    underlyingAssetToUnitOfAccountPrice: 60351.7934570489,
+    underlyingAssetToUnitOfAccountPrice: 62852.9868737402,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -4501,7 +4761,7 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xE916836ce696D630f38bd57E27A3d847660b52E6",
     underlyingAssetOracle: {
       type: "CrossAdapter",
-      sourceAddress: "0xc38B1ae5f9bDd68D44b354fD06b16488Be4Bc0d4",
+      oracleAddress: "0x8F358638Eb5D0afF47E5b320213C07235e40ebe2",
     },
     interestRateModelAddress: "0x0000000000000000000000000000000000000000",
     collateral: [],
@@ -4529,7 +4789,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "USD Coin",
     underlyingAssetSymbol: "USDC",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99993242,
+    underlyingAssetToUnitOfAccountPrice: 1,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -4539,7 +4799,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x99281E62Aa1e9ce6AD5622073690590773D38247",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+      oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+      baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x0000000000000000000000000000000000000000",
     collateral: [],
@@ -4616,7 +4878,7 @@ export const allVaultsOffline: Vault[] = [
     shares: 0,
     supplyApy: 0,
     borrowApy: 0,
-    underlyingAssetImgSrc: "https://coin-images.coingecko.com/coins/images/29222/large/GS.jpeg?1725447410",
+    underlyingAssetImgSrc: "https://coin-images.coingecko.com/coins/images/35589/large/avatar404.jpeg?1709204091",
     totalSuppliedUsd: 0,
     totalBorrowedUsd: 0,
   },
@@ -4631,7 +4893,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Tether USD",
     underlyingAssetSymbol: "USDT",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99999497,
+    underlyingAssetToUnitOfAccountPrice: 1.00005295,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -4641,7 +4903,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x95FfA05678ec50481DC35ba21783663C61010170",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x3E7d1eAB13ad0104d2750B8863b489D65364e32D",
+      oracleAddress: "0x587CABe0521f5065b561A6e68c25f338eD037FF9",
+      baseAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x8590D995fBb8602CFE6302E88A0A262Dec70fCfF",
     collateral: [
@@ -4652,7 +4916,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.945,
         oracle: {
           type: "PythOracle",
-          sourceAddress: "0x4305FB66699C3B2702D4d05CF36551390A4c69C6",
+          oracleAddress: "0xe16E7d93720B470C71e02CD2D483ba18aE0e3DF7",
+          baseAddress: "0x83F20F44975D03b1b09e64809B757c47f942BEeA",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -4680,7 +4946,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Dai Stablecoin",
     underlyingAssetSymbol: "DAI",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.00010355,
+    underlyingAssetToUnitOfAccountPrice: 0.99976402,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -4690,7 +4956,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x95FfA05678ec50481DC35ba21783663C61010170",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0xAed0c38402a5d19df6E4c03F4E2DceD6e29c1ee9",
+      oracleAddress: "0xBb918933b510CDF9008E0f1B6AFE50A587CD9224",
+      baseAddress: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x1C0582fe3fc4dd603BC573A6F0f22490a9c7D6f0",
     collateral: [
@@ -4701,7 +4969,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0xFF3BC18cCBd5999CE63E788A1c250a88626aD099",
+          oracleAddress: "0xD4fF9D4e0A3E5995A0E040632F34271b2e9c8a42",
+          baseAddress: "0x9D39A5DE30e57443BfF2A8307A4256c8797A3497",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
       {
@@ -4711,7 +4981,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.9,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0xa569d910839Ae8865Da8F8e70FfFb0cBA869F961",
+          oracleAddress: "0x8211B9ae40b06d3Db0215E520F232184Af355378",
+          baseAddress: "0x4c9EDD5852cd905f086C759E8383e09bff1E68B3",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
@@ -4771,7 +5043,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "USD Coin",
     underlyingAssetSymbol: "USDC",
     underlyingAssetDecimals: 6,
-    underlyingAssetToUnitOfAccountPrice: 0.99993242,
+    underlyingAssetToUnitOfAccountPrice: 1,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -4781,7 +5053,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x001Cf643df5a164c80457F0A2AC070c3B7399876",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+      oracleAddress: "0x6213f24332D35519039f2afa7e3BffE105a37d3F",
+      baseAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x3c7d994bF9758b419F8799838D64ae4190c03659",
     collateral: [
@@ -4792,22 +5066,24 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.83,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],
     vaultFee: 0.1,
     maxLiquidationDiscount: 0.15,
-    totalSupplied: 1000.275673,
-    totalBorrowed: 500.275673,
-    utilization: 0.500137798512671,
-    shares: 1000.02756,
-    supplyApy: 0.0136441809441283,
-    borrowApy: 0.0305649207175112,
+    totalSupplied: 1000.491541,
+    totalBorrowed: 500.491541,
+    utilization: 0.500245649753075,
+    shares: 1000.049132,
+    supplyApy: 0.0136501061122613,
+    borrowApy: 0.0305716115760281,
     underlyingAssetImgSrc:
       "https://assets-cdn.trustwallet.com/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
-    totalSuppliedUsd: 1000.27233044377,
-    totalBorrowedUsd: 500.274001261286,
+    totalSuppliedUsd: 1000.40149676131,
+    totalBorrowedUsd: 500.44649676131,
   },
   {
     chainId: 1,
@@ -4923,7 +5199,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped liquid staked Ether 2.0",
     underlyingAssetSymbol: "wstETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.17837374875602,
+    underlyingAssetToUnitOfAccountPrice: 1.17969174505785,
     unitOfAccountAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     unitOfAccountSymbol: "WETH",
     unitOfAccountIsFiat: false,
@@ -4931,10 +5207,6 @@ export const allVaultsOffline: Vault[] = [
     debtTokenAddress: "0x2F366EBe996EcfB362Dc39D12Bc8b64DDE2d4545",
     governor: "0xFB7c1D49e006eaDdff2385c7eF8B0C5Cf49d038A",
     oracleAddress: "0xA9E18Ece44DcCd4E623135098C8B0887C87F6128",
-    underlyingAssetOracle: {
-      type: "CrossAdapter",
-      sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
-    },
     interestRateModelAddress: "0x0000000000000000000000000000000000000000",
     collateral: [],
     vaultFee: 0.1,
@@ -4960,7 +5232,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped liquid staked Ether 2.0",
     underlyingAssetSymbol: "wstETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.17837374875602,
+    underlyingAssetToUnitOfAccountPrice: 1.17969174505785,
     unitOfAccountAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     unitOfAccountSymbol: "WETH",
     unitOfAccountIsFiat: false,
@@ -4970,7 +5242,7 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xEA9023de2DA62032d480EDb387f02C2353F5dD05",
     underlyingAssetOracle: {
       type: "CrossAdapter",
-      sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+      oracleAddress: "0xA9E18Ece44DcCd4E623135098C8B0887C87F6128",
     },
     interestRateModelAddress: "0xA751f08645531a8121a3944852FB6904f1bBC277",
     collateral: [
@@ -4987,7 +5259,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.84,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x03c68933f7a3F76875C0bc670a58e69294cDFD01",
+          oracleAddress: "0x375b0dcFE72efBc03937A3FfFc1de13d97D6F4B1",
+          baseAddress: "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -5003,7 +5277,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.87,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x03c68933f7a3F76875C0bc670a58e69294cDFD01",
+          oracleAddress: "0x375b0dcFE72efBc03937A3FfFc1de13d97D6F4B1",
+          baseAddress: "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
     ],
@@ -5049,7 +5325,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.96,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5c9C449BbC9a6075A2c061dF312a35fd1E05fF22",
+          oracleAddress: "0x8116Ff3BCF7460FEF6B1b258dd7959Ea3DfDF778",
+          baseAddress: "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -5059,7 +5337,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.96,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0xA9E18Ece44DcCd4E623135098C8B0887C87F6128",
         },
       },
       {
@@ -5069,7 +5347,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.97,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0xA9E18Ece44DcCd4E623135098C8B0887C87F6128",
         },
       },
     ],
@@ -5096,7 +5374,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped eETH",
     underlyingAssetSymbol: "weETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.0477,
+    underlyingAssetToUnitOfAccountPrice: 1.0478,
     unitOfAccountAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     unitOfAccountSymbol: "WETH",
     unitOfAccountIsFiat: false,
@@ -5106,7 +5384,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x97cEec75D48DC17a4D652dE8434f96386d5D5fee",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x5c9C449BbC9a6075A2c061dF312a35fd1E05fF22",
+      oracleAddress: "0x8116Ff3BCF7460FEF6B1b258dd7959Ea3DfDF778",
+      baseAddress: "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee",
+      quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     },
     interestRateModelAddress: "0xc1b3D5c79113845AA2A1d02113539ba68Fcc62a4",
     collateral: [],
@@ -5199,7 +5479,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Kelp Gain",
     underlyingAssetSymbol: "agETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.0230923962763,
+    underlyingAssetToUnitOfAccountPrice: 1.02330708769595,
     unitOfAccountAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     unitOfAccountSymbol: "WETH",
     unitOfAccountIsFiat: false,
@@ -5234,7 +5514,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "rsETH",
     underlyingAssetSymbol: "rsETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 1.02274893197593,
+    underlyingAssetToUnitOfAccountPrice: 1.02247822393943,
     unitOfAccountAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     unitOfAccountSymbol: "WETH",
     unitOfAccountIsFiat: false,
@@ -5244,7 +5524,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0xCE195223430F9F2a2832944Cf5dAa13E349b389B",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x03c68933f7a3F76875C0bc670a58e69294cDFD01",
+      oracleAddress: "0x375b0dcFE72efBc03937A3FfFc1de13d97D6F4B1",
+      baseAddress: "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7",
+      quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     },
     interestRateModelAddress: "0xA751f08645531a8121a3944852FB6904f1bBC277",
     collateral: [],
@@ -5290,7 +5572,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.84,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x03c68933f7a3F76875C0bc670a58e69294cDFD01",
+          oracleAddress: "0x375b0dcFE72efBc03937A3FfFc1de13d97D6F4B1",
+          baseAddress: "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -5306,7 +5590,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.9,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0xA9E18Ece44DcCd4E623135098C8B0887C87F6128",
         },
       },
       {
@@ -5322,7 +5606,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.87,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x03c68933f7a3F76875C0bc670a58e69294cDFD01",
+          oracleAddress: "0x375b0dcFE72efBc03937A3FfFc1de13d97D6F4B1",
+          baseAddress: "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7",
+          quoteAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         },
       },
       {
@@ -5332,7 +5618,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.95,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xd1DD0C964B0d137498C630B8b7fEd1F88631FFF3",
+          oracleAddress: "0xA9E18Ece44DcCd4E623135098C8B0887C87F6128",
         },
       },
     ],
@@ -5434,7 +5720,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x62A713039d65D7CBab68A32Bb75407bc0d51a9dB",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0xb347d2e3524D0F9e2321D84A2E9b2e60CbC4A836",
+      oracleAddress: "0x34238129479f1423aBDB16C0d29abf4bd1354D29",
+      baseAddress: "0xA0d69E286B938e21CBf7E51D71F6A4c8918f482F",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0xabF28324f0092eCC5834A9cB2895EBeDBc5AccD0",
     collateral: [
@@ -5445,7 +5733,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xD4dF645c88767275fE1C22709BE415bD7B509199",
+          oracleAddress: "0x9c32824d98DBdBDC1c0C47f849E232DF3c5c66ec",
         },
       },
     ],
@@ -5472,7 +5760,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "ETHPlus",
     underlyingAssetSymbol: "ETH+",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2388.2028856851,
+    underlyingAssetToUnitOfAccountPrice: 2712.12848286138,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -5482,7 +5770,7 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x62A713039d65D7CBab68A32Bb75407bc0d51a9dB",
     underlyingAssetOracle: {
       type: "CrossAdapter",
-      sourceAddress: "0xD4dF645c88767275fE1C22709BE415bD7B509199",
+      oracleAddress: "0x9c32824d98DBdBDC1c0C47f849E232DF3c5c66ec",
     },
     interestRateModelAddress: "0x8d4d17373A3bEA4B490B808fb8f2024b21FA2728",
     collateral: [],
@@ -5511,7 +5799,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Wrapped Ether",
     underlyingAssetSymbol: "WETH",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 2327.27,
+    underlyingAssetToUnitOfAccountPrice: 2647.844511,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -5521,7 +5809,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x62A713039d65D7CBab68A32Bb75407bc0d51a9dB",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+      oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+      baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0x8d4d17373A3bEA4B490B808fb8f2024b21FA2728",
     collateral: [
@@ -5532,7 +5822,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xD4dF645c88767275fE1C22709BE415bD7B509199",
+          oracleAddress: "0x9c32824d98DBdBDC1c0C47f849E232DF3c5c66ec",
         },
       },
     ],
@@ -5559,7 +5849,7 @@ export const allVaultsOffline: Vault[] = [
     underlyingAssetName: "Electronic Dollar",
     underlyingAssetSymbol: "eUSD",
     underlyingAssetDecimals: 18,
-    underlyingAssetToUnitOfAccountPrice: 0.9997356,
+    underlyingAssetToUnitOfAccountPrice: 0.9993466,
     unitOfAccountAddress: "0x0000000000000000000000000000000000000348",
     unitOfAccountSymbol: "USD",
     unitOfAccountIsFiat: true,
@@ -5569,7 +5859,9 @@ export const allVaultsOffline: Vault[] = [
     oracleAddress: "0x62A713039d65D7CBab68A32Bb75407bc0d51a9dB",
     underlyingAssetOracle: {
       type: "ChainlinkOracle",
-      sourceAddress: "0xb347d2e3524D0F9e2321D84A2E9b2e60CbC4A836",
+      oracleAddress: "0x34238129479f1423aBDB16C0d29abf4bd1354D29",
+      baseAddress: "0xA0d69E286B938e21CBf7E51D71F6A4c8918f482F",
+      quoteAddress: "0x0000000000000000000000000000000000000348",
     },
     interestRateModelAddress: "0xabF28324f0092eCC5834A9cB2895EBeDBc5AccD0",
     collateral: [
@@ -5580,7 +5872,7 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "CrossAdapter",
-          sourceAddress: "0xD4dF645c88767275fE1C22709BE415bD7B509199",
+          oracleAddress: "0x9c32824d98DBdBDC1c0C47f849E232DF3c5c66ec",
         },
       },
       {
@@ -5590,7 +5882,9 @@ export const allVaultsOffline: Vault[] = [
         liquidationLoanToValue: 0.86,
         oracle: {
           type: "ChainlinkOracle",
-          sourceAddress: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          oracleAddress: "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D",
+          baseAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          quoteAddress: "0x0000000000000000000000000000000000000348",
         },
       },
     ],

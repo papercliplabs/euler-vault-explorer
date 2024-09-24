@@ -8,7 +8,7 @@ interface CheckBoxProps extends HTMLAttributes<HTMLDivElement> {
 
 export default function CheckBox({ checked, className, ...props }: CheckBoxProps) {
   return (
-    <div className="relative h-[20px] w-[20px] p-[2px]">
+    <div className="relative h-[20px] w-[20px] shrink-0 p-[2px]">
       <div
         className={cn(
           "bg-background-component relative h-full w-full rounded-[4px] border-2",

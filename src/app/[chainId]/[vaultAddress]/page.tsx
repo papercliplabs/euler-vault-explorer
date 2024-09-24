@@ -9,7 +9,7 @@ import { CHAIN_CONFIGS } from "@/config";
 import { getAllVaults } from "@/data/vault/getAllVaults";
 import { getVault } from "@/data/vault/getVault";
 import { VAULT_TYPE_INFO_MAPPING } from "@/utils/constants";
-import { formatNumber, formatVaultName } from "@/utils/format";
+import { formatAddress, formatNumber, formatVaultName } from "@/utils/format";
 import { SupportedChainId, Vault } from "@/utils/types";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -132,6 +132,15 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
                   <ChainIcon chainId={vault.chainId} className="h-5 w-5 shrink-0" />
                   {CHAIN_CONFIGS[vault.chainId].publicClient.chain?.name ?? "UNKNOWN"}
                 </div>
+              }
+            />
+            <Metric
+              title="Vault Address"
+              popoverContent="The address of the vault."
+              primaryValue={
+                <EtherscanLink chainId={vault.chainId} address={vault.address}>
+                  {formatAddress({ address: vault.address })}
+                </EtherscanLink>
               }
             />
             <Metric

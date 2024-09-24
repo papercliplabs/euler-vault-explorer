@@ -110,7 +110,7 @@ export default function TableFilterDrawer({ vaults }: TraitFilterDrawerProps) {
           Clear all
         </FilterClearButton>
       </div>
-      <div className="h-full overflow-y-auto">
+      <div className="h-full overflow-y-auto overflow-x-hidden">
         <Accordion type="multiple" defaultValue={[FILTER_KEY_UNDERLYING_ASSET]} className="h-fit">
           <TableFilterSection
             name="Underlying asset"
@@ -140,11 +140,11 @@ export default function TableFilterDrawer({ vaults }: TraitFilterDrawerProps) {
       </DrawerContent>
     </Drawer>
   ) : (
-    <div className={clsx("sticky top-[136px] h-[calc(100dvh-160px)] shrink-0 overflow-hidden transition-all")}>
+    <div className={clsx("sticky top-[136px] h-[calc(100dvh-160px)] min-w-0 shrink-0 overflow-hidden transition-all")}>
       <div
         className={clsx(
-          "flex max-h-full flex-col overflow-hidden rounded-3xl border transition-all",
-          open ? "left-0 mr-6 w-[292px]" : "-left-full mr-0 w-0 border-0"
+          "flex max-h-full flex-col overflow-hidden rounded-3xl transition-all duration-200",
+          open ? "mr-6 w-[292px] border" : "mr-0 w-0 border-0"
         )}
       >
         {content}

@@ -67,7 +67,7 @@ export async function getAllVaultCores(): Promise<VaultCore[]> {
 
   const promises: Promise<VaultCore[]>[] = [];
   for (const [chainId, record] of Object.entries(allVaultTypesAndAddresses)) {
-    const chainIdCasted = chainId as any as SupportedChainId;
+    const chainIdCasted = Number(chainId) as any as SupportedChainId;
     promises.push(getVaultCoresForChainId(chainIdCasted, record));
   }
 

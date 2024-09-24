@@ -130,7 +130,6 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
         fitViewOptions={{ padding: 0.2 }}
         defaultEdgeOptions={defaultEdgeOptions}
         proOptions={{ hideAttribution: true }}
-        // className="!overflow-visible"
       >
         <Background gap={10} color="rgb(67 89 113 / 0.4)" variant={BackgroundVariant.Dots} size={2} />
 

@@ -1,5 +1,6 @@
 import { Oracle, OracleType } from "@/utils/types";
 import { Address, decodeAbiParameters, Hex, parseAbiParameters, zeroAddress } from "viem";
+import { base } from "viem/chains";
 
 const eulerRouterOracleDecodeAbi = parseAbiParameters([
   "struct OracleDetailedInfo {address oracle; string name; bytes oracleInfo;}",
@@ -49,7 +50,9 @@ export function decodeEulerRouterOracle(info: Hex): Oracle[] {
 
   const oracles: Oracle[] = [];
   for (const resolvedOracleInfo of eulerRouterInfo.resolvedOraclesInfo) {
-    oracles.push(decodeOracleInfo(resolvedOracleInfo.name as OracleType, resolvedOracleInfo.oracleInfo));
+    oracles.push(
+      decodeOracleInfo(resolvedOracleInfo.name as OracleType, resolvedOracleInfo.oracle, resolvedOracleInfo.oracleInfo)
+    );
   }
 
   //   const uniqueOracles = Array.from(new Set(oracles.map((obj) => JSON.stringify(obj)))).map((str) => JSON.parse(str));
@@ -58,62 +61,58 @@ export function decodeEulerRouterOracle(info: Hex): Oracle[] {
 }
 
 // Cross adapters are not followed, and are only classified as cross type (for now)
-export function decodeOracleInfo(type: OracleType, info: Hex): Oracle {
+export function decodeOracleInfo(type: OracleType, oracleAddress: Address, info: Hex): Oracle {
+  const baseOracle = { type, oracleAddress };
+
   switch (type) {
     case "EulerRouter":
       throw Error("FOUND NESTED EULER ROUTER");
     case "ChainlinkOracle":
       const chainlinkOracleInfo = decodeAbiParameters(chainlinkOracleDecodeAbi, info)[0];
       return {
-        type,
-        sourceAddress: chainlinkOracleInfo.feed,
-        //   baseAddress: chainlinkOracleInfo.base,
-        //   quoteAddress: chainlinkOracleInfo.quote,
+        ...baseOracle,
+        baseAddress: chainlinkOracleInfo.base,
+        quoteAddress: chainlinkOracleInfo.quote,
       };
 
     case "ChronicleOracle":
       const chronicleOracleInfo = decodeAbiParameters(chronicleOracleDecodeAbi, info)[0];
       return {
-        type,
-        sourceAddress: chronicleOracleInfo.feed,
-        //   baseAddress: chronicleOracleInfo.base,
-        //   quoteAddress: chronicleOracleInfo.quote,
+        ...baseOracle,
+        baseAddress: chronicleOracleInfo.base,
+        quoteAddress: chronicleOracleInfo.quote,
       };
 
     case "LidoOracle":
     case "LidoFundamentalOracle":
       const lidoOracleInfo = decodeAbiParameters(lidoOracleDecodeAbi, info)[0];
       return {
-        type,
-        sourceAddress: zeroAddress, // TODO: Not provided
-        // baseAddress: lidoOracleInfo.base,
-        // quoteAddress: lidoOracleInfo.quote,
+        ...baseOracle,
+        baseAddress: lidoOracleInfo.base,
+        quoteAddress: lidoOracleInfo.quote,
       };
 
     case "PythOracle":
       const pythOracleInfo = decodeAbiParameters(pythOracleDecodeAbi, info)[0];
       return {
-        type,
-        sourceAddress: pythOracleInfo.pyth,
-        // baseAddress: pythOracleInfo.base,
-        // quoteAddress: pythOracleInfo.quote,
+        ...baseOracle,
+        baseAddress: pythOracleInfo.base,
+        quoteAddress: pythOracleInfo.quote,
       };
 
     case "RedstoneCoreOracle":
       const redstoneOracleInfo = decodeAbiParameters(redstoneOracleDecodeAbi, info)[0];
       return {
-        type,
-        sourceAddress: redstoneOracleInfo.feedId, // TODO: verify this...
-        //   baseAddress: redstoneOracleInfo.base,
-        //   quoteAddress: redstoneOracleInfo.quote,
+        ...baseOracle,
+        baseAddress: redstoneOracleInfo.base,
+        quoteAddress: redstoneOracleInfo.quote,
       };
 
     case "UniswapV3Oracle":
       const uniswapOracleInfo = decodeAbiParameters(uniswapOracleDecodeAbi, info)[0];
       // Add both tokenA and tokenB, one will be the unit of account but thats okay
       return {
-        type,
-        sourceAddress: uniswapOracleInfo.pool,
+        ...baseOracle,
         //   baseAddress: uniswapOracleInfo.tokenA,
         //   quoteAddress: uniswapOracleInfo.tokenB,
       };
@@ -122,8 +121,9 @@ export function decodeOracleInfo(type: OracleType, info: Hex): Oracle {
       // base (asset) -> oracleBaseCross -> cross (asset) -> crossOracle -> quote (asset, unit of account)
       const crossAdapterInfo = decodeAbiParameters(crossAdapterDecodeAbi, info)[0];
       return {
-        type,
-        sourceAddress: crossAdapterInfo.oracleBaseCross,
+        ...baseOracle,
+        // type,
+        // sourceAddress: crossAdapterInfo.oracleBaseCross,
 
         // base: crossAdapterInfo.base,
         // cross: crossAdapterInfo.cross,

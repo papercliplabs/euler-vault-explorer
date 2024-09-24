@@ -23,7 +23,7 @@ export function TableFilterItem({ name, icon, popoverText, checked, ...props }: 
           <PopoverContent>{popoverText}</PopoverContent>
         </Popover>
       ) : (
-        <>{name}</>
+        <span className="truncate">{name}</span>
       )}
     </button>
   );

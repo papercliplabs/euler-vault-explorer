@@ -19,9 +19,9 @@ export type SupportedChainId = 1;
 
 export interface Oracle extends Record<string, any> {
   type: OracleType;
-  sourceAddress: Address; // Contract where price comes from (feed or pool)
-  //   baseAddress: Address;
-  //   quoteAddress: Address;
+  oracleAddress: Address;
+  baseAddress?: Address;
+  quoteAddress?: Address;
 }
 
 export interface Collateral {

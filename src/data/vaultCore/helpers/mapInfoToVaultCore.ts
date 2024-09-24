@@ -49,8 +49,16 @@ export function mapInfoToVaultCore(
     } else {
       console.error("Wrong number of oracles");
     }
+
+    if (vaultInfo.vaultSymbol == "eUSDC-2") {
+      console.log("DEBUG", oracles);
+    }
   } else {
-    underlyingAssetOracle = decodeOracleInfo(vaultInfo.oracleInfo.name as OracleType, vaultInfo.oracleInfo.oracleInfo);
+    underlyingAssetOracle = decodeOracleInfo(
+      vaultInfo.oracleInfo.name as OracleType,
+      vaultInfo.oracleInfo.oracle,
+      vaultInfo.oracleInfo.oracleInfo
+    )?.[0];
   }
 
   const totalSupplied = Number(formatUnits(vaultInfo.totalAssets, Number(vaultInfo.assetDecimals)));

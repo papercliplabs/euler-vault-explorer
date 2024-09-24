@@ -25,7 +25,7 @@ export default async function Home() {
           <TableFilterCountWrapper />
         </Suspense>
       </div>
-      <div className="flex">
+      <div className="flex transition-all">
         <Suspense fallback={<TableLoading />}>
           <VaultTableWrapper />
         </Suspense>

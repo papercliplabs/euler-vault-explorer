@@ -14,6 +14,7 @@ import TooltipPopover from "../ui/tooltipPopover";
 import EtherscanLink from "../EtherscanLink";
 import { zeroAddress } from "viem";
 import { ORACLE_TYPE_INFO_MAPPING } from "@/utils/constants";
+import ExternalLink from "../ExternalLink";
 
 export type CollateralEdgeType = Edge<
   {
@@ -62,7 +63,13 @@ export default function CollateralEdge({
         className={clsx(
           selected ? "!stroke-semantic-accent" : hovered ? "stroke-semantic-accent/50" : "stroke-foreground-muted"
         )}
-        style={{ strokeWidth: "2px", strokeDasharray: 5, animation: "dashdraw 0.6s linear infinite" }}
+        style={{
+          strokeWidth: "2px",
+          strokeLinecap: "round",
+          strokeDasharray: "3 5",
+          strokeDashoffset: 2,
+          animation: "dashdraw 0.6s linear infinite",
+        }}
       />
       <EdgeLabelRenderer>
         <div
@@ -89,7 +96,7 @@ export default function CollateralEdge({
                   : "border-border-strong hover:border-semantic-accent/50"
             )}
           >
-            <OracleTypeIcon type={collateral?.oracle?.type ?? "CrossAdapter"} className="h-full w-full" />
+            <OracleTypeIcon type={collateral.oracle?.type ?? "CrossAdapter"} className="h-full w-full" />
           </div>
         </div>
       </EdgeLabelRenderer>
@@ -134,12 +141,16 @@ function CollateralPopover({
     {
       title: "Oracle",
       value: (
-        <EtherscanLink chainId={collateral.chainId} address={collateral.oracle?.sourceAddress ?? zeroAddress}>
-          <OracleTypeIcon type={collateral.oracle?.type ?? "CrossAdapter"} className="h-[20px] w-[20px]" />
-          <span className="text-semantic-accent">
-            {ORACLE_TYPE_INFO_MAPPING[collateral.oracle?.type ?? "CrossAdapter"].name}
-          </span>
-        </EtherscanLink>
+        <>
+          {collateral.oracle ? (
+            <ExternalLink href={`https://oracles.euler.finance/adapter/${collateral.oracle.oracleAddress}`}>
+              <OracleTypeIcon type={collateral.oracle.type} className="h-[20px] w-[20px]" />
+              <span className="text-semantic-accent">{ORACLE_TYPE_INFO_MAPPING[collateral.oracle.type].name}</span>
+            </ExternalLink>
+          ) : (
+            "unknown"
+          )}
+        </>
       ),
       description: "The oracle used by the parent vault to price the collateral vault in its unit of account.",
     },
