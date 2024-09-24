@@ -49,10 +49,6 @@ export function mapInfoToVaultCore(
     } else {
       console.error("Wrong number of oracles");
     }
-
-    if (vaultInfo.vaultSymbol == "eUSDC-2") {
-      console.log("DEBUG", oracles);
-    }
   } else {
     underlyingAssetOracle = decodeOracleInfo(
       vaultInfo.oracleInfo.name as OracleType,
@@ -97,8 +93,7 @@ export function mapInfoToVaultCore(
 
     debtTokenAddress: vaultInfo.dToken,
 
-    governor: vaultInfo.governorAdmin,
-    // upgradable: vaultInfo.,
+    governor: isAddressEqual(vaultInfo.governorAdmin, zeroAddress) ? undefined : vaultInfo.governorAdmin,
 
     oracleAddress: vaultInfo.oracle,
     underlyingAssetOracle,

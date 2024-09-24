@@ -131,7 +131,7 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
         defaultEdgeOptions={defaultEdgeOptions}
         proOptions={{ hideAttribution: true }}
       >
-        <Background gap={10} color="rgb(67 89 113 / 0.4)" variant={BackgroundVariant.Dots} size={2} />
+        <Background gap={20} color="rgb(67 89 113 / 0.4)" variant={BackgroundVariant.Dots} size={2} />
 
         <GraphTypeSelector
           graphType={graphType}
