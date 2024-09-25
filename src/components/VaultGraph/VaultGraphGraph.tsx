@@ -101,7 +101,7 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
 
       // Fit view after nodes change if requested
       if (shouldFitView) {
-        fitView({ padding: 0.2 });
+        fitView({ padding: 0.25 });
         setShouldFitView(false);
       }
     },

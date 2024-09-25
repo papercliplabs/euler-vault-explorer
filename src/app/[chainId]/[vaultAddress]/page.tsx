@@ -108,14 +108,7 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
         )}
       </div>
       <div className="flex flex-col gap-4 pt-4">
-        <div className="flex flex-col gap-2">
-          <h4>Vault Collateral Relationship</h4>
-          <span className="text-foreground-muted max-w-[776px]">
-            This graph illustrates the collateral relationships between credit vaults. While rehypothecation boosts
-            capital efficiency, it also introduces additional risk. Our goal is to provide transparency, helping users
-            better assess collateral risk.
-          </span>
-        </div>
+        <h4>Vault Collateral Relationship</h4>
         <Suspense fallback={<Skeleton className="h-[700px] max-h-[calc(100svh-90px)] w-full rounded-[24px] border" />}>
           <VaultGraphWrapper vault={vault} />
         </Suspense>

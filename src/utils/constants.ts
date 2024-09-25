@@ -18,31 +18,31 @@ export const VAULT_TYPE_INFO_MAPPING: Record<VaultType, { name: string; shortNam
     name: "Escrow",
     shortName: "Escrow",
     description:
-      "Escrow vaults hold deposits that can be used as collateral for taking out loans from other vaults, but do not earn their depositors interest because they do not allow borrowing. They are ungoverned.",
+      "Hold deposits that can be used as collateral for loans from other vaults. They don't earn interest or allow borrowing for depositors. These vaults ungoverned.",
   },
   governed: {
     name: "Governed",
     shortName: "Governed",
     description:
-      "Governed vaults hold deposits that can both be used as collateral and borrowed, earning depositors additional yield. A DAO, risk manager, or individual manages these vaults, controlling risk, interest rates, loan-to-value, and other risk parameters. They are suited for passive lenders who trust the governor's management.",
+      "Allow deposits to be used as collateral and borrowed, earning additional yield. A manager, such as a DAO or individual, controls the vault's parameters. Suited for passive lenders who trust the governor's management.",
   },
   "ungoverned-0x": {
     name: "Ungoverned",
     shortName: "Ungoverned",
     description:
-      "Ungoverned vaults hold deposits that can both be used as collateral and borrowed, earning depositors additional yield. These vaults have fixed parameters with no active governor to manage risk. They are suited for more active lenders who prefer to manage their own risk.",
+      "Allow deposits to be used as collateral and borrowed, earning additional yield. These vaults have fixed parameters with no active governor to manage risk. Suited for more active lenders who prefer to manage their own risk.",
   },
   "ungoverned-nzx": {
     name: "Ungoverned",
     shortName: "Ungoverned",
     description:
-      "Ungoverned vaults hold deposits that can both be used as collateral and borrowed, earning depositors additional yield. These vaults have fixed parameters with no active governor to manage risk. They are suited for more active lenders who prefer to manage their own risk.",
+      "Allow deposits to be used as collateral and borrowed, earning additional yield. These vaults have fixed parameters with no active governor to manage risk. Suited for more active lenders who prefer to manage their own risk.",
   },
   factory: {
     name: "Unverified",
     shortName: "Unverified",
     description:
-      "Unverified vaults have no distinguishing characteristics except that they were deployed using the main Euler Vault Kit (EVK) factory smart contract. This offers minimal guarantees about their functionality. This class of vaults is intended for advanced users only.",
+      "Vaults with no distinguishing characteristics except they are created using the Euler Vault Kit (EVK) smart contract. They offer minimal guarantees about how they work. They are intended for advanced users only.",
   },
 };
 
