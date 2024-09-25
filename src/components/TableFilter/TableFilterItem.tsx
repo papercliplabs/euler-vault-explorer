@@ -14,7 +14,10 @@ interface TableFilterItemProps extends TableFilterItemBase, HTMLAttributes<HTMLB
 
 export function TableFilterItem({ name, icon, popoverText, checked, ...props }: TableFilterItemProps) {
   return (
-    <button className="hover:bg-background-component flex items-center gap-2 px-2 py-1 text-start" {...props}>
+    <button
+      className="hover:bg-background-component flex items-center gap-2 rounded-[4px] px-2 py-1 text-start"
+      {...props}
+    >
       <CheckBox checked={checked} />
       {icon && icon}
       {popoverText ? (

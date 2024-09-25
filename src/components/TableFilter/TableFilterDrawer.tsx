@@ -120,7 +120,7 @@ export default function TableFilterDrawer({ vaults }: TraitFilterDrawerProps) {
           <TableFilterSection name="Collateral" filterKey={FILTER_KEY_COLLATERAL} items={collateralItems} />
           <TableFilterSection name="Vault type" filterKey={FILTER_KEY_VAULT_TYPE} items={vaultTypeFilterItems} />
           <TableFilterSection name="Governing entity" filterKey={FILTER_KEY_ENTITY} items={entityItems} />
-          <TableFilterSection name="Chain" filterKey={FILTER_KEY_CHAIN} items={chainFilterItems} />
+          {/* <TableFilterSection name="Chain" filterKey={FILTER_KEY_CHAIN} items={chainFilterItems} /> */}
         </Accordion>
       </div>
     </>

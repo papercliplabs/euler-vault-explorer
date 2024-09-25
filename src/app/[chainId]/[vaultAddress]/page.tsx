@@ -115,12 +115,10 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
             capital efficiency, it also introduces additional risk. Our goal is to provide transparency, helping users
             better assess collateral risk.
           </span>
-          <Suspense
-            fallback={<Skeleton className="h-[700px] max-h-[calc(100svh-90px)] w-full rounded-[24px] border" />}
-          >
-            <VaultGraphWrapper vault={vault} />
-          </Suspense>
         </div>
+        <Suspense fallback={<Skeleton className="h-[700px] max-h-[calc(100svh-90px)] w-full rounded-[24px] border" />}>
+          <VaultGraphWrapper vault={vault} />
+        </Suspense>
         <div className="bg-background-component flex flex-col gap-6 rounded-[24px] p-6">
           <h4>Vault Configuration</h4>
           <div className="flex grow auto-rows-min grid-cols-[repeat(auto-fill,minmax(164px,1fr))] flex-wrap items-stretch justify-stretch gap-6 md:grid md:gap-12">

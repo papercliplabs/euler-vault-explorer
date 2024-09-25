@@ -8,10 +8,7 @@ import { useMemo } from "react";
 import { useIsFilterDrawerOpen } from "@/hooks/useIsFilterDrawerOpen";
 
 export default function TableFilterToggle() {
-  const {
-    values: [vals],
-    addShallowSearchParams,
-  } = useShallowSearchParams({ keys: ALL_TABLE_FILTER_KEYS });
+  const { values: vals, addShallowSearchParams } = useShallowSearchParams({ keys: ALL_TABLE_FILTER_KEYS });
 
   const open = useIsFilterDrawerOpen();
 
