@@ -31,8 +31,8 @@ export const CHAIN_CONFIGS: Record<SupportedChainId, ChainConfig> = {
       wrappedNativeAsset: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       perspectives: {
         escrowedCollateral: "0xc68CB3658ACf1d49547Fa8605dc158D876cD5828",
-        "ungoverned-0x": "0x5345562eD3Ce537582A1A568d3B06c8382Cd60BD",
-        "ungoverned-nzx": "0x2206c3341582daAF007BA4569321c8Dd39f0710b",
+        "ungoverned-0x": "0x000D8AA9E414b9E7E7591A456CA910Fb3bb05875",
+        "ungoverned-nzx": "0x7695A341E1e51CbE2dDF1FEE5FD89f4D7617351c",
         governed: "0xC0121817FF224a018840e4D15a864747d36e6Eb2",
         factory: "0xB30f23bc5F93F097B3A699f71B0b1718Fc82e182",
       },

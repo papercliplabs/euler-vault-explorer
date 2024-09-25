@@ -16,7 +16,7 @@ import { ChainIcon, TokenIcon, VaultTypeIcon } from "../Icons";
 import { TableFilterItemBase } from "./TableFilterItem";
 import FilterClearButton from "../FilterClearButton";
 import { useShallowSearchParams } from "@/hooks/useShallowSearchParams";
-import { Vault } from "@/utils/types";
+import { Vault, VaultType } from "@/utils/types";
 import { useMemo } from "react";
 import { CHAIN_CONFIGS } from "@/config";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
@@ -30,7 +30,9 @@ interface TraitFilterDrawerProps {
   vaults: Vault[];
 }
 
-const vaultTypeFilterItems: (TableFilterItemBase & { value: string })[] = VAULT_TYPE_MATCH_ORDER.map((type) => ({
+const VAULT_TYPE_FILTERS: VaultType[] = ["escrowedCollateral", "governed", "ungoverned-0x", "factory"];
+
+const vaultTypeFilterItems: (TableFilterItemBase & { value: string })[] = VAULT_TYPE_FILTERS.map((type) => ({
   value: type,
   name: VAULT_TYPE_INFO_MAPPING[type].name,
   icon: <VaultTypeIcon type={type} className="h-6 w-6" />,

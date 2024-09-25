@@ -9,13 +9,18 @@ export default function TableFilterSearch() {
   const {
     values: [searchVals],
     addShallowSearchParams,
+    removeShallowSearchParams,
   } = useShallowSearchParams({ keys: [FILTER_KEY_SEARCH] });
 
   const [searchValLocal, setSearchValLocal] = useState<string>(searchVals[0] ?? "");
   const [debouncedValue] = useDebounceValue(searchValLocal, 300);
 
   useEffect(() => {
-    addShallowSearchParams([{ key: FILTER_KEY_SEARCH, value: debouncedValue }]);
+    if (debouncedValue == "") {
+      removeShallowSearchParams([FILTER_KEY_SEARCH]);
+    } else {
+      addShallowSearchParams([{ key: FILTER_KEY_SEARCH, value: debouncedValue }]);
+    }
   }, [debouncedValue, addShallowSearchParams]);
 
   return (

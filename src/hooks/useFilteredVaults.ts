@@ -41,7 +41,8 @@ export function useFilteredVaults({ allVaults }: UseFilteredVaultsParams): Vault
       const collateralMatch =
         collateralValues.length === 0 || collateralKeys.some((key) => collateralValues.includes(key));
 
-      const vaultTypeMatch = vaultTypeValues.length === 0 || vaultTypeValues.includes(vault.type);
+      const vaultType = vault.type == "ungoverned-nzx" ? "ungoverned-0x" : vault.type; // Treat both ungoverned as the same for filters
+      const vaultTypeMatch = vaultTypeValues.length === 0 || vaultTypeValues.includes(vaultType);
       const chainMatch = chainValues.length === 0 || chainValues.includes(vault.chainId.toString());
       const entityMatch =
         entityValues.length === 0 || entityValues.includes(vault.offchainLabel?.entityName ?? "NO_ENTITY");
