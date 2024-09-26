@@ -13,12 +13,14 @@ export type OracleType =
   | "PythOracle"
   | "RedstoneCoreOracle"
   | "UniswapV3Oracle"
-  | "CrossAdapter";
+  | "CrossAdapter"
+  | "RateProviderOracle"
+  | "FixedRateOracle";
 
 export type SupportedChainId = 1;
 
 export interface Oracle extends Record<string, any> {
-  type: OracleType;
+  type: OracleType | string;
   oracleAddress: Address;
   baseAddress?: Address;
   quoteAddress?: Address;

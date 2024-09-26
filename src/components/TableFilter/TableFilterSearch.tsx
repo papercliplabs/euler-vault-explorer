@@ -21,7 +21,7 @@ export default function TableFilterSearch() {
     } else {
       addShallowSearchParams([{ key: FILTER_KEY_SEARCH, value: debouncedValue }]);
     }
-  }, [debouncedValue, addShallowSearchParams]);
+  }, [debouncedValue, addShallowSearchParams, removeShallowSearchParams]);
 
   return (
     <Input

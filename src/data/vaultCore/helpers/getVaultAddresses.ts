@@ -53,6 +53,17 @@ export async function getAllVaultTypesAndAddresses(): Promise<Record<SupportedCh
     return { chainId: config.chainId, addresses: await getVaultTypesAndAddresses(config.chainId) };
   });
 
+  // TODO: for debugging only
+  // return {
+  //   1: {
+  //     escrowedCollateral: [],
+  //     governed: ["0xE3ea69f8661FFac04E269f99C14ba73e2Bb10633", "0xe2D6A2a16ff6d3bbc4C90736A7e6F7Cc3C9B8fa9"],
+  //     "ungoverned-0x": [],
+  //     "ungoverned-nzx": [],
+  //     factory: [],
+  //   },
+  // };
+
   const resolvedAddresses = await Promise.all(promises);
 
   return resolvedAddresses.reduce(

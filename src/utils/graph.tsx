@@ -85,13 +85,7 @@ export function constructCollateralExposureGraph(
           nodes.push({
             id: key,
             type: "vault",
-            position: {
-              x: 0,
-              y: 0,
-              // x: (Math.random() - 0.5) * 5000,
-              // y: 400 * (layer + 1),
-              // y: nextVault.type == "escrowedCollateral" ? 1000 : 400 * (layer + 1),
-            }, // layout position elsewhere
+            position: { x: 0, y: 0 }, // layout position elsewhere
             data: { vault: nextVault, isRoot: false },
           });
         }
@@ -149,10 +143,7 @@ export function constructRehypothecationGraph(
           nodes.push({
             id: vaultKey,
             type: "vault",
-            position: {
-              x: 0,
-              y: 0,
-            }, // layout position elsewhere
+            position: { x: 0, y: 0 }, // layout position elsewhere
             data: { vault, isRoot: false },
           });
 

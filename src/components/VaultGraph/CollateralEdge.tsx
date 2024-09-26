@@ -1,7 +1,7 @@
 "use client";
 import { ReactNode, useState } from "react";
 import { Edge, EdgeProps, BaseEdge, EdgeLabelRenderer, useViewport } from "@xyflow/react";
-import { Collateral, Vault } from "@/utils/types";
+import { Collateral, OracleType, Vault } from "@/utils/types";
 import { ArrowRight, OracleTypeIcon } from "../Icons";
 import clsx from "clsx";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
@@ -143,9 +143,14 @@ function CollateralPopover({
       value: (
         <>
           {collateral.oracle ? (
-            <ExternalLink href={`https://oracles.euler.finance/adapter/${collateral.oracle.oracleAddress}`}>
-              <OracleTypeIcon type={collateral.oracle.type} className="h-[20px] w-[20px]" />
-              <span className="text-semantic-accent">{ORACLE_TYPE_INFO_MAPPING[collateral.oracle.type].name}</span>
+            <ExternalLink
+              href={`https://oracles.euler.finance/adapter/${collateral.oracle.oracleAddress}`}
+              className="flex min-w-0 pl-1"
+            >
+              <OracleTypeIcon type={collateral.oracle.type} className="h-[20px] w-[20px] shrink-0" />
+              <span className="text-semantic-accent truncate">
+                {ORACLE_TYPE_INFO_MAPPING[collateral.oracle.type as OracleType]?.name ?? collateral.oracle.type}
+              </span>
             </ExternalLink>
           ) : (
             "unknown"
@@ -187,9 +192,9 @@ function CollateralPopover({
       </div>
       <div className="px-3 py-2">
         {items.map((item, i) => (
-          <div className="flex justify-between py-1" key={i}>
+          <div className="flex min-w-0 justify-between overflow-hidden py-1" key={i}>
             <TooltipPopover trigger={item.title}>{item.description}</TooltipPopover>
-            <div className="text-foreground-subtle">{item.value}</div>
+            <div className="text-foreground-subtle flex min-w-0 overflow-hidden">{item.value}</div>
           </div>
         ))}
       </div>

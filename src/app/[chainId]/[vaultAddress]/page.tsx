@@ -1,8 +1,9 @@
 import EtherscanLink from "@/components/EtherscanLink";
-import { ArrowLeft, ChainIcon, VaultTypeIcon } from "@/components/Icons";
+import { ArrowLeft, ChainIcon, Question, VaultTypeIcon } from "@/components/Icons";
 import { VaultIcon } from "@/components/Icons/special/VaultIcon";
 import Metric from "@/components/Metric";
 import { Skeleton } from "@/components/ui/skeleton";
+import TooltipPopover from "@/components/ui/tooltipPopover";
 import VaultGraph from "@/components/VaultGraph";
 import VaultTypeDescriptor from "@/components/VaultTypeDescriptor";
 import { CHAIN_CONFIGS } from "@/config";
@@ -108,7 +109,9 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
         )}
       </div>
       <div className="flex flex-col gap-4 pt-4">
-        <h4>Vault Collateral Relationship</h4>
+        <span className="text-foreground-muted">
+          This graph illustrates the collateral relationship between credit vaults.
+        </span>
         <Suspense fallback={<Skeleton className="h-[700px] max-h-[calc(100svh-90px)] w-full rounded-[24px] border" />}>
           <VaultGraphWrapper vault={vault} />
         </Suspense>

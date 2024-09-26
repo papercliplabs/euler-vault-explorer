@@ -61,7 +61,7 @@ export function decodeEulerRouterOracle(info: Hex): Oracle[] {
 }
 
 // Cross adapters are not followed, and are only classified as cross type (for now)
-export function decodeOracleInfo(type: OracleType, oracleAddress: Address, info: Hex): Oracle {
+export function decodeOracleInfo(type: OracleType | string, oracleAddress: Address, info: Hex): Oracle {
   const baseOracle = { type, oracleAddress };
 
   switch (type) {
@@ -146,5 +146,8 @@ export function decodeOracleInfo(type: OracleType, oracleAddress: Address, info:
     //       crossAdapterInfo.oracleCrossQuoteInfo.oracleInfo
     //     )
     //   );
+
+    default:
+      return baseOracle;
   }
 }
