@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import { Edge, EdgeProps, BaseEdge, EdgeLabelRenderer, useViewport, useNodes } from "@xyflow/react";
 import { Collateral, OracleType, Vault } from "@/utils/types";
 import { ArrowRight, OracleTypeIcon } from "../Icons";
@@ -14,6 +14,8 @@ import TooltipPopover from "../ui/tooltipPopover";
 import { ORACLE_TYPE_INFO_MAPPING } from "@/utils/constants";
 import ExternalLink from "../ExternalLink";
 import { VaultNodeType } from "./VaultNode";
+import { useGraphSelected } from "@/hooks/useGraphSelected";
+import { isAddressEqual, zeroAddress } from "viem";
 
 export type CollateralEdgeType = Edge<
   {
@@ -37,10 +39,33 @@ export default function CollateralEdge({
 }: EdgeProps<CollateralEdgeType>) {
   const nodes = useNodes<VaultNodeType>();
   const [hovered, setHovered] = useState<boolean>(false);
+  const { selected: selectedGraphItem } = useGraphSelected();
 
-  const collateral = data?.collateral;
-  const vault = data?.vault;
-  const collateralVault = data?.collateralVault;
+  const [collateral, vault, collateralVault] = useMemo(() => {
+    return [data?.collateral, data?.vault, data?.collateralVault];
+  }, [data]);
+
+  const visibilityState: "selected" | "fade" | "normal" = useMemo(() => {
+    if (selected) {
+      return "selected";
+    } else if (!selectedGraphItem) {
+      return "normal";
+    } else {
+      let connectedToSelected = false;
+
+      // Check if the edge is connected to the selected node
+      if (selectedGraphItem.type == "node") {
+        if (
+          isAddressEqual(selectedGraphItem.node.data.vault.address, vault?.address ?? zeroAddress) ||
+          isAddressEqual(selectedGraphItem.node.data.vault.address, collateralVault?.address ?? zeroAddress)
+        ) {
+          connectedToSelected = true;
+        }
+      }
+
+      return connectedToSelected ? "selected" : "fade";
+    }
+  }, [selected, selectedGraphItem, vault?.address, collateralVault?.address]);
 
   if (!collateral || !vault || !collateralVault) {
     return null;
@@ -63,7 +88,12 @@ export default function CollateralEdge({
         id={id}
         path={edgePath}
         className={clsx(
-          selected ? "!stroke-semantic-accent" : hovered ? "stroke-semantic-accent/50" : "stroke-foreground-muted"
+          visibilityState == "selected"
+            ? "!stroke-semantic-accent"
+            : hovered
+              ? "stroke-semantic-accent/50"
+              : "stroke-foreground-muted",
+          visibilityState == "fade" ? "opacity-30" : "opacity-100"
         )}
         style={{
           strokeWidth: "2px",
@@ -79,7 +109,10 @@ export default function CollateralEdge({
             transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px)`,
             pointerEvents: "all",
           }}
-          className="nopan nodrag absolute flex h-[32px] w-[32px] items-center justify-center rounded-full"
+          className={clsx(
+            "nopan nodrag absolute flex h-[32px] w-[32px] cursor-pointer items-center justify-center rounded-full",
+            visibilityState == "fade" ? "opacity-30" : "opacity-100"
+          )}
         >
           <div className="absolute left-0 right-0 top-0">
             <CircularProgressbar

@@ -1,6 +1,6 @@
 "use client";
-import { ReactNode } from "react";
-import { Handle, Position, NodeProps, Node, NodeToolbar } from "@xyflow/react";
+import { ReactNode, useMemo } from "react";
+import { Handle, Position, NodeProps, Node, NodeToolbar, useNodes, useEdges } from "@xyflow/react";
 import { Vault } from "@/utils/types";
 import { VaultTypeIcon } from "../Icons";
 import { VAULT_TYPE_INFO_MAPPING } from "@/utils/constants";
@@ -14,6 +14,8 @@ import { VaultIcon } from "../Icons/special/VaultIcon";
 import ExternalLink from "../ExternalLink";
 import TooltipPopover from "../ui/tooltipPopover";
 import VaultTypeDescriptor from "../VaultTypeDescriptor";
+import { useGraphSelected } from "@/hooks/useGraphSelected";
+import { CollateralEdgeType } from "./CollateralEdge";
 
 export type VaultNodeType = Node<
   {
@@ -23,12 +25,48 @@ export type VaultNodeType = Node<
   "vault"
 >;
 
-export default function VaultNode({ data: { vault, isRoot }, selected }: NodeProps<VaultNodeType>) {
+export default function VaultNode({ id, data: { vault, isRoot }, selected }: NodeProps<VaultNodeType>) {
+  const { selected: selectedGraphItem } = useGraphSelected();
+
+  const edges = useEdges<CollateralEdgeType>();
+
+  const visibilityState: "selected" | "fade" | "normal" = useMemo(() => {
+    if (selected) {
+      return "selected";
+    } else if (!selectedGraphItem) {
+      return "normal";
+    } else {
+      let connectedToSelected = false;
+
+      // Check if the node is connected to the selected node
+      if (selectedGraphItem.type == "node") {
+        for (const edge of edges) {
+          if (edge.source == id && edge.target == selectedGraphItem.node.id) {
+            connectedToSelected = true;
+          }
+          if (edge.target == id && edge.source == selectedGraphItem.node.id) {
+            connectedToSelected = true;
+          }
+        }
+      }
+
+      // Check if the node is connected to the selected edge
+      if (selectedGraphItem.type == "edge") {
+        if (selectedGraphItem.edge.source == id || selectedGraphItem.edge.target == id) {
+          connectedToSelected = true;
+        }
+      }
+
+      return connectedToSelected ? "normal" : "fade";
+    }
+  }, [id, selected, selectedGraphItem, edges]);
+
   return (
     <div
       className={clsx(
-        "bg-euler-700/20 border-border-strong flex h-[48px] items-center gap-2 rounded-full border p-1 pr-4 shadow-md backdrop-blur-sm",
-        selected ? "border-semantic-accent" : "hover:border-semantic-accent/50"
+        "bg-euler-700/20 border-border-strong flex h-[48px] cursor-pointer items-center gap-2 rounded-full border p-1 pr-4 shadow-md backdrop-blur-sm transition-all",
+        visibilityState == "selected" ? "border-semantic-accent" : "hover:border-semantic-accent/50",
+        visibilityState == "fade" ? "opacity-30" : "opacity-100"
       )}
     >
       <Handle type="source" position={Position.Top} className="border-none bg-transparent" />
