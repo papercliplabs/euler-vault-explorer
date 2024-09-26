@@ -36,6 +36,12 @@ export interface Collateral {
   oracle?: Oracle;
 }
 
+export interface SupplyRewards {
+  tokenSymbol: string;
+  tokenImgSrc: string;
+  apy: number;
+}
+
 // Offchain label
 export interface OffchainVaultLabel {
   name: string;
@@ -50,6 +56,7 @@ export interface VaultCore {
   chainId: SupportedChainId;
   type: VaultType;
   address: Address;
+  vaultDecimals: number;
 
   name: string;
   symbol: string;
@@ -102,4 +109,6 @@ export interface Vault extends VaultCore {
 
   totalSuppliedUsd?: number;
   totalBorrowedUsd?: number;
+
+  supplyRewards: SupplyRewards[];
 }

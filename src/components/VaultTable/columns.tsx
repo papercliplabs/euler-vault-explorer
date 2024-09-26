@@ -5,6 +5,9 @@ import { formatNumber, formatVaultName } from "@/utils/format";
 import { VAULT_TYPE_INFO_MAPPING } from "@/utils/constants";
 import clsx from "clsx";
 import { VaultIcon } from "../Icons/special/VaultIcon";
+import Stars from "../Icons/core/Stars";
+import TooltipPopover from "../ui/tooltipPopover";
+import SupplyApyTooltipPopover from "../SupplyApyTooltipPopover";
 
 const SMALL_NON_ZERO_VAL = 0.001;
 
@@ -59,7 +62,22 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
   {
     accessorKey: "supplyApy",
     header: "Supply APY",
-    accessorFn: (vault) => formatNumber({ input: vault.supplyApy, unit: "%" }),
+    cell: ({ row }) => {
+      const vault = row.original;
+      const hasRewards = vault.supplyRewards.length > 0;
+      const netSupplyApy = vault.supplyApy + vault.supplyRewards.reduce((acc, reward) => acc + reward.apy, 0);
+      return hasRewards ? (
+        <SupplyApyTooltipPopover supplyApy={vault.supplyApy} rewards={vault.supplyRewards} />
+      ) : (
+        <div>{formatNumber({ input: netSupplyApy, unit: "%" })}</div>
+      );
+    },
+    sortingFn: (a, b) => {
+      const aVal = a.original.supplyApy + a.original.supplyRewards.reduce((acc, reward) => acc + reward.apy, 0);
+      const bVal = b.original.supplyApy + b.original.supplyRewards.reduce((acc, reward) => acc + reward.apy, 0);
+
+      return aVal > bVal ? 1 : -1;
+    },
     minSize: 140,
   },
   {

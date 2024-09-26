@@ -7,6 +7,8 @@ import { isPointWithinBox } from "./graph";
 const OVERLAP_OFFSET = 100;
 const COLLISION_BUFFER = 40;
 const COLLISION_OFFSET = 200;
+const ORIGIN_X = 0;
+const ORIGIN_Y = 0;
 
 export type GetBezierPathParams = {
   sourceX: number;
@@ -158,8 +160,8 @@ export function getCustomBezierPath({
       collision ||
       isPointWithinBox({
         box: {
-          x: node.position.x - width * 0.5 - COLLISION_BUFFER / 2, // Use 0.5 for originX
-          y: node.position.y - height * 0.5 - COLLISION_BUFFER / 2, // Use 0.5 for originY
+          x: node.position.x - width * ORIGIN_X - COLLISION_BUFFER / 2,
+          y: node.position.y - height * ORIGIN_Y - COLLISION_BUFFER / 2,
           width: (node.measured?.width ?? 0) + COLLISION_BUFFER,
           height: (node.measured?.height ?? 0) + COLLISION_BUFFER,
         },

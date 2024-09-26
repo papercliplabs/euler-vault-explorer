@@ -1,6 +1,8 @@
 "use server";
 import { Vault, VaultCore } from "@/utils/types";
 import { getOffchainVaultLabel } from "../../vaultOffchainLabel/getOffchainVaultLabel";
+import { getRewards } from "@/data/rewards/getRewards";
+import { formatUnits } from "viem";
 
 export async function getVaultForVaultCore(
   vaultCore: VaultCore,
@@ -12,7 +14,10 @@ export async function getVaultForVaultCore(
     return null;
   }
 
-  const offchainLabel = await getOffchainVaultLabel(vaultCore.chainId, vaultCore.address);
+  const [offchainLabel, rewards] = await Promise.all([
+    getOffchainVaultLabel(vaultCore.chainId, vaultCore.address),
+    getRewards(vaultCore.chainId, vaultCore.address),
+  ]);
 
   let totalSuppliedUsd = undefined;
   let totalBorrowedUsd = undefined;
@@ -21,7 +26,7 @@ export async function getVaultForVaultCore(
     totalSuppliedUsd = vaultCore.totalSupplied * underlyingAssetPrice;
     totalBorrowedUsd = vaultCore.totalBorrowed * underlyingAssetPrice;
   } else if (vaultCore.underlyingAssetToUnitOfAccountPrice != undefined && unitOfAccountPrice != null) {
-    // Go though unit of accoun
+    // Go though unit of account
     const totalSupplyInUnitOfAccount = vaultCore.totalSupplied * vaultCore.underlyingAssetToUnitOfAccountPrice;
     const totalBorrowedInUnitOfAccount = vaultCore.totalBorrowed * vaultCore.underlyingAssetToUnitOfAccountPrice;
 
@@ -36,6 +41,21 @@ export async function getVaultForVaultCore(
     }
   }
 
+  const supplyRewards = [];
+  if (rewards != null && underlyingAssetPrice != null) {
+    const shareExchangeRate = vaultCore.totalSupplied / vaultCore.shares;
+    const eTokenPrice = underlyingAssetPrice / shareExchangeRate;
+    for (const reward of rewards) {
+      supplyRewards.push({
+        tokenSymbol: reward.tokenSymbol,
+        tokenImgSrc: reward.tokenImgSrc,
+        apy:
+          reward.rewardsPerYearUsd /
+          (Number(formatUnits(BigInt(reward.totalEligibleEtokens), vaultCore.vaultDecimals)) * eTokenPrice),
+      });
+    }
+  }
+
   return {
     ...vaultCore,
     offchainLabel,
@@ -44,5 +64,7 @@ export async function getVaultForVaultCore(
 
     totalSuppliedUsd,
     totalBorrowedUsd,
+
+    supplyRewards,
   };
 }

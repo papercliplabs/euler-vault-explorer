@@ -1,4 +1,3 @@
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import TooltipPopover from "./ui/tooltipPopover";
 import { ReactNode } from "react";
 

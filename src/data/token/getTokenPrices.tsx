@@ -5,26 +5,27 @@ import { getRedstoneTokenPriceDatas } from "./redstore/getRedstoneTokenPrice";
 export async function getTokenPrices(symbols: string[]): Promise<(number | null)[]> {
   const [coinGeckoData, redstoneData] = await Promise.all([
     getCoinGeckoTokenInfos(symbols),
-    getRedstoneTokenPriceDatas(symbols.map((symbol) => (symbol == "WETH" ? "ETH" : symbol))),
+    getRedstoneTokenPriceDatas(symbols.map((symbol) => (symbol.toLowerCase() == "weth" ? "eth" : symbol))),
   ]);
 
   let prices: (number | null)[] = [];
 
   for (const symbol of symbols) {
-    if (symbol == "USD") {
+    const symbolLowerCase = symbol.toLowerCase();
+    if (symbolLowerCase == "usd") {
       prices.push(1);
       continue;
     }
 
-    const redstone = redstoneData?.[symbol == "WETH" ? "ETH" : symbol];
-    const coinGecko = coinGeckoData[symbol == "ETH" ? "WETH" : symbol];
+    const redstone = redstoneData?.[symbolLowerCase == "weth" ? "eth" : symbolLowerCase];
+    const coinGecko = coinGeckoData[symbolLowerCase == "eth" ? "weth" : symbolLowerCase];
 
     if (redstone) {
       prices.push(redstone.value);
     } else if (coinGecko && coinGecko.priceUsd) {
       prices.push(coinGecko.priceUsd);
     } else {
-      console.error("getTokenPrices: no price found", symbol);
+      console.error("getTokenPrices: no price found", symbolLowerCase);
       prices.push(null);
     }
   }

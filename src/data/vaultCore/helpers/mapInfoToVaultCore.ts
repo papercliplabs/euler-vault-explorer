@@ -75,6 +75,7 @@ export function mapInfoToVaultCore(
     chainId,
     type,
     address,
+    vaultDecimals: Number(vaultInfo.vaultDecimals),
 
     name: vaultInfo.vaultName,
     symbol: vaultInfo.vaultSymbol,

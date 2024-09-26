@@ -16,6 +16,7 @@ import TooltipPopover from "../ui/tooltipPopover";
 import VaultTypeDescriptor from "../VaultTypeDescriptor";
 import { useGraphSelected } from "@/hooks/useGraphSelected";
 import { CollateralEdgeType } from "./CollateralEdge";
+import SupplyApyTooltipPopover from "../SupplyApyTooltipPopover";
 
 export type VaultNodeType = Node<
   {
@@ -109,15 +110,16 @@ function VaultNodePopover({ vault, isRoot }: { vault: Vault; isRoot: boolean }) 
           : "-",
       popoverContent: "The total amount and value of the underlying assets currently supplied into this vault.",
     },
-    ...(vault.type != "escrowedCollateral"
-      ? [
-          {
-            title: "Supply APY",
-            value: formatNumber({ input: vault.supplyApy, unit: "%" }),
-            popoverContent: "The annual percent yield (APY) earned for lending into this vault.",
-          },
-        ]
-      : []),
+    {
+      title: "Supply APY",
+      value:
+        vault.supplyRewards.length > 0 ? (
+          <SupplyApyTooltipPopover supplyApy={vault.supplyApy} rewards={vault.supplyRewards} />
+        ) : (
+          formatNumber({ input: vault.supplyApy, unit: "%" })
+        ),
+      popoverContent: "The annual percent yield (APY) earned for supplying into this vault.",
+    },
     ...(vault.type != "escrowedCollateral"
       ? [
           {

@@ -2,8 +2,8 @@ import EtherscanLink from "@/components/EtherscanLink";
 import { ArrowLeft, ChainIcon, Question, VaultTypeIcon } from "@/components/Icons";
 import { VaultIcon } from "@/components/Icons/special/VaultIcon";
 import Metric from "@/components/Metric";
+import SupplyApyTooltipPopover from "@/components/SupplyApyTooltipPopover";
 import { Skeleton } from "@/components/ui/skeleton";
-import TooltipPopover from "@/components/ui/tooltipPopover";
 import VaultGraph from "@/components/VaultGraph";
 import VaultTypeDescriptor from "@/components/VaultTypeDescriptor";
 import { CHAIN_CONFIGS } from "@/config";
@@ -70,13 +70,17 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
             compact: true,
           })}
         />
-        {vault.type != "escrowedCollateral" && (
-          <Metric
-            title="Supply APY"
-            popoverContent="The annual percent yield (APY) earned for lending into this vault."
-            primaryValue={formatNumber({ input: vault.supplyApy, unit: "%" })}
-          />
-        )}
+        <Metric
+          title="Supply APY"
+          popoverContent="The annual percent yield (APY) earned for supplying into this vault."
+          primaryValue={
+            vault.supplyRewards.length > 0 ? (
+              <SupplyApyTooltipPopover supplyApy={vault.supplyApy} rewards={vault.supplyRewards} />
+            ) : (
+              formatNumber({ input: vault.supplyApy, unit: "%" })
+            )
+          }
+        />
         {vault.type != "escrowedCollateral" && (
           <Metric
             title="Total Borrowed"
