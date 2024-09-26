@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode, useState } from "react";
-import { Edge, EdgeProps, BaseEdge, EdgeLabelRenderer, useViewport } from "@xyflow/react";
+import { Edge, EdgeProps, BaseEdge, EdgeLabelRenderer, useViewport, useNodes } from "@xyflow/react";
 import { Collateral, OracleType, Vault } from "@/utils/types";
 import { ArrowRight, OracleTypeIcon } from "../Icons";
 import clsx from "clsx";
@@ -11,10 +11,9 @@ import "react-circular-progressbar/dist/styles.css";
 import { formatNumber, formatVaultName } from "@/utils/format";
 import { getCustomBezierPath } from "@/utils/getCustomBezierCurve";
 import TooltipPopover from "../ui/tooltipPopover";
-import EtherscanLink from "../EtherscanLink";
-import { zeroAddress } from "viem";
 import { ORACLE_TYPE_INFO_MAPPING } from "@/utils/constants";
 import ExternalLink from "../ExternalLink";
+import { VaultNodeType } from "./VaultNode";
 
 export type CollateralEdgeType = Edge<
   {
@@ -36,11 +35,13 @@ export default function CollateralEdge({
   data,
   selected,
 }: EdgeProps<CollateralEdgeType>) {
+  const nodes = useNodes<VaultNodeType>();
   const [hovered, setHovered] = useState<boolean>(false);
 
   const collateral = data?.collateral;
   const vault = data?.vault;
   const collateralVault = data?.collateralVault;
+
   if (!collateral || !vault || !collateralVault) {
     return null;
   }
@@ -53,6 +54,7 @@ export default function CollateralEdge({
     targetY,
     targetPosition,
     curvature: 0.35,
+    nodes,
   });
 
   return (

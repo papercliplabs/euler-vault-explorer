@@ -161,3 +161,24 @@ export function constructRehypothecationGraph(
 
   return { nodes, allEdges: edges, spanningTreeEdges: [...edges] };
 }
+
+interface Point {
+  x: number;
+  y: number;
+}
+
+interface Box extends Point {
+  width: number;
+  height: number;
+}
+
+export function isPointWithinBox({ box, point }: { box: Box; point: Point }) {
+  const rightEdge = box.x + box.width;
+  const bottomEdge = box.y + box.height;
+
+  if (box.x <= point.x && point.x <= rightEdge && box.y <= point.y && point.y <= bottomEdge) {
+    return true;
+  } else {
+    return false;
+  }
+}

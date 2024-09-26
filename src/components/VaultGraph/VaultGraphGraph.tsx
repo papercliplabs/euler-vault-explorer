@@ -126,10 +126,12 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
         onEdgesChange={onEdgeChange}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
-        fitView
-        fitViewOptions={{ padding: 0.2 }}
         defaultEdgeOptions={defaultEdgeOptions}
         proOptions={{ hideAttribution: true }}
+        nodeOrigin={[0.5, 0.5]}
+        // Hack to prevent initial glitch from react flow bug with node origin on fit view first layout
+        onInit={({ fitView }) => fitView({ padding: 0.25 })}
+        defaultViewport={{ zoom: 100, x: -10000, y: -10000 }}
       >
         <Background gap={20} color="rgb(67 89 113 / 0.4)" variant={BackgroundVariant.Dots} size={2} />
 

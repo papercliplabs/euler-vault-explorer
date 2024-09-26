@@ -1,8 +1,12 @@
 // Modified version of the edge path calculation from react-flow
 // https://github.com/xyflow/xyflow/blob/main/packages/system/src/utils/edges/bezier-edge.ts
+import { VaultNodeType } from "@/components/VaultGraph/VaultNode";
 import { Position } from "@xyflow/react";
+import { isPointWithinBox } from "./graph";
 
 const OVERLAP_OFFSET = 100;
+const COLLISION_BUFFER = 40;
+const COLLISION_OFFSET = 200;
 
 export type GetBezierPathParams = {
   sourceX: number;
@@ -102,9 +106,16 @@ export function getCustomBezierPath({
   sourcePosition = Position.Bottom,
   targetX,
   targetY,
+  nodes,
   targetPosition = Position.Top,
   curvature = 0.25,
-}: GetBezierPathParams): [path: string, labelX: number, labelY: number, offsetX: number, offsetY: number] {
+}: GetBezierPathParams & { nodes: VaultNodeType[]; debug?: boolean }): [
+  path: string,
+  labelX: number,
+  labelY: number,
+  offsetX: number,
+  offsetY: number,
+] {
   let [sourceControlX, sourceControlY] = getControlWithCurvature({
     pos: sourcePosition,
     x1: sourceX,
@@ -128,7 +139,7 @@ export function getCustomBezierPath({
     targetControlY += OVERLAP_OFFSET;
   }
 
-  const [labelX, labelY, offsetX, offsetY] = getBezierEdgeCenter({
+  let [labelX, labelY, offsetX, offsetY] = getBezierEdgeCenter({
     sourceX,
     sourceY,
     targetX,
@@ -138,6 +149,38 @@ export function getCustomBezierPath({
     targetControlX,
     targetControlY,
   });
+
+  let collision = false;
+  for (const node of nodes) {
+    const width = node.measured?.width ?? 0;
+    const height = node.measured?.height ?? 0;
+    collision =
+      collision ||
+      isPointWithinBox({
+        box: {
+          x: node.position.x - width * 0.5 - COLLISION_BUFFER / 2, // Use 0.5 for originX
+          y: node.position.y - height * 0.5 - COLLISION_BUFFER / 2, // Use 0.5 for originY
+          width: (node.measured?.width ?? 0) + COLLISION_BUFFER,
+          height: (node.measured?.height ?? 0) + COLLISION_BUFFER,
+        },
+        point: { x: labelX, y: labelY },
+      });
+  }
+
+  if (collision) {
+    targetControlY += COLLISION_OFFSET;
+
+    [labelX, labelY, offsetX, offsetY] = getBezierEdgeCenter({
+      sourceX,
+      sourceY,
+      targetX,
+      targetY,
+      sourceControlX,
+      sourceControlY,
+      targetControlX,
+      targetControlY,
+    });
+  }
 
   return [
     `M${sourceX},${sourceY} C${sourceControlX},${sourceControlY} ${targetControlX},${targetControlY} ${targetX},${targetY}`,
