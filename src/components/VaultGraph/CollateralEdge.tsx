@@ -1,6 +1,15 @@
 "use client";
 import { ReactNode, useMemo, useState } from "react";
-import { Edge, EdgeProps, BaseEdge, EdgeLabelRenderer, useViewport, useNodes } from "@xyflow/react";
+import {
+  Edge,
+  EdgeProps,
+  BaseEdge,
+  EdgeLabelRenderer,
+  useViewport,
+  useNodes,
+  useStore,
+  ReactFlowState,
+} from "@xyflow/react";
 import { Collateral, OracleType, Vault } from "@/utils/types";
 import { ArrowRight, OracleTypeIcon } from "../Icons";
 import clsx from "clsx";
@@ -16,6 +25,7 @@ import ExternalLink from "../ExternalLink";
 import { VaultNodeType } from "./VaultNode";
 import { useGraphSelected } from "@/hooks/useGraphSelected";
 import { isAddressEqual, zeroAddress } from "viem";
+import { createPortal } from "react-dom";
 
 export type CollateralEdgeType = Edge<
   {
@@ -71,7 +81,7 @@ export default function CollateralEdge({
     return null;
   }
 
-  const [edgePath, labelX, labelY] = getCustomBezierPath({
+  const [edgePath, labelX, labelY, offsetX, offsetY] = getCustomBezierPath({
     sourceX,
     sourceY,
     sourcePosition,
@@ -81,6 +91,8 @@ export default function CollateralEdge({
     curvature: 0.35,
     nodes,
   });
+
+  // console.log("DEBUG", labelX, labelY, offsetX, offsetY);
 
   return (
     <g onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="nodrag nopan">
@@ -136,7 +148,7 @@ export default function CollateralEdge({
         </div>
       </EdgeLabelRenderer>
       {(selected || (selectedGraphItem && hovered && visibilityState != "fade")) && (
-        <CustomEdgeToolbar labelX={labelX} labelY={labelY}>
+        <CustomEdgeToolbar labelX={labelX} labelY={labelY} bringToFront={!selected}>
           <CollateralPopover collateral={collateral} vault={vault} collateralVault={collateralVault} />
         </CustomEdgeToolbar>
       )}
@@ -144,22 +156,38 @@ export default function CollateralEdge({
   );
 }
 
-function CustomEdgeToolbar({ labelX, labelY, children }: { labelX: number; labelY: number; children: ReactNode }) {
-  const { zoom } = useViewport();
+const selector = (state: ReactFlowState) => state.domNode?.querySelector(".react-flow__renderer");
+function CustomEdgeToolbar({
+  labelX,
+  labelY,
+  bringToFront,
+  children,
+}: {
+  labelX: number;
+  labelY: number;
+  bringToFront: boolean;
+  children: ReactNode;
+}) {
+  const { zoom, x, y } = useViewport();
+  const wrapperRef = useStore(selector);
 
-  return (
-    <EdgeLabelRenderer>
-      <div
-        style={{
-          transformOrigin: "center left",
-          transform: `translate(31px, -50%) translate(${labelX}px, ${labelY}px) scale(${1 / zoom}) `,
-          pointerEvents: "all",
-        }}
-        className={clsx("nopan nodrag absolute z-[1]")}
-      >
-        {children}
-      </div>
-    </EdgeLabelRenderer>
+  if (!wrapperRef) {
+    return null;
+  }
+
+  return createPortal(
+    <div
+      style={{
+        transformOrigin: "center left",
+        transform: `translate(${31 * zoom}px, -50%) translate(${x + labelX * zoom}px, ${y + labelY * zoom}px)  `,
+        pointerEvents: "all",
+        zIndex: bringToFront ? 1001 : 1005,
+      }}
+      className={clsx("nopan nodrag absolute")}
+    >
+      {children}
+    </div>,
+    wrapperRef
   );
 }
 

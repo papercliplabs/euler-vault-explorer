@@ -90,7 +90,8 @@ export default function VaultNode({ id, data: { vault, isRoot }, selected }: Nod
 
       <NodeToolbar
         position={Position.Right}
-        className="nodrag nopan"
+        // Make sure hovered toolbars show up on top of selected ones
+        className={clsx("nodrag nopan", !selected && "!z-[1005]")}
         isVisible={selected || (selectedGraphItem && hovered && visibilityState != "fade")}
       >
         <VaultNodePopover vault={vault} isRoot={isRoot} />
