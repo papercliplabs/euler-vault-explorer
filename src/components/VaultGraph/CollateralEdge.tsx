@@ -135,7 +135,7 @@ export default function CollateralEdge({
           </div>
         </div>
       </EdgeLabelRenderer>
-      {selected && (
+      {(selected || (selectedGraphItem && hovered && visibilityState != "fade")) && (
         <CustomEdgeToolbar labelX={labelX} labelY={labelY}>
           <CollateralPopover collateral={collateral} vault={vault} collateralVault={collateralVault} />
         </CustomEdgeToolbar>

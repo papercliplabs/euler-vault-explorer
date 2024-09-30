@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import { Handle, Position, NodeProps, Node, NodeToolbar, useNodes, useEdges } from "@xyflow/react";
 import { Vault } from "@/utils/types";
 import { VaultTypeIcon } from "../Icons";
@@ -28,6 +28,7 @@ export type VaultNodeType = Node<
 
 export default function VaultNode({ id, data: { vault, isRoot }, selected }: NodeProps<VaultNodeType>) {
   const { selected: selectedGraphItem } = useGraphSelected();
+  const [hovered, setHovered] = useState<boolean>(false);
 
   const edges = useEdges<CollateralEdgeType>();
 
@@ -66,9 +67,13 @@ export default function VaultNode({ id, data: { vault, isRoot }, selected }: Nod
     <div
       className={clsx(
         "bg-euler-700/20 border-border-strong flex h-[48px] cursor-pointer items-center gap-2 rounded-full border p-1 pr-4 shadow-md backdrop-blur-sm transition-all",
-        visibilityState == "selected" ? "border-semantic-accent" : "hover:border-semantic-accent/50",
+        visibilityState == "selected"
+          ? "border-semantic-accent bg-euler-700/60"
+          : "hover:border-semantic-accent/50 hover:bg-euler-700/60",
         visibilityState == "fade" ? "opacity-30" : "opacity-100"
       )}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       <Handle type="source" position={Position.Top} className="border-none bg-transparent" />
       <Handle type="target" position={Position.Bottom} className="border-none bg-transparent" />
@@ -83,7 +88,11 @@ export default function VaultNode({ id, data: { vault, isRoot }, selected }: Nod
         </div>
       </div>
 
-      <NodeToolbar position={Position.Right} className="nodrag nopan">
+      <NodeToolbar
+        position={Position.Right}
+        className="nodrag nopan"
+        isVisible={selected || (selectedGraphItem && hovered && visibilityState != "fade")}
+      >
         <VaultNodePopover vault={vault} isRoot={isRoot} />
       </NodeToolbar>
     </div>
