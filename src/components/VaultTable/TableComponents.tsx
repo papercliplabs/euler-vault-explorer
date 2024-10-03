@@ -1,3 +1,5 @@
+"use client";
+import { useScreenSize } from "@/hooks/useScreenSize";
 import { cn } from "@/utils/shadcn";
 import Link from "next/link";
 import { ComponentProps, HTMLAttributes, HTMLProps, ReactNode } from "react";
@@ -19,7 +21,7 @@ export function TableCell({ minWidth, className, style, ...props }: TableCellPro
   return (
     <div
       className={cn(
-        "flex h-full w-[0px] flex-1 shrink-0 grow items-center overflow-hidden text-ellipsis text-nowrap px-4 first:!min-w-[240px] first:pl-6 last:pr-6",
+        "flex h-full w-[0px] flex-1 shrink-0 grow items-center overflow-hidden text-ellipsis text-nowrap px-4 first:pl-6 last:pr-6 sm:max-md:first:!min-w-[240px]",
         className
       )}
       style={{

@@ -92,8 +92,6 @@ export default function CollateralEdge({
     nodes,
   });
 
-  // console.log("DEBUG", labelX, labelY, offsetX, offsetY);
-
   return (
     <g onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="nodrag nopan">
       <BaseEdge

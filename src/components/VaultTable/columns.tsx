@@ -1,6 +1,6 @@
 import { Vault } from "@/utils/types";
 import { ColumnDef } from "@tanstack/react-table";
-import { VaultTypeIcon } from "../Icons";
+import { TokenIcon, VaultTypeIcon } from "../Icons";
 import { formatNumber, formatVaultName } from "@/utils/format";
 import { VAULT_TYPE_INFO_MAPPING } from "@/utils/constants";
 import clsx from "clsx";
@@ -50,7 +50,7 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
         </div>
       );
     },
-    minSize: 200,
+    minSize: 160,
     sortingFn: (a, b) => {
       const aVal = a.original.totalSuppliedUsd ?? SMALL_NON_ZERO_VAL;
       const bVal = b.original.totalSuppliedUsd ?? SMALL_NON_ZERO_VAL;
@@ -86,19 +86,19 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
     cell: ({ row }) => {
       const vault = row.original;
       return (
-        <div className="flex flex-col">
+        <div className="flex min-w-0 flex-col">
           <span>
             {vault.totalBorrowedUsd == undefined
               ? "-"
               : formatNumber({ input: vault.totalBorrowedUsd, unit: "USD", compact: true })}
           </span>
-          <span className="text-foreground-muted body-xs">
+          <span className="text-foreground-muted body-xs truncate">
             {formatNumber({ input: vault.totalBorrowed, unit: vault.underlyingAssetSymbol, compact: true })}
           </span>
         </div>
       );
     },
-    minSize: 200,
+    minSize: 160,
     sortingFn: (a, b) => {
       const aVal = a.original.totalBorrowedUsd ?? SMALL_NON_ZERO_VAL;
       const bVal = b.original.totalBorrowedUsd ?? SMALL_NON_ZERO_VAL;
@@ -125,19 +125,29 @@ export const vaultTableColumns: ColumnDef<Vault>[] = [
         </div>
       );
     },
-    minSize: 200,
+    minSize: 150,
   },
-  // {
-  //   accessorKey: "chainId",
-  //   header: "Chain",
-  //   cell: ({ row }) => {
-  //     const vault = row.original;
-  //     return (
-  //       <div className="flex items-center gap-2">
-  //         <ChainIcon chainId={vault.chainId} className="h-4 w-4" />
-  //         <div>{CHAIN_CONFIGS[vault.chainId].publicClient.chain?.name}</div>
-  //       </div>
-  //     );
-  //   },
-  // },
+  {
+    accessorKey: "offchainLabel.name",
+    header: "Governing Entity",
+    cell: ({ row }) => {
+      const vault = row.original;
+      const offchainLabel = vault.offchainLabel;
+      return (
+        <div className="flex min-w-0 items-center gap-2">
+          {offchainLabel ? (
+            <>
+              {offchainLabel.entityLogo && (
+                <TokenIcon symbol={offchainLabel.name} imgSrc={offchainLabel.entityLogo} size={20} />
+              )}
+              <span className="truncate">{vault.offchainLabel?.entityName}</span>
+            </>
+          ) : (
+            <>{vault.type == "governed" || vault.type == "factory" ? "Unknown" : "None"}</>
+          )}
+        </div>
+      );
+    },
+    minSize: 180,
+  },
 ];
