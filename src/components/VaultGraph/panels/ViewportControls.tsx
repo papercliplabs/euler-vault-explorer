@@ -9,7 +9,7 @@ export default function ViewportControls() {
   const items: { icon: React.ReactNode; onClick: () => void }[] = [
     { icon: <Minus />, onClick: () => reactFlow.zoomOut() },
     { icon: <Plus />, onClick: () => reactFlow.zoomIn() },
-    { icon: <Fit />, onClick: () => reactFlow.fitView({ padding: 0.3 }) },
+    { icon: <Fit />, onClick: () => reactFlow.fitView({ padding: 0.3, minZoom: 0.5 }) },
   ];
 
   return (

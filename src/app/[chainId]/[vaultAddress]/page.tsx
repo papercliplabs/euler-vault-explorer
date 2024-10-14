@@ -142,7 +142,7 @@ async function VaultPageWrapper({ chainId, vaultAddress }: { chainId: SupportedC
               }
             />
             <Metric
-              title="Underling Asset"
+              title="Underlying Asset"
               popoverContent="The single underlying asset for the vault that supplied and borrowed."
               primaryValue={
                 <EtherscanLink chainId={vault.chainId} address={vault.underlyingAssetAddress}>

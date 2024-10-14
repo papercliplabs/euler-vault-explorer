@@ -101,7 +101,7 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
 
       // Fit view after nodes change if requested
       if (shouldFitView) {
-        fitView({ padding: 0.3 });
+        fitView({ padding: 0.3, minZoom: 0.5 });
         setShouldFitView(false);
       }
     },
@@ -129,7 +129,9 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
         defaultEdgeOptions={defaultEdgeOptions}
         proOptions={{ hideAttribution: true }}
         fitView
-        fitViewOptions={{ padding: 0.3 }}
+        fitViewOptions={{ padding: 0.3, minZoom: 0.5 }}
+        maxZoom={2}
+        minZoom={0.25}
         multiSelectionKeyCode={null}
         selectionKeyCode={null}
         // Hack to prevent initial glitch from react flow bug with node origin on fit view first layout
