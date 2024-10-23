@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode, useMemo, useState } from "react";
-import { Handle, Position, NodeProps, Node, NodeToolbar, useNodes, useEdges } from "@xyflow/react";
+import { Handle, Position, NodeProps, Node, NodeToolbar, useEdges } from "@xyflow/react";
 import { Vault } from "@/utils/types";
 import { VaultTypeIcon } from "../Icons";
 import { VAULT_TYPE_INFO_MAPPING } from "@/utils/constants";
@@ -8,7 +8,6 @@ import clsx from "clsx";
 import { formatAddress, formatNumber, formatVaultName } from "@/utils/format";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import ArrowUpRight from "../Icons/core/ArrowUpRight";
 import { etherscanLink } from "@/utils/etherscan";
 import { VaultIcon } from "../Icons/special/VaultIcon";
 import ExternalLink from "../ExternalLink";
@@ -75,8 +74,8 @@ export default function VaultNode({ id, data: { vault, isRoot }, selected }: Nod
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <Handle type="source" position={Position.Top} className="border-none bg-transparent" />
-      <Handle type="target" position={Position.Bottom} className="border-none bg-transparent" />
+      <Handle type="source" position={Position.Top} className="border-none bg-transparent" isConnectable={false} />
+      <Handle type="target" position={Position.Bottom} className="border-none bg-transparent" isConnectable={false} />
 
       <VaultIcon vault={vault} size={40} badgeType="entity" />
 

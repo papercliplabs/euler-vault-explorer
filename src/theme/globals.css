@@ -12,6 +12,13 @@
   --xy-edge-stroke-selected-default: #2ae5b9;
 }
 
+.react-flow__edge.animated path {
+  stroke-dashoffset: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 3 5;
+  animation: "dashdraw 0.6s linear infinite";
+}
+
 @layer base {
   *,
   ::before,

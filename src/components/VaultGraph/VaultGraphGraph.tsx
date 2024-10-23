@@ -4,7 +4,6 @@ import {
   ReactFlow,
   Background,
   BackgroundVariant,
-  DefaultEdgeOptions,
   NodeTypes,
   EdgeTypes,
   useEdgesState,
@@ -12,7 +11,7 @@ import {
   applyNodeChanges,
 } from "@xyflow/react";
 import VaultNode, { VaultNodeType } from "./VaultNode";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ViewportControls from "./panels/ViewportControls";
 import GraphTypeSelector, { GraphType } from "./panels/GraphTypeSelector";
 import AdvancedSwitch from "./panels/AdvancedSwitch";
@@ -24,14 +23,12 @@ import {
 } from "@/utils/graph";
 import Dagre from "@dagrejs/dagre";
 
+const DISABLE_EDGE_ANIMATION_THRESHOLD = 50;
+
 interface VaultGraphGraphProps {
   root: Vault;
   graph: VaultGraphDataStructure;
 }
-
-const defaultEdgeOptions: DefaultEdgeOptions = {
-  animated: true,
-};
 
 const nodeTypes: NodeTypes = { vault: VaultNode };
 const edgeTypes: EdgeTypes = { collateral: CollateralEdge };
@@ -72,18 +69,17 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
   const [advancedSwitchChecked, setAdvancedSwitchChecked] = useState<boolean>(false);
   const [shouldFitView, setShouldFitView] = useState<boolean>(false);
   const { fitView } = useReactFlow();
+  const firstRenderRef = useRef(true);
 
   const {
     nodes: rawNodes,
     allEdges,
     spanningTreeEdges,
-  } = useMemo(
-    () =>
-      graphType == "collateralExposure"
-        ? constructCollateralExposureGraph(root, graph, advancedSwitchChecked ? undefined : 4)
-        : constructRehypothecationGraph(root, graph),
-    [root, graph, advancedSwitchChecked, graphType]
-  );
+  } = useMemo(() => {
+    return graphType == "collateralExposure"
+      ? constructCollateralExposureGraph(root, graph, advancedSwitchChecked ? undefined : 3)
+      : constructRehypothecationGraph(root, graph);
+  }, [root, graph, advancedSwitchChecked, graphType]);
 
   // Only use spanning tree edges for layout
   const layoutedNodes = useMemo(() => {
@@ -110,12 +106,21 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
 
   useEffect(() => {
     setNodes(layoutedNodes);
-    setShouldFitView(true);
+
+    if (firstRenderRef.current) {
+      firstRenderRef.current = false;
+    } else {
+      setShouldFitView(true);
+    }
   }, [setNodes, layoutedNodes, setShouldFitView]);
 
   useEffect(() => {
     setEdges(advancedSwitchChecked ? allEdges : spanningTreeEdges);
   }, [setEdges, advancedSwitchChecked, allEdges, spanningTreeEdges]);
+
+  const disableEdgeAnimation = useMemo(() => {
+    return edges.length > DISABLE_EDGE_ANIMATION_THRESHOLD;
+  }, [edges.length]);
 
   return (
     <div className="bg-background-subtle h-full w-full overflow-visible rounded-[24px] border">
@@ -126,7 +131,7 @@ export default function VaultGraphGraph({ root, graph }: VaultGraphGraphProps) {
         onEdgesChange={onEdgeChange}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
-        defaultEdgeOptions={defaultEdgeOptions}
+        defaultEdgeOptions={{ animated: !disableEdgeAnimation }}
         proOptions={{ hideAttribution: true }}
         fitView
         fitViewOptions={{ padding: 0.3, minZoom: 0.5 }}

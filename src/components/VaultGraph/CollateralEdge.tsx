@@ -46,6 +46,7 @@ export default function CollateralEdge({
   targetPosition,
   data,
   selected,
+  animated,
 }: EdgeProps<CollateralEdgeType>) {
   const nodes = useNodes<VaultNodeType>();
   const [hovered, setHovered] = useState<boolean>(false);
@@ -106,11 +107,7 @@ export default function CollateralEdge({
           visibilityState == "fade" ? "opacity-30" : "opacity-100"
         )}
         style={{
-          strokeWidth: "2px",
-          strokeLinecap: "round",
-          strokeDasharray: "3 5",
-          strokeDashoffset: 2,
-          animation: "dashdraw 0.6s linear infinite",
+          strokeWidth: animated ? "2px" : "1px",
         }}
       />
       <EdgeLabelRenderer>
