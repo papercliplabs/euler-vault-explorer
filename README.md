@@ -23,3 +23,7 @@ Build app
 ```bash
 pnpm build
 ```
+
+---
+
+Built by [Paperclip Labs](https://paperclip.xyz/).
